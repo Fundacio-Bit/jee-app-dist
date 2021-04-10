@@ -1,0 +1,15 @@
+# app section
+# See also:
+#
+# bin/compile
+# deploy/dev/docker-compose.yaml
+#
+
+LONG_APP_NAME_UPPER=EMISERV
+LONG_APP_NAME_LOWER=emiserv
+LONG_APP_NAME_CAMEL=Emiserv
+SHORT_APP_NAME_UPPER=EMS
+SHORT_APP_NAME_LOWER=ems
+SHORT_APP_NAME_CAMEL=Ems
+
+# end app section

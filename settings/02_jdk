@@ -1,0 +1,18 @@
+# JDK Download section
+# Downloading java version lower than 9 is up to you
+JDK11_URL=https://download.java.net/java/ga/jdk11/openjdk-11_linux-x64_bin.tar.gz
+JDK11_TARGET=$HOME/java/${LONG_APP_NAME_LOWER}
+JDK11_TARFILE=openjdk-11_linux-x64_bin.tar.gz
+JDK_URL=$JDK11_URL
+JDK_TARGET=$JDK11_TARGET
+JDK_TARFILE=$JDK11_TARFILE
+# End JDK Download section
+
+# jdk section
+# set here previously installed jdk path  
+JDK8_HOME=/usr/lib/jvm/java-8-oracle
+JDK7_HOME=/usr/lib/jvm/jdk1.7.0_80
+OPENJDK11_HOME=$JDK11_TARGET/jdk-11
+JAVA_HOME=$OPENJDK11_HOME
+JDK_HOME=$JDK7_HOME
+# end jdk section

@@ -1,0 +1,11 @@
+# jboss section
+JBOSS_EAP_52_HOME=/usr/local/desarrollo/ServidoresJ2EE/jboss-eap-5.2/jboss-as
+JBOSS_EAP_52_DEPLOYDIR=$JBOSS_EAP_52_HOME/server/default/deploy$LONG_APP_NAME_LOWER
+JBOSS_HOME=$JBOSS_EAP_52_HOME
+JBOSS_DEPLOYDIR=$JBOSS_EAP_52_DEPLOYDIR
+# end jboss section
+
+# keycloak section
+KEYCLOAK_URI_ARG=http://keycloak-${LONG_APP_NAME_LOWER}:8180
+# end keycloak section
+

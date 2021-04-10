@@ -1,0 +1,4 @@
+embed-server --server-config=${server.config:standalone.xml}
+module add --name=org.postgresql --resources=postgresql-42.2.5.jar --dependencies=javax.api,javax.transaction.api
+/subsystem=datasources/jdbc-driver=postgresql:add(driver-module-name=org.postgresql,driver-name=postgresql,driver-xa-datasource-class-name=org.postgresql.xa.PGXADataSource)
+stop-embedded-server

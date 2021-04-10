@@ -1,0 +1,21 @@
+#!/bin/bash
+#### Description: Checks environment variables
+#### Written by: Guillermo de Ignacio - gdeignacio@fundaciobit.org on 04-2021
+
+###################################
+###   Test environment values   ###
+###################################
+
+DOCKER_COMPOSE=$(which docker-compose)
+echo ""
+echo "Docker compose at $DOCKER_COMPOSE"
+echo ""
+####################
+
+PROJECT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )"
+echo "Project path at $PROJECT_PATH"
+echo ""
+echo "[$(date +"%Y-%m-%d %T")] Testing env..."
+echo ""
+
+source $PROJECT_PATH/bin/loadenv

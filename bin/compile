@@ -1,0 +1,41 @@
+#!/bin/bash
+#### Description: Build and deploy from source
+#### Written by: Guillermo de Ignacio - gdeignacio@fundaciobit.org on 04-2021
+
+###################################
+###   BUILD & DEPLOY MVN UTILS  ###
+###################################
+
+echo ""
+PROJECT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )"
+echo "Project path at $PROJECT_PATH"
+echo ""
+echo "[$(date +"%Y-%m-%d %T")] Build and deploy project..."
+echo ""
+
+source $PROJECT_PATH/bin/loadenv
+
+echo off
+cat help.txt
+
+env mvn -f $PROJECT_PATH/src/$LONG_APP_NAME_LOWER/pom.xml -DskipTests $@ install 
+
+if [ $? == 0 ]; then
+  if [ "$JBOSS_DEPLOY_DIR" == "" ];  then
+
+    echo  =================================================================
+    echo    Definex la variable d\'entorn JBOSS_DEPLOY_DIR apuntant al
+    echo    directori de deploy del JBOSS  i automaticament s\'hi copiara
+    echo    l\'ear generat.
+    echo  =================================================================
+  
+  else
+  
+    echo on
+    echo --------- COPIANT EAR ---------
+
+    cp $EAR_FILE $JBOSS_DEPLOY_DIR
+
+  fi
+fi
+

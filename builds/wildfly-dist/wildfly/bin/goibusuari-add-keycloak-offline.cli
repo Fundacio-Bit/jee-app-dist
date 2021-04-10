@@ -1,0 +1,10 @@
+embed-server --server-config=${server.config:standalone.xml}
+/subsystem=keycloak/realm=GOIB:add(auth-server-url=${KEYCLOAK_URI}/auth,ssl-required=EXTERNAL)
+/subsystem=keycloak/secure-deployment=userinfo.war:\
+add(realm=GOIB,resource=goib-default,use-resource-role-mappings=true,public-client=true,verify-token-audience=true,principal-attribute=preferred_username)
+/subsystem=keycloak/secure-deployment=rest.war:\
+add(realm=GOIB,resource=goib-ws,use-resource-role-mappings=true,bearer-only=true,enable-basic-auth=true,principal-attribute=preferred_username)
+/subsystem=keycloak/secure-deployment=rest.war/credential=secret:\
+  add(value=e73e8e95-d88c-42bf-a76b-273be6708018)
+stop-embedded-server
+

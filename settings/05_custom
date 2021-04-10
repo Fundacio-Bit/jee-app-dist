@@ -1,0 +1,14 @@
+# Custom section 
+
+EAR_FILE=$PROJECT_PATH/src/$LONG_APP_NAME_LOWER/$LONG_APP_NAME_LOWER-ear/target/$LONG_APP_NAME_LOWER.ear
+
+# End custom section
+
+# path update section
+PATH=$JBOSS_HOME/bin:$JAVA_HOME/bin:$M2_HOME/bin:$PATH
+# end path update section
+
+# Docker-compose section
+CUSTOM_USERNAME=$LONG_APP_NAME_LOWER
+CUSTOM_USERID=1000
+# end docker-compose section
