@@ -2,7 +2,7 @@
 # See also:
 #
 # bin/compile
-# deploy/dev/docker-compose.yaml
+# deploy/default/docker-compose.yaml
 #
 
 LONG_APP_NAME_UPPER=EMISERV

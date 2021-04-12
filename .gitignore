@@ -16,8 +16,6 @@ opt/
 # Prebuilt settings file
 .env
 
-
-
 # Compiled class file
 *.class
 
