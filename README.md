@@ -108,7 +108,7 @@ git clone https://github.com/Fundacio-Bit/emiserv-dist.git
 
 5. Edit [50_custom](./settings/50_custom) file.
 
-    These values set custom to-deploy filenames, path updates, username for docker-compose args, and docker-compose.yaml file path. Yo can choose config depending on stage and services to enable. **The environment scope is local to your script**
+    These values set custom to-deploy filenames, path updates, username for docker-compose args, and docker-compose.yaml file path. You can choose config depending on stage and services to enable. **The environment scope is local to your script**
 
     ```bash
     # Custom section 
@@ -135,10 +135,11 @@ git clone https://github.com/Fundacio-Bit/emiserv-dist.git
 
     **Actual values could be different than above once files in setting folder had been edited. Take these only as an example.**
 
-6. Values preconfigurde in settings folder can be used as is or modified at your discretion. Mind
+6. Preconfigured values are stored in settings folder and can be used *as is* or modified at your discretion.
+Although is possible to config any type of parameter, passwords should never be set there cause changes will be committed against repo.
 
 
-## Deployment
+## Run
 ---
 
 1. Clone this repository on your local machine if you didn't yet. 
@@ -147,23 +148,61 @@ git clone https://github.com/Fundacio-Bit/emiserv-dist.git
     git clone https://github.com/Fundacio-Bit/emiserv-dist.git
     ```
 
-2. Run [setenv.sh](./bin/setenv.sh) script. It generates an .env file from settings folder content to be allocated in main folder. When loading env variables, this file will be used as input. 
-
-    ```bash
-    ./bin/setenv.sh
-    ```
-    **Please remember run after edit settings. Otherwise, .env will remain unmodified.**
-
-
-
-
-
-
-2. Run [installdocker.sh](./bin/installdocker.sh) script
+2. Run [installdocker](./bin/installdocker) script to update and install docker.
 
     ```bash
     ./bin/installdocker.sh
     ```
+    Note that we add a new user which default password is "docker" and would better update it, even in preproduction stage.
+
+    ```bash
+    sudo useradd -p $(openssl passwd -1 docker) docker -g docker
+    ```
+
+    ```
+    -p, --password PASSWORD
+        The encrypted password, as returned by crypt(3). The default is to disable the password.
+        Note: This option is not recommended because the password (or encrypted password) will be visible by users listing the processes.
+        You should make sure the password respects the system's password policy. 
+    ```
+
+3. Check preconfigured values and change them as explained above if needed.
+
+
+4. Run [setenv](./bin/setenv) script. It generates an .env file from settings folder content to be allocated in main folder. When loading env variables, this file will be used as input. Repeat steps 2 and 3 as times as you need.
+
+    ```bash
+    ./bin/setenv
+    ```
+    **Please remember run after edit settings. Otherwise, .env will remain unmodified.**
+
+### Installing java tools
+---
+
+5. Optionally, run [installjdk](./bin/installjdk) script. It downloads a tar.gz file and inflates into preconfigured target. See ./settings/20_jdk file. If jdk version is lower than 9, jdk platform must be manually installed.
+
+    ```bash
+    ./bin/installjdk
+    ```
+
+6. Optionally, run [installmaven](./bin/installmaven) script. It downloads a tar.gz file and inflates into preconfigured target. See ./settings/30_mvn file. Running maven requires JAVA_HOME variable.
+    
+    ```bash
+    ./bin/installmaven
+    ```
+### Run docker
+---
+
+7. Run [start](./bin/start) script. Runs docker-compose and starts containers configured in docker-compose.yaml
+
+    ```bash
+    ./bin/start
+    ``` 
+8. Run [cleanup](./bin/cleanup) script. Stops all running containers
+
+    ```bash
+    ./bin/cleanup
+    ``` 
 
 
 
