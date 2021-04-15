@@ -1,45 +1,5 @@
 version: '3.2'
 services:
-  wildfly:
-    build:
-      context: ../../builds/wildfly-dist
-      args:
-        - KEYCLOAK_URI_ARG=${KEYCLOAK_URI_ARG}
-    container_name: wildfly-${LONG_APP_NAME_LOWER}
-    hostname: wildfly-${LONG_APP_NAME_LOWER}
-    environment:
-     - ADMIN_USER=admin
-     - ADMIN_PASSWORD=admin
-    ports:
-     - 8080:8080
-     - 9990:9990
-    volumes:
-     - /app/jboss/wildfly/${LONG_APP_NAME_LOWER}/deployments:/opt/jboss/wildfly/standalone/deployments
-     #- ../../builds/wildfly-dist/wildfly/deployments:/opt/jboss/wildfly/standalone/deployments
-     #- /tmp/deployments:/opt/jboss/wildfly/standalone/deployments
-     # - C:\tmp\deployments:/opt/jboss/wildfly/standalone/deployments
-    depends_on:
-      - keycloak
-      - app-db
-      - seycon-db
-  keycloak:
-    build:
-      context: ../../builds/keycloak-dist
-    container_name: keycloak-${LONG_APP_NAME_LOWER}
-    hostname: keycloak-${LONG_APP_NAME_LOWER}
-    environment:
-     - KEYCLOAK_USER=admin
-     - KEYCLOAK_PASSWORD=admin
-     - KEYCLOAK_IMPORT=/tmp/import-goib-realm.json
-    ports:
-     - 8180:8180
-    volumes: 
-      - ../../builds/keycloak-dist/keycloak/conf/import-goib-realm.json:/tmp/import-goib-realm.json
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://keycloak-goib:8180/auth/realms/GOIB"]
-      interval: 10s
-      timeout: 10s
-      retries: 5
   app-db:
     image: postgres:9.5-alpine
     #build:

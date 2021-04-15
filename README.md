@@ -1,13 +1,17 @@
-# jee-app-dist
+# emiserv-dist
 
 Env settings and command line tools for jee building and deployment. Openjdk &amp; maven.
 
 ## Getting Started
----
+
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
+Shortcut to [Run Docker](#run-docker) if environment is already set.
+
 ### Prerequisites
+
 ---
+
 * Ubuntu, Debian or CentOS operating system
 * A user account with sudo privileges
 * Command-line/terminal (CTRL-ALT-T or Applications menu > Accessories > Terminal)
@@ -16,7 +20,8 @@ These instructions will get you a copy of the project up and running on your loc
 The specific steps to installing Docker will differ depending on the host's operating system. Full instructions can be found on [Docker's installation documentation](https://docs.docker.com/install/overview/)
 
 ### Installing
----
+
+
 Clone this repository on your local machine
 
 ```bash
@@ -24,6 +29,7 @@ git clone https://github.com/Fundacio-Bit/emiserv-dist.git
 ```
 
 ## Setting environment values
+
 ---
 
 1. Edit [10_app](./settings/10_app) file and set variables as shown
@@ -90,7 +96,7 @@ git clone https://github.com/Fundacio-Bit/emiserv-dist.git
 
 4. Edit [40_jboss](./settings/40_jboss) file. These values set default Jboss EAP Home and installation target according environment. **The environment scope is local to your script**
 
-    If jboss version < 7 should be manually installed. Othewise, keycloak uri arg must be setted.
+    If jboss version < 7 should be manually installed. Othewise, keycloak uri arg must be set.
 
     ```bash
     # jboss section
@@ -140,6 +146,7 @@ Although is possible to config any type of parameter, passwords should never be 
 
 
 ## Run
+
 ---
 
 1. Clone this repository on your local machine if you didn't yet. 
@@ -177,6 +184,7 @@ Although is possible to config any type of parameter, passwords should never be 
     **Please remember run after edit settings. Otherwise, .env will remain unmodified.**
 
 ### Installing java tools
+
 ---
 
 5. Optionally, run [installjdk](./bin/installjdk) script. It downloads a tar.gz file and inflates into preconfigured target. See ./settings/20_jdk file. If jdk version is lower than 9, jdk platform must be manually installed.
@@ -190,29 +198,47 @@ Although is possible to config any type of parameter, passwords should never be 
     ```bash
     ./bin/installmaven
     ```
-### Run docker
+
+
+## Docker settings
+
+
+
+
+
+## docker-compose
+
+
+
+
+
+## Run docker
+
 ---
 
-7. Run [start](./bin/start) script. Runs docker-compose and starts containers configured in docker-compose.yaml
+1. Run [start](./bin/start) script. Runs docker-compose and starts containers configured in docker-compose.yaml
 
     ```bash
     ./bin/start
     ``` 
-8. Run [cleanup](./bin/cleanup) script. Stops all running containers
+
+2. Run [cleanup](./bin/cleanup) script. Stops all running containers
 
     ```bash
     ./bin/cleanup
     ``` 
 
+    Shortcut to [Getting started](#getting-started) if more detail is needed.
 
+---
 
 ## Authors
 
-* **gdeignacio**  - [gdeignacio](https://github.com/gdeignacio)
+* **gdeignacio**  - [gdeignacio-fundaciobit](https://github.com/gdeignacio-fundaciobit)
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
 
 ## Acknowledgments
 
