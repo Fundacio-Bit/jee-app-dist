@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<server>
+  <mbean name="jboss:type=Service,name=AplicacionPropertiesEmiserv" 
+         code="org.jboss.varia.property.SystemPropertiesService">
+  <attribute name="Properties">
+    es.caib.emiserv.properties.path=classpath:emiserv.properties
+  </attribute>
+  </mbean>
+</server>
