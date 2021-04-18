@@ -1,6 +1,14 @@
 # Custom section 
 
-EAR_FILE=$PROJECT_PATH/src/$LONG_APP_NAME_LOWER/$LONG_APP_NAME_LOWER-ear/target/$LONG_APP_NAME_LOWER.ear
+EAR_FILE=$PROJECT_PATH/source/$LONG_APP_NAME_LOWER/$LONG_APP_NAME_LOWER-ear/target/$LONG_APP_NAME_LOWER.ear
+SAR_FILE=$PROJECT_PATH/source/sar/target/$LONG_APP_NAME_LOWER.sar
+
+
+JBOSS_EAP_52_CONF_PATH=${PROJECT_PATH}/builds/jboss-dist/jboss/conf
+WILDFLY_CONF_PATH=${PROJECT_PATH}/builds/wildfly-dist/wildfly/conf
+CONF_PATH=$JBOSS_EAP_52_CONF_PATH
+
+DS_FILE=$CONF_PATH/$LONG_APP_NAME_LOWER-ds.xml
 
 # End custom section
 

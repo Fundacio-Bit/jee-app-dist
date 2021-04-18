@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <datasources>
-    <datasource jndi-name="java:jboss/datasources/emiservDS" pool-name="emiservDS"
-        enabled="true" use-java-context="true">
-        <connection-url>jdbc:postgresql://emiserv-pg:5441/emiserv</connection-url>
-        <driver>postgresql</driver>
-        <security>
-            <user-name>emiserv</user-name>
-            <password>emiserv</password>
-        </security>
-    </datasource>
+	<no-tx-datasource>
+        <jndi-name>es.caib.emiserv.db</jndi-name>
+        <connection-url>jdbc:postgresql://localhost:5441/emiserv</connection-url>
+        <driver-class>org.postgresql.Driver</driver-class>
+        <user-name>emiserv</user-name>
+        <password>emiserv</password>
+    </no-tx-datasource>
 </datasources>

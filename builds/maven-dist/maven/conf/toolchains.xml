@@ -1,0 +1,13 @@
+<toolchains>
+  <!-- JDK toolchains -->
+  <toolchain>
+    <type>jdk</type>
+    <provides>
+      <version>1.6</version>
+      <vendor>sun</vendor>
+    </provides>
+    <configuration>
+      <jdkHome>/usr/lib/jvm/jdk1.6.0_45</jdkHome>
+    </configuration>
+  </toolchain>
+</toolchains>

@@ -29,3 +29,6 @@ echo Checking Maven version
 echo ""
 mvn -version
 echo ""
+echo Checking Maven settings
+mvn help:effective-settings --settings $PROJECT_PATH/builds/maven-dist/maven/conf/settings.xml
+echo ""

@@ -1,9 +1,9 @@
 #!/bin/bash
-#### Description: Build from source
+#### Description: Build and deploy from source
 #### Written by: Guillermo de Ignacio - gdeignacio@fundaciobit.org on 04-2021
 
 ###################################
-###   BUILD MVN UTILS  ###
+###   DEPLOY MVN UTILS          ###
 ###################################
 
 echo ""
@@ -64,6 +64,12 @@ if [ $? == 0 ]; then
       echo "Copying $SAR_FILE to $JBOSS_DEPLOY_DIR"
       cp $SAR_FILE $JBOSS_DEPLOY_DIR
     fi
+
+    if [[ -f "$DS_FILE" ]]; then
+      echo "Copying $DS_FILE to $JBOSS_DEPLOY_DIR"
+      cp $DS_FILE $JBOSS_DEPLOY_DIR
+    fi
+  
   
   fi
 fi

@@ -14,7 +14,7 @@ services:
      - 8080:8080
      - 9990:9990
     volumes:
-     - ${WILDFLY_DEPLOYDIR}:/opt/jboss/wildfly/standalone/deployments
+     - ${WILDFLY_DEPLOY_DIR}:/opt/jboss/wildfly/standalone/deployments
     depends_on:
       - keycloak
       - app-db
