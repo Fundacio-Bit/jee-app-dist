@@ -13,7 +13,7 @@ echo ""
 echo "[$(date +"%Y-%m-%d %T")] Installing Maven..."
 echo ""
 
-source $PROJECT_PATH/bin/loadenv
+source $PROJECT_PATH/bin/loadenv.sh
 
 echo "Downloading" $MAVEN_URL "to" $MAVEN_TARGET
 wget $MAVEN_URL -P $MAVEN_TARGET

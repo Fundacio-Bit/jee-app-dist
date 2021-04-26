@@ -13,3 +13,9 @@ MAVEN_TARFILE=$MAVEN_363_TARFILE
 M2_365_HOME=$MAVEN_363_TARGET/apache-maven-3.6.3
 M2_HOME=$M2_365_HOME
 # end maven section
+
+# repo section
+
+M2_CONF_
+
+# end repo section

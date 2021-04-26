@@ -16,7 +16,7 @@ echo ""
 echo "[$(date +"%Y-%m-%d %T")] Stopping lingering containers..."
 echo ""
 
-source $PROJECT_PATH/bin/loadenv
+source $PROJECT_PATH/bin/loadenv.sh
 
 export USER_ID=${UID}
 export GROUP_ID=${UID}
