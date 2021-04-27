@@ -28,7 +28,9 @@ POM=$APP_POM_FILE
 if [[ -f "$POM" ]]
 then
     echo "Compiling $POM"
-    env mvn -f $POM -DskipTests $@ install --settings $PROJECT_PATH/builds/maven-dist/maven/conf/settings.xml
+    env mvn -f $POM -DskipTests $@ install \
+      --settings $PROJECT_PATH/builds/maven-dist/maven/conf/settings.xml \
+      --toolchains $PROJECT_PATH/builds/maven-dist/maven/conf/toolchains.xml
 fi
 
 SAR=$SAR_POM_FILE
@@ -36,8 +38,9 @@ SAR=$SAR_POM_FILE
 if [[ -f "$SAR" ]]
 then
     echo "Compiling $SAR"
-    env mvn -f $SAR -DskipTests $@ install --settings $PROJECT_PATH/builds/maven-dist/maven/conf/settings.xml
-
+    env mvn -f $SAR -DskipTests $@ install \
+       --settings $PROJECT_PATH/builds/maven-dist/maven/conf/settings.xml \
+       --toolchains $PROJECT_PATH/builds/maven-dist/maven/conf/toolchains.xml
 fi
 
 

@@ -15,7 +15,9 @@ echo ""
 
 source $PROJECT_PATH/bin/loadenv.sh
 
-echo "Downloading" $MAVEN_URL "to" $MAVEN_TARGET
-wget $MAVEN_URL -P $MAVEN_TARGET
-tar -zxvf $MAVEN_TARGET/$MAVEN_TARFILE --directory $MAVEN_TARGET
-rm $MAVEN_TARGET/$MAVEN_TARFILE
+
+
+# echo "Downloading" $MAVEN_URL "to" $MAVEN_TARGET
+# wget $MAVEN_URL -P $MAVEN_TARGET
+# tar -zxvf $MAVEN_TARGET/$MAVEN_TARFILE --directory $MAVEN_TARGET
+# rm $MAVEN_TARGET/$MAVEN_TARFILE

@@ -18,4 +18,4 @@ echo ""
 echo "[$(date +"%Y-%m-%d %T")] Testing env..."
 echo ""
 
-source $PROJECT_PATH/bin/loadenv
+source $PROJECT_PATH/bin/loadenv.sh
