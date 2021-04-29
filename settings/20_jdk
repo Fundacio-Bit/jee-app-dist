@@ -3,6 +3,11 @@
 JDK11_URL=https://download.java.net/java/ga/jdk11/openjdk-11_linux-x64_bin.tar.gz
 JDK11_TARGET=$HOME/java/${LONG_APP_NAME_LOWER}
 JDK11_TARFILE=openjdk-11_linux-x64_bin.tar.gz
+
+JDK8_URL=https://javadl.oracle.com/webapps/download/GetFile/1.8.0_281-b09/89d678f2be164786b292527658ca1605/linux-i586/jdk-8u281-linux-x64.tar.gz
+JDK8_TARGET=$HOME/java/${LONG_APP_NAME_LOWER}
+JDK8_TARFILE=jdk-8u281-linux-x64.tar.gz
+
 JDK_URL=$JDK11_URL
 JDK_TARGET=$JDK11_TARGET
 JDK_TARFILE=$JDK11_TARFILE
@@ -10,7 +15,7 @@ JDK_TARFILE=$JDK11_TARFILE
 
 # jdk section
 # set here previously installed jdk path  
-JDK8_HOME=/usr/lib/jvm/java-8-oracle
+JDK8_HOME=$JDK8_TARGET/jdk1.8.0_281
 JDK7_HOME=/usr/lib/jvm/jdk1.7.0_80
 OPENJDK11_HOME=$JDK11_TARGET/jdk-11
 #JAVA_HOME=$OPENJDK11_HOME

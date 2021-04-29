@@ -52,7 +52,7 @@ under the License.
    | Default: ${user.home}/.m2/repository
   <localRepository>/path/to/local/repo</localRepository>
   -->
-  <localRepository>/var/opt/maven/repository</localRepository>
+  <localRepository>${env.M2_REPO}</localRepository>
   <!-- interactiveMode
    | This will determine whether maven prompts you when it needs input. If set to false,
    | maven will use a sensible default value, perhaps based on some other setting, for

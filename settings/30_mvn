@@ -16,6 +16,7 @@ M2_HOME=$M2_365_HOME
 
 # repo section
 # Remember to configure local repo in settings.xml file
-#M2_CONF=$HOME/.m2
+M2_CONF=$HOME/.m2
 #M2_REPO=$M2_CONF/repository
+M2_REPO=/opt/desarrollo/src/repo-maven
 # end repo section
