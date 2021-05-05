@@ -3,7 +3,10 @@
 # Set APP_POM_FILE=$PROJECT_PATH/source/$LONG_APP_NAME_LOWER/pom.xml if you want to use git submodule feature
 
 APP_POM_FILE=$PROJECT_PATH/../$LONG_APP_NAME_LOWER/pom.xml 
-SAR_POM_FILE=$PROJECT_PATH/source/sar/pom.xml
+
+SAR_POM_PATH=$PROJECT_PATH/source/sar
+SAR_POM_FILE=$SAR_POM_PATH/pom.xml
+
 
 EAR_FILE=$PROJECT_PATH/../$LONG_APP_NAME_LOWER/$LONG_APP_NAME_LOWER-ear/target/$LONG_APP_NAME_LOWER.ear
 SAR_FILE=$PROJECT_PATH/source/sar/target/$LONG_APP_NAME_LOWER.sar

@@ -6,6 +6,6 @@
 ###   SCSP FOLDER INSTALL UTILS ###
 ###################################
 
-mkdir -p $HOME/scsp/logs
-mkdir -p $HOME/scsp/peticiones
-mkdir -p $HOME/scsp/certificados
+mkdir -p /app/scsp/logs
+mkdir -p /app/scsp/peticiones
+mkdir -p /app/scsp/certificados
