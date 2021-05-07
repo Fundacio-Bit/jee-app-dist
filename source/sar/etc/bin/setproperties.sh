@@ -7,7 +7,7 @@
 ###################################
 
 echo ""
-PROJECT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )"
+PROJECT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd ../.. && pwd )"
 echo "Project path at $PROJECT_PATH"
 echo ""
 echo "[$(date +"%Y-%m-%d %T")] Build and deploy project..."
