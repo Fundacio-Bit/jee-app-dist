@@ -49,3 +49,4 @@ builds/postgresql-dist/postgresql/data
 builds/postgresql-dist/postgresql/backups
 builds/postgresql-dist/postgresql/tablespaces
 builds/wildfly-dist/wildfly/deployments
+settings/
