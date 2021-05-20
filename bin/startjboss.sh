@@ -6,9 +6,6 @@
 ###         Start jboss         ###
 ###################################
 
-JBOSS=$JBOSS_HOME/bin/run.sh
-echo "JBOSS at $JBOSS"
-
 echo ""
 PROJECT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )"
 echo "Project path at $PROJECT_PATH"
@@ -17,6 +14,9 @@ echo "[$(date +"%Y-%m-%d %T")] Starting JBOSS.."
 echo ""
 
 source $PROJECT_PATH/bin/loadenv.sh
+
+JBOSS=$JBOSS_HOME/bin/run.sh
+echo "JBOSS at $JBOSS"
 
 #export USER_ID=${UID}
 #export GROUP_ID=${UID}
