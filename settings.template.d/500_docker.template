@@ -1,0 +1,10 @@
+
+# Docker-compose section
+CUSTOM_USERNAME=$LONG_APP_NAME_LOWER
+CUSTOM_USERID=1000
+DOCKER_COMPOSE_DEFAULT_FILE=${PROJECT_PATH}/deploy/default/docker-compose.yaml
+DOCKER_COMPOSE_DEV_WILDFLY_FILE=${PROJECT_PATH}/deploy/dev/docker-compose-dev-wildfly.yaml
+DOCKER_COMPOSE_DEV_JBOSS52_FILE=${PROJECT_PATH}/deploy/dev/docker-compose-dev-jboss52.yaml
+
+DOCKER_COMPOSE_FILE=$DOCKER_COMPOSE_DEV_JBOSS52_FILE
+# end docker-compose section
