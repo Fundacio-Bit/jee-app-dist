@@ -14,10 +14,10 @@ SAR_POM_FILE=$SAR_POM_PATH/pom.xml
 EAR_FILE=$PROJECT_PATH/../$LONG_APP_NAME_LOWER/$LONG_APP_NAME_LOWER-ear/target/$LONG_APP_NAME_LOWER.ear
 SAR_FILE=$PROJECT_PATH/source/sar/target/$LONG_APP_NAME_LOWER.sar
 
-# Deploy jboss path
-JBOSS_EAP_52_DEPLOY_PATH=${PROJECT_PATH}/builds/jboss-dist/jboss/conf
-WILDFLY_CONF_PATH=${PROJECT_PATH}/builds/wildfly-dist/wildfly/conf
-CONF_PATH=$JBOSS_EAP_52_CONF_PATH
+# Deploy configuration files path
+JBOSS_EAP_52_DEPLOYCONF_PATH=${PROJECT_PATH}/builds/jboss-dist/jboss/deploy
+WILDFLY_DEPLOYCONF_PATH=${PROJECT_PATH}/builds/wildfly-dist/wildfly/deploy
+DEPLOYCONF_PATH=$JBOSS_EAP_52_DEPLOYCONF_PATH
 
 # Conf jboss path
 JBOSS_EAP_52_CONF_PATH=${PROJECT_PATH}/builds/jboss-dist/jboss/conf

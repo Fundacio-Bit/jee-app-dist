@@ -5,9 +5,8 @@ JBOSS_HOME=$JBOSS_EAP_52_HOME
 
 WILDFLY_DEPLOY_DIR=/app/jboss/wildfly/${LONG_APP_NAME_LOWER}/deployments
 
-#JBOSS_DEPLOY_DIR=$JBOSS_EAP_52_DEPLOYDIR
-JBOSS_DEPLOY_DIR=/app/emiserv/deploy
-
+JBOSS_DEPLOY_DIR=$JBOSS_EAP_52_DEPLOYDIR
+#JBOSS_DEPLOY_DIR=/app/${LONG_APP_NAME_LOWER}/deploy
 
 # end jboss section
 
@@ -15,3 +14,14 @@ JBOSS_DEPLOY_DIR=/app/emiserv/deploy
 KEYCLOAK_URI_ARG=http://keycloak-${LONG_APP_NAME_LOWER}:8180
 # end keycloak section
 
+# Conf jboss path
+JBOSS_EAP_52_CONF_PATH=${PROJECT_PATH}/builds/jboss-dist/jboss/conf
+WILDFLY_CONF_PATH=${PROJECT_PATH}/builds/wildfly-dist/wildfly/conf
+CONF_PATH=$JBOSS_EAP_52_CONF_PATH
+
+# Deploy configuration files path
+JBOSS_EAP_52_DEPLOYCONF_PATH=${PROJECT_PATH}/builds/jboss-dist/jboss/deploy
+WILDFLY_DEPLOYCONF_PATH=${PROJECT_PATH}/builds/wildfly-dist/wildfly/deploy
+DEPLOYCONF_PATH=$JBOSS_EAP_52_DEPLOYCONF_PATH
+
+DS_FILE=$DEPLOYCONF_PATH/$LONG_APP_NAME_LOWER-ds.xml

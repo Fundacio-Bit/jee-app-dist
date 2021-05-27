@@ -16,7 +16,9 @@ echo ""
 source $PROJECT_PATH/bin/loadenv.sh
 
 # TODO: USE THE RIGHT URL. This does not work
-GOIBUSUARI_EAR_URL=https://github.com/GovernIB/docker-imatges/blob/docker-imatges-1.0/wildfly-14.0.1/files/goibusuari.ear?raw=true
+# TODO: GOIBUSUARI_EAR_URL=https://github.com/GovernIB/docker-imatges/blob/docker-imatges-1.0/wildfly-14.0.1/files/goibusuari.ear?raw=true
+
+GOIBUSUARI_EAR_URL=https://github.com/GovernIB/docker-imatges/raw/docker-imatges-1.0/wildfly-14.0.1/files/goibusuari.ear
 GOIBUSUARI_EAR_TARGET=$PROJECT_PATH/builds/wildfly-dist/wildfly/files
 
 echo "Downloading" $GOIBUSUARI_EAR_URL "to" $GOIBUSUARI_EAR_TARGET
