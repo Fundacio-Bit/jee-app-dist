@@ -56,7 +56,15 @@ if [ $? == 0 ]; then
   else
   
     echo on
-    echo --------- COPIANT EAR ---------
+    
+    if [ -d "$JBOSS_DEPLOY_DIR" ]; then
+      ### Take action if $DIR exists ###
+      echo --------- COPIANT FITXERS AL DESTÍ $JBOSS_DEPLOY_DIR ---------
+    else
+      ###  Control will jump here if $DIR does NOT exists ###
+      echo "${JBOSS_DEPLOY_DIR} not found. Creating ..."
+      mkdir -p $JBOSS_DEPLOY_DIR
+    fi
 
 
     if [[ -f "$EAR_FILE" ]]; then
