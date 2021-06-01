@@ -57,5 +57,3 @@ fi
 #   fi
 # done
 # # end of POM compile section
-
-
