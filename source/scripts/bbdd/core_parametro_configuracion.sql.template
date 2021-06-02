@@ -1,0 +1,14 @@
+UPDATE core_parametro_configuracion set valor='xxx' where nombre='afirma.autenticacion.aliasSignerCert';
+UPDATE core_parametro_configuracion set valor='false' where nombre='afirma.enabled';
+UPDATE core_parametro_configuracion set valor='xxx' where nombre='afirma.idAplicacion';
+UPDATE core_parametro_configuracion set valor='https://des-afirma.redsara.es/afirmaws/services/ValidarCertificado' where nombre='afirma.url';
+UPDATE core_parametro_configuracion set valor='/app/scsp/peticiones' where nombre='almacenamiento.ficheros';
+UPDATE core_parametro_configuracion set valor='xxx' where nombre='cif.emisor';
+UPDATE core_parametro_configuracion set valor='false' where nombre='core.log.enabled';
+UPDATE core_parametro_configuracion set valor='file://app/scsp/certificados/xxx.jks' where nombre='keystoreFile';
+UPDATE core_parametro_configuracion set valor='xxx' where nombre='keystorePass';
+UPDATE core_parametro_configuracion set valor='false' where nombre='logDinamico.enabled';
+UPDATE core_parametro_configuracion set valor='WARN' where nombre='nivelTraza';
+UPDATE core_parametro_configuracion set valor='xxx' where nombre='nombre.emisor';
+UPDATE core_parametro_configuracion set valor='/app/scsp/logs/server.log' where nombre='pathLogs';
+UPDATE core_parametro_configuracion set valor='xxx' where nombre='prefijo.idtransmision';

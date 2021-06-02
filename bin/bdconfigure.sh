@@ -15,12 +15,12 @@ echo ""
 
 # Taking values from .env file
 source $PROJECT_PATH/bin/loadenv.sh
+APPLICATION_PATH=${PROJECT_PATH}/source/scripts/bbdd
 
-APPLICATION_PATH=${PROJECT_PATH}/../${LONG_APP_NAME_LOWER}/scripts/bbdd/${APP_VERSION}/${APP_SGBD}
 echo "Processing $APPLICATION_PATH"
 if [ -d "$APPLICATION_PATH" ]; then
   # Copy section
-  for FILE in $APPLICATION_PATH/*; do
+  for FILE in $APPLICATION_PATH/*.sql; do
     if [[ -f "$FILE" ]]; then
       echo Loading $FILE
       sudo docker exec -i ${LONG_APP_NAME_LOWER}-pg psql -v ON_ERROR_STOP=1 --username ${LONG_APP_NAME_LOWER} --dbname ${LONG_APP_NAME_LOWER} < $FILE

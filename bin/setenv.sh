@@ -15,9 +15,14 @@ echo ""
 
 touch .environment
 for FILE in settings/[0-9]*; do
-    echo "Loading: "$FILE
-    echo $'\n' >> .environment
-    cat $FILE >> .environment
+    if [[ ${FILE} == *.backup ]]
+    then
+        echo "Skiping backup file: "$FILE
+    else
+        echo "Loading: "$FILE
+        echo $'\n' >> .environment
+        cat $FILE >> .environment
+    fi
 done
 echo ""
 mv .environment .env
