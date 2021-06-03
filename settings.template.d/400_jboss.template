@@ -1,6 +1,8 @@
 # jboss section
 JBOSS_EAP_52_HOME=/usr/local/desarrollo/ServidoresJ2EE/jboss-eap-5.2/jboss-as
-JBOSS_EAP_52_DEPLOYDIR=$JBOSS_EAP_52_HOME/server/default/deploy$LONG_APP_NAME_LOWER
+# JBOSS_EAP_52_HOME=/usr/local/jboss/jboss-eap-5.2/jboss-as
+# JBOSS_EAP_52_DEPLOYDIR=$JBOSS_EAP_52_HOME/server/default/deploy$LONG_APP_NAME_LOWER
+JBOSS_EAP_52_DEPLOYDIR=$JBOSS_EAP_52_HOME/server/default/deploycaib
 JBOSS_HOME=$JBOSS_EAP_52_HOME
 
 #WILDFLY_DEPLOY_DIR=/app/jboss/wildfly/${LONG_APP_NAME_LOWER}/deployments
