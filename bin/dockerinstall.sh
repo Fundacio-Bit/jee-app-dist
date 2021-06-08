@@ -15,4 +15,6 @@ sudo systemctl enable docker
 sudo systemctl start docker
 sudo systemctl status docker
 sudo useradd -p $(openssl passwd -1 docker) docker -g docker
+# sudo usermod -a -G docker emiserv
+sudo usermod -a -G docker ${CUSTOM_USERNAME}
 sudo mkdir -p /app/docker
