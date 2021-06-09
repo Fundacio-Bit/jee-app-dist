@@ -16,7 +16,8 @@ echo ""
 # Taking values from .env file
 source $PROJECT_PATH/bin/loadenv.sh
 
-${PG_PATH}/pg_dump \
+echo Saving with $SCHEMA_ONLY option
+${PG_PATH}/pg_dump $SCHEMA_ONLY \
     --file=${PG_DUMP_FILENAME} \
     --format=t \
     --verbose \

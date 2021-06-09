@@ -14,6 +14,7 @@ services:
     volumes:
       - ../../builds/postgresql-dist/postgresql/bin/docker-entrypoint-initdb.d/00_initdb.sh:/docker-entrypoint-initdb.d/00_initdb.sh:ro
       - /app/docker/postgresql/${LONG_APP_NAME_LOWER}/data:/var/lib/postgresql/data
+      - /app/docker/postgresql/${LONG_APP_NAME_LOWER}/backups:/app/postgresql/backups
       #- ../../builds/postgresql-dist/postgresql/tablespaces/${LONG_APP_NAME_LOWER}:/var/lib/postgresql/app/tablespaces
       #- ../../builds/postgresql-dist/postgresql/backups/${LONG_APP_NAME_LOWER}:/var/lib/postgresql/app/backups
     environment:
@@ -33,6 +34,7 @@ services:
     volumes:
       - ../../builds/postgresql-dist/postgresql/bin/docker-entrypoint-initdb.d/00_initdb.sh:/docker-entrypoint-initdb.d/00_initdb.sh:ro
       - /app/docker/postgresql/seycon-${SHORT_APP_NAME_LOWER}/data:/var/lib/postgresql/data
+      - /app/docker/postgresql/seycon-${LONG_APP_NAME_LOWER}/backups:/app/postgresql/backups
       #- ../../builds/postgresql-dist/postgresql/data/seycon-${SHORT_APP_NAME_LOWER}:/var/lib/postgresql/app/tablespaces
       #- ../../builds/postgresql-dist/postgresql/data/seycon-${SHORT_APP_NAME_LOWER}:/var/lib/postgresql/app/backups
     environment:
