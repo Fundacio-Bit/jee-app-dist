@@ -1,14 +1,14 @@
 # Postgres section
 # Use this file for custom postgres settings
-PG_DUMP_TARGET=/app/scsp/backups
+PG_DUMP_TARGET=/app/postgresql/backups
 PG_95_PATH=/usr/lib/postgresql/9.5/bin
 PG_PATH=$PG_95_PATH
 
 PG_DUMP_DBNAME=seycon
 PG_DUMP_SCHEMA=seycon
 PG_DUMP_NAME=seycon
-PG_DUMP_HOSTNAME=spglin
-PG_DUMP_PORT=5432
+PG_DUMP_HOSTNAME=localhost
+PG_DUMP_PORT=5442
 PG_DUMP_FILENAME=${PG_DUMP_TARGET}/seycon.tar
 
 # PG_DUMP_DBNAME=${LONG_APP_NAME_LOWER}
