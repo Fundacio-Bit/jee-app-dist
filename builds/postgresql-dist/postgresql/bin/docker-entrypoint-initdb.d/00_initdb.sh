@@ -1,5 +1,9 @@
 #!/bin/bash
 
+set -o nounset
+set -o errexit
+
+
 #source /docker-entrypoint-initdb.d/scripts/00-setenv.sh
 #source /docker-entrypoint-initdb.d/scripts/11-create-tablespace-folder.sh
 #source /docker-entrypoint-initdb.d/scripts/21-create-database.sh

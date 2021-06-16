@@ -1,4 +1,8 @@
 #!/bin/bash
+
+set -o nounset
+set -o errexit
+
 #### Description: Creates an .env file from xx_XXenv files in alpabethical order
 #### Written by: Guillermo de Ignacio - gdeignacio@fundaciobit.org on 04-2021
 

@@ -1,4 +1,8 @@
 #!/bin/bash
+
+set -o nounset
+set -o errexit
+
 #### Description: Backup database using pg_dump
 #### Written by: Guillermo de Ignacio - gdeignacio@fundaciobit.org on 04-2021
 
