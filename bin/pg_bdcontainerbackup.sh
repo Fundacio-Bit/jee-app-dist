@@ -18,7 +18,7 @@ echo "[$(date +"%Y-%m-%d %T")] Saving database..."
 echo ""
 
 # Taking values from .env file
-source $PROJECT_PATH/bin/loadenv.sh
+source $PROJECT_PATH/bin/app_loadenv.sh
 
 echo Saving container bd with $SCHEMA_ONLY option
 sudo docker exec -i ${LONG_APP_NAME_LOWER}-pg pg_dump \

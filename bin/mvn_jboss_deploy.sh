@@ -18,7 +18,7 @@ echo "[$(date +"%Y-%m-%d %T")] Build and deploy project..."
 echo ""
 
 # Taking values from .env file
-source $PROJECT_PATH/bin/loadenv.sh
+source $PROJECT_PATH/bin/app_loadenv.sh
 
 echo off
 if [[ -f help.txt ]]
@@ -31,7 +31,10 @@ fi
 # Array to compile
 POM_ARRAY=($APP_POM_FILE $SAR_POM_FILE)
 # Array to deploy
-FILE_ARRAY=($EAR_FILE $SAR_FILE $DS_FILE)
+# FILE_ARRAY=($EAR_FILE $SAR_FILE $DS_FILE)
+
+FILE_ARRAY=($EAR_FILE $DS_FILE)
+PROPERTIES_ARRAY=($PROPERTIES_FILE)
 
 # POM compile section
 for POM in ${POM_ARRAY[*]}; do
@@ -49,6 +52,7 @@ done
 # Check if there are errors
 if [ $? == 0 ]; then
   # Check if JBOSS_DEPLOY_DIR value exists
+  # TODO: MANAGE THIS AS AN ARRAY 
   if [ "$JBOSS_DEPLOY_DIR" == "" ]; then
     # Deploy dir value is empty
     echo  =================================================================
@@ -69,6 +73,19 @@ if [ $? == 0 ]; then
       echo "${JBOSS_DEPLOY_DIR} not found. Creating ..."
       mkdir -p $JBOSS_DEPLOY_DIR
     fi
+
+    echo on
+    # Check if JBOSS_CONFIG_DIR directory exists 
+    if [ -d "$JBOSS_CONFIG_DIR" ]; then
+      ### Take action if $DIR exists ###
+      echo --------- COPIANT FITXERS AL DESTÍ $JBOSS_DEPLOY_DIR ---------
+    else
+      ###  Control will jump here if dir does NOT exists ###
+      echo "${JBOSS_CONFIG_DIR} not found. Creating ..."
+      mkdir -p $JBOSS_CONFIG_DIR
+    fi
+    # TODO END
+
     # End Check if JBOSS_DEPLOY_DIR directory exists 
 
     # Copy section
@@ -76,6 +93,14 @@ if [ $? == 0 ]; then
       if [[ -f "$FILE" ]]; then
         echo "Copying $FILE to $JBOSS_DEPLOY_DIR"
         cp $FILE $JBOSS_DEPLOY_DIR
+      fi
+    done
+
+
+    for FILE in ${PROPERTIES_ARRAY[*]}; do
+      if [[ -f "$FILE" ]]; then
+        echo "Copying $FILE to $JBOSS_CONFIG_DIR"
+        cp $FILE $JBOSS_CONFIG_DIR
       fi
     done
     # End of copy section

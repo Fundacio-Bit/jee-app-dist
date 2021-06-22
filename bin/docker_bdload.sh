@@ -18,7 +18,7 @@ echo "[$(date +"%Y-%m-%d %T")] Loading database..."
 echo ""
 
 # Taking values from .env file
-source $PROJECT_PATH/bin/loadenv.sh
+source $PROJECT_PATH/bin/app_loadenv.sh
 
 APPLICATION_PATH=${PROJECT_PATH}/../${LONG_APP_NAME_LOWER}/scripts/bbdd/${APP_VERSION}/${APP_SGBD}
 echo "Processing $APPLICATION_PATH"

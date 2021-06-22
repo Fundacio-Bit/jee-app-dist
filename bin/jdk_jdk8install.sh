@@ -17,7 +17,7 @@ echo ""
 echo "[$(date +"%Y-%m-%d %T")] Installing JDK 8..."
 echo ""
 
-source $PROJECT_PATH/bin/loadenv.sh
+source $PROJECT_PATH/bin/app_loadenv.sh
 
 echo "Downloading" $JDK8_URL "to" $JDK8_TARGET
 

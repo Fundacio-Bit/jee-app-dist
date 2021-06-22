@@ -22,7 +22,7 @@ echo ""
 echo "[$(date +"%Y-%m-%d %T")] testing env..."
 echo ""
 
-source $PROJECT_PATH/bin/loadenv.sh
+source $PROJECT_PATH/bin/app_loadenv.sh
 
 echo ""
 echo Checking Java version

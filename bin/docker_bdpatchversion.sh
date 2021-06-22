@@ -18,7 +18,7 @@ echo "[$(date +"%Y-%m-%d %T")] Loading database..."
 echo ""
 
 # Taking values from .env file
-source $PROJECT_PATH/bin/loadenv.sh
+source $PROJECT_PATH/bin/app_loadenv.sh
 
 VERSIONS_ARRAY=(1.4.10.error 1.4.10 1.4.11)
 

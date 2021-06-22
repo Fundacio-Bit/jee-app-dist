@@ -3,25 +3,24 @@
 set -o nounset
 set -o errexit
 
-#### Description: Backup database using pg_dump
+#### Description: Restoring database using pg_restore
 #### Written by: Guillermo de Ignacio - gdeignacio@fundaciobit.org on 04-2021
 
 ###################################
-###   BACKUP UTILS              ###
+###   RESTORE UTILS             ###
 ###################################
 
 echo ""
 PROJECT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )"
 echo "Project path at $PROJECT_PATH"
 echo ""
-echo "[$(date +"%Y-%m-%d %T")] Saving database..."
+echo "[$(date +"%Y-%m-%d %T")] Restoring database..."
 echo ""
 
 # Taking values from .env file
-source $PROJECT_PATH/bin/loadenv.sh
+source $PROJECT_PATH/bin/app_loadenv.sh
 
-echo Saving with $SCHEMA_ONLY option
-${PG_PATH}/pg_dump $SCHEMA_ONLY \
+${PG_PATH}/pg_restore \
     --file=${PG_DUMP_FILENAME} \
     --format=t \
     --verbose \

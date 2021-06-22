@@ -18,7 +18,7 @@ echo "[$(date +"%Y-%m-%d %T")] Build and deploy project..."
 echo ""
 
 # Taking values from .env file
-source $PROJECT_PATH/bin/loadenv.sh
+source $PROJECT_PATH/bin/app_loadenv.sh
 
 echo off
 if [[ -f help.txt ]]
