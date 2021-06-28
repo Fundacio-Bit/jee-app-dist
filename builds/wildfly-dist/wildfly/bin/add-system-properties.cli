@@ -1,0 +1,4 @@
+embed-server --server-config=${server.config:standalone.xml}
+/system-property=es.caib.emiserv.properties:add(value=/opt/jboss/webapps/config/emiserv.properties)
+/system-property=es.caib.emiserv.system.properties:add(value=/opt/jboss/webapps/config/emiserv.system.properties)
+stop-embedded-server

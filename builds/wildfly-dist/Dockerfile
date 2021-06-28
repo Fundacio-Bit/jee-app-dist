@@ -85,6 +85,10 @@ COPY ./wildfly/bin/goibusuari-add-keycloak-offline.cli bin
 RUN sed -i "s/<resolve-parameter-values>false<\/resolve-parameter-values>/ <resolve-parameter-values>true<\/resolve-parameter-values>/" bin/jboss-cli.xml &&\ 
     bin/jboss-cli.sh --file=bin/goibusuari-add-keycloak-offline.cli --properties=/tmp/env.properties
 
+COPY ./wildfly/bin/add-system-properties.cli bin
+RUN bin/jboss-cli.sh --file=bin/add-system-properties.cli && \
+    rm bin/add-system-properties.cli
+
 RUN rm -rf standalone/configuration/standalone_xml_history/current
 
 #COPY ./wildfly/files/goibusuari.ear ${JBOSS_HOME}/standalone/deployments/
