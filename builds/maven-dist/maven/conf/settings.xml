@@ -244,6 +244,17 @@ under the License.
       </properties>
     </profile>
     -->
+    <profile>
+      <id>repositorigovernib</id>
+      <repositories>
+        <repository>
+          <id>github-governib-maven</id>
+          <name>GitHub GovernIB Maven Repository</name>
+          <url>https://governib.github.io/maven/maven/</url>
+        </repository>
+      </repositories>
+    </profile>
+
   </profiles>
 
   <!-- activeProfiles
@@ -254,4 +265,6 @@ under the License.
     <activeProfile>anotherAlwaysActiveProfile</activeProfile>
   </activeProfiles>
   -->
+  <activeProfiles><activeProfile>repositorigovernib</activeProfile></activeProfiles>
+
 </settings>

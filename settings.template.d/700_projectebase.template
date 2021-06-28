@@ -1,0 +1,16 @@
+# Projecte base section
+
+perfilBack=true
+perfilFront=true
+perfilApiInterna=true
+perfilApiExterna=true
+perfilApiFirmaSimple=true
+perfilArxiu=true
+perfilRegistre=true
+perfilNotib=true
+perfilDir3Caib=true
+perfilDistribucio=true
+perfilPinbal=true
+perfilSistra2=true
+
+# end projectebase section

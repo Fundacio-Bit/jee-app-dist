@@ -25,6 +25,7 @@ M2_REPO=$MAVEN_TARGET/repository
 # Set APP_POM_FILE=$PROJECT_PATH/source/$LONG_APP_NAME_LOWER/pom.xml if you want to use git submodule feature
 
 # Use $PROJECT_PATH/.. path if project folder is at same level than this.
+APP_FOLDER=$PROJECT_PATH/../$LONG_APP_NAME_LOWER
 APP_POM_FILE=$PROJECT_PATH/../$LONG_APP_NAME_LOWER/pom.xml 
 
 # SAR project file path if needed
