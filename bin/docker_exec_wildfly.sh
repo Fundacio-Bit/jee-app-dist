@@ -20,6 +20,6 @@ echo ""
 echo "[$(date +"%Y-%m-%d %T")] Launching web server..."
 echo ""
 
-source $PROJECT_PATH/bin/app_loadenv.sh
+source $PROJECT_PATH/bin/_app__loadenv.sh
 
 ${DOCKER} exec -i -t wildfly-${LONG_APP_NAME_LOWER} /bin/bash

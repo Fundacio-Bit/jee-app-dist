@@ -17,7 +17,7 @@ echo ""
 echo "[$(date +"%Y-%m-%d %T")] Setting .template files..."
 echo ""
 
-source $PROJECT_PATH/bin/app_loadenv.sh
+source $PROJECT_PATH/bin/_app__loadenv.sh
 
 CONF_PATH_ARRAY=($JBOSS_EAP_52_DEPLOYCONF_PATH $WILDFLY_DEPLOYCONF_PATH $WILDFLY_PROPERTIESCONF_PATH)
 echo $JBOSS_EAP_52_CONF_PATH

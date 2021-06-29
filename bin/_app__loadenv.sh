@@ -6,6 +6,9 @@ set -o errexit
 #### Description: Loads environment variables from .env file
 #### Written by: Guillermo de Ignacio - gdeignacio@fundaciobit.org on 04-2021
 
+#### THIS FILE USED TO BE SOURCED. THINK TWICE BEFORE UPDATE.
+#### EXECUTING BY YOURSELF WILL ONLY TAKE EFFECT IN YOUR CURRENT SHELL.
+
 ###################################
 ###   LOAD ENV UTILS            ###
 ###################################

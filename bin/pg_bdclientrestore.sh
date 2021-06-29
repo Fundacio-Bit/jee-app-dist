@@ -18,7 +18,7 @@ echo "[$(date +"%Y-%m-%d %T")] Restoring database..."
 echo ""
 
 # Taking values from .env file
-source $PROJECT_PATH/bin/app_loadenv.sh
+source $PROJECT_PATH/bin/_app__loadenv.sh
 
 ${PG_PATH}/pg_restore \
     --file=${PG_DUMP_FILENAME} \

@@ -1,4 +1,4 @@
-# emiserv-dist
+# jee-app-dist
 
 Env settings and command line tools for jee building and deployment. Openjdk &amp; maven.
 
@@ -21,18 +21,33 @@ The specific steps to installing Docker will differ depending on the host's oper
 
 ### Installing
 
-
-Clone this repository on your local machine
+Clone this repository on your local machine.
 
 ```bash
-git clone https://github.com/Fundacio-Bit/emiserv-dist.git
+git clone https://github.com/Fundacio-Bit/jee-app-dist.git
 ```
+
+Fork this repository for specific purpose app is recommended
 
 ## Setting environment values
 
+Environment values are preconfigured. See ./settings.template.d folder.
+
+### Generate local settings values from template
+
+1. Execute [bin/app_settings.sh](./bin/app_settings.sh) script to create settings folder and .template files will be copied into. If a previous version exists will be backed up.
+2. Optionally execute [bin/app_clearenvbackup.sh](./bin/app_clearenvbackup.sh) to clean previous .backup files in settings folder.
+   
+### Update local settings values
+
+Once you have updated local files
+
+1. Execute [bin/app_setenv.sh](./bin/app_setenv.sh) to create an .env file and values configured in settings folder will take effect.
+2. You don't need to execute [bin/_app__loadenv.sh](./bin/_app__setenv.sh) by yourself. This script reads values from .env file and export them when is sourced from others, and should be updated with care.
+
 ---
 
-1. Edit [10_app](./settings/10_app) file and set variables as shown
+1. Edit [100_app](./settings/100_app) file and set variables as shown
 
     ```bash
     # app section
@@ -142,7 +157,7 @@ git clone https://github.com/Fundacio-Bit/emiserv-dist.git
     **Actual values could be different than above once files in setting folder had been edited. Take these only as an example.**
 
 6. Preconfigured values are stored in settings folder and can be used *as is* or modified at your discretion.
-Although is possible to config any type of parameter, passwords should never be set there cause changes will be committed against repo.
+Although is possible to config any type of parameter, passwords should never be set there. *All changes will be committed against repo*.
 
 
 ## Run

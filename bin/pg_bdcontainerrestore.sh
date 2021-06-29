@@ -18,7 +18,7 @@ echo "[$(date +"%Y-%m-%d %T")] Restoring database..."
 echo ""
 
 # Taking values from .env file
-source $PROJECT_PATH/bin/app_loadenv.sh
+source $PROJECT_PATH/bin/_app__loadenv.sh
 
 echo Restoring container bd with $SCHEMA_ONLY option
 sudo docker exec -i ${LONG_APP_NAME_LOWER}-pg pg_restore \

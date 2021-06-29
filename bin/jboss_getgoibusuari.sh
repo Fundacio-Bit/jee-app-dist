@@ -17,7 +17,7 @@ echo ""
 echo "[$(date +"%Y-%m-%d %T")] Getting goibusuari..."
 echo ""
 
-source $PROJECT_PATH/bin/app_loadenv.sh
+source $PROJECT_PATH/bin/_app__loadenv.sh
 
 # TODO: USE THE RIGHT URL. This does not work
 # TODO: GOIBUSUARI_EAR_URL=https://github.com/GovernIB/docker-imatges/blob/docker-imatges-1.0/wildfly-14.0.1/files/goibusuari.ear?raw=true
