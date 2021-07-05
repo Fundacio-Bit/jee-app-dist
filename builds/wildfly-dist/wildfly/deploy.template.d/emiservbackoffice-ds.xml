@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datasources>
+    <datasource jndi-name="java:jboss/datasources/emiservbackofficeDS" pool-name="emiservbackofficeDS"
+        enabled="true" use-java-context="true">
+        <connection-url>jdbc:postgresql://emiservbackoffice-pg:5441/emiservbackoffice</connection-url>
+        <driver>postgresql</driver>
+        <security>
+            <user-name>emiservbackoffice</user-name>
+            <password>emiservbackoffice</password>
+        </security>
+    </datasource>
+</datasources>

@@ -13,6 +13,21 @@ set -o errexit
 ###   LOAD ENV UTILS            ###
 ###################################
 
+spinal_to_camelcase() {
+    IFS=- read -ra str <<<"$1"
+    printf '%s' "${str[@]^}"
+}
+
+spinal_to_lower() {
+    IFS=- read -ra str <<<"$1"
+    printf '%s' "${str[@],,}"
+}
+
+spinal_to_upper() {
+    IFS=- read -ra str <<<"$1"
+    printf '%s' "${str[@]^^}"
+}
+
 echo ""
 PROJECT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )"
 echo "Project path at $PROJECT_PATH"

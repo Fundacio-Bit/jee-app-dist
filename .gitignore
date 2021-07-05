@@ -51,6 +51,7 @@ builds/postgresql-dist/postgresql/tablespaces
 builds/wildfly-dist/wildfly/deployments
 builds/wildfly-dist/wildfly/deploy
 builds/wildfly-dist/wildfly/conf
+builds/wildfly-dist/wildfly/lib
 builds/jboss-dist/jboss/deploy
 builds/jboss-dist/jboss/conf
 settings/

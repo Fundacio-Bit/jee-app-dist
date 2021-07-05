@@ -4,13 +4,34 @@
 # bin/compile
 # deploy/default/docker-compose.yaml
 #
+# Eval functions defined at _app__loadenv.sh
+# spinal_to_camelcase() {
+#     IFS=- read -ra str <<<"$1"
+#     printf '%s' "${str[@]^}"
+# }
 
-LONG_APP_NAME_UPPER=EMISERV
-LONG_APP_NAME_LOWER=emiserv
-LONG_APP_NAME_CAMEL=Emiserv
-SHORT_APP_NAME_UPPER=EMS
-SHORT_APP_NAME_LOWER=ems
-SHORT_APP_NAME_CAMEL=Ems
+# spinal_to_lower() {
+#     IFS=- read -ra str <<<"$1"
+#     printf '%s' "${str[@],,}"
+# }
+
+# spinal_to_upper() {
+#     IFS=- read -ra str <<<"$1"
+#     printf '%s' "${str[@]^^}"
+# }
+
+# WARNING: App name in spinal case format.
+# This is a spinal-case-example
+
+LONG_APP_NAME=emiserv
+SHORT_APP_NAME=ems
+
+LONG_APP_NAME_UPPER=$(spinal_to_upper $LONG_APP_NAME)
+LONG_APP_NAME_LOWER=$(spinal_to_lower $LONG_APP_NAME)
+LONG_APP_NAME_CAMEL=$(spinal_to_camelcase $LONG_APP_NAME)
+SHORT_APP_NAME_UPPER=$(spinal_to_upper $SHORT_APP_NAME)
+SHORT_APP_NAME_LOWER=$(spinal_to_lower $SHORT_APP_NAME)
+SHORT_APP_NAME_CAMEL=$(spinal_to_camelcase $SHORT_APP_NAME)
 
 APP_VERSION=1.4
 APP_SGBD=postgres

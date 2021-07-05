@@ -15,6 +15,7 @@ services:
      - 9990:9990
     volumes:
      - ${WILDFLY_DEPLOY_DIR}:/opt/jboss/wildfly/standalone/deployments
+     - ${WILDFLY_LIB_DIR}/backoffice.jar:/opt/jboss/wildfly/standalone/lib/backoffice.jar:ro
      #- ${WILDFLY_STANDALONE_CONFIGURATION_DIR}:/opt/jboss/wildfly/standalone/configuration
      - ${WILDFLY_CONFIG_DIR}:/opt/jboss/webapps/config
      - /app/scsp:/app/scsp

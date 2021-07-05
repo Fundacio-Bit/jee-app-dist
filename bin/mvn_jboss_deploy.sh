@@ -78,12 +78,24 @@ if [ $? == 0 ]; then
     # Check if JBOSS_CONFIG_DIR directory exists 
     if [ -d "$JBOSS_CONFIG_DIR" ]; then
       ### Take action if $DIR exists ###
-      echo --------- COPIANT FITXERS AL DESTÍ $JBOSS_DEPLOY_DIR ---------
+      echo --------- COPIANT FITXERS AL DESTÍ $JBOSS_CONFIG_DIR ---------
     else
       ###  Control will jump here if dir does NOT exists ###
       echo "${JBOSS_CONFIG_DIR} not found. Creating ..."
       mkdir -p $JBOSS_CONFIG_DIR
     fi
+
+    # Check if JBOSS_LIB_DIR directory exists 
+    if [ -d "$JBOSS_LIB_DIR" ]; then
+      ### Take action if $DIR exists ###
+      echo --------- COPIANT FITXERS AL DESTÍ $JBOSS_LIB_DIR ---------
+    else
+      ###  Control will jump here if dir does NOT exists ###
+      echo "${JBOSS_LIB_DIR} not found. Creating ..."
+      mkdir -p $JBOSS_LIB_DIR
+    fi
+
+
     # TODO END
 
     # End Check if JBOSS_DEPLOY_DIR directory exists 
@@ -103,6 +115,15 @@ if [ $? == 0 ]; then
         cp $FILE $JBOSS_CONFIG_DIR
       fi
     done
+
+
+    for FILE in ${BO_LIB_FOLDER}/*.jar; do
+      if [[ -f "$FILE" ]]; then
+        echo "Copying $FILE to $JBOSS_LIB_DIR"
+        cp $FILE $JBOSS_LIB_DIR
+      fi
+    done
+
     # End of copy section
   fi
   # End of check if JBOSS_DEPLOY_DIR exists

@@ -6,5 +6,7 @@ add(realm=GOIB,resource=goib-default,use-resource-role-mappings=true,public-clie
 add(realm=GOIB,resource=goib-ws,use-resource-role-mappings=true,bearer-only=true,enable-basic-auth=true,principal-attribute=preferred_username)
 /subsystem=keycloak/secure-deployment=rest.war/credential=secret:\
   add(value=e73e8e95-d88c-42bf-a76b-273be6708018)
+/subsystem=keycloak/secure-deployment=emiserv-back.war:\
+add(realm=GOIB,resource=goib-default,use-resource-role-mappings=true,public-client=true,verify-token-audience=true,principal-attribute=preferred_username)
 stop-embedded-server
 
