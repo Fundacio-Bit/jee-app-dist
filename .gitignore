@@ -54,4 +54,5 @@ builds/wildfly-dist/wildfly/conf
 builds/wildfly-dist/wildfly/lib
 builds/jboss-dist/jboss/deploy
 builds/jboss-dist/jboss/conf
+builds/keycloak-dist/keycloak/conf
 settings/

@@ -21,15 +21,17 @@ JBOSS_LIB_DIR=$WILDFLY_LIB_DIR
 JBOSS_CONFIGURATION_DIR=$WILDFLY_STANDALONE_CONFIGURATION_DIR
 # end jboss section
 
-# keycloak section
-KEYCLOAK_URI_ARG=http://keycloak-${LONG_APP_NAME_LOWER}:8180
-# end keycloak section
-
 # Conf jboss path
 JBOSS_EAP_52_CONF_PATH=${PROJECT_PATH}/builds/jboss-dist/jboss/conf
 WILDFLY_CONF_PATH=${PROJECT_PATH}/builds/wildfly-dist/wildfly/conf
 #CONF_PATH=$JBOSS_EAP_52_CONF_PATH
 CONF_PATH=$WILDFLY_CONF_PATH
+
+# keycloak section
+KEYCLOAK_URI_ARG=http://keycloak-${LONG_APP_NAME_LOWER}:8180
+KEYCLOAK_CONF_PATH=${PROJECT_PATH}/builds/keycloak-dist/keycloak/conf
+KEYCLOAK_IMPORT_REALM_JSON=${LONG_APP_NAME_LOWER}-import-goib-realm.json
+# end keycloak section
 
 # Deploy configuration files path
 JBOSS_EAP_52_DEPLOYCONF_PATH=${PROJECT_PATH}/builds/jboss-dist/jboss/deploy

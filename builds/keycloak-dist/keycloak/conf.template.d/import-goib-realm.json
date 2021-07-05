@@ -59,11 +59,11 @@
             ],
             "clientRoles": {
                     "goib-default": [
-                        "EBO_SUPERVISOR", "EMS_RESP", "EMS_ADMIN"
+                        "EBO_SUPERVISOR"
                     ]
             }
         },
-        {   
+        {
             "username": "$GOIB_USUARI",
             "enabled": true,
             "credentials": [
@@ -87,20 +87,7 @@
                    "description": "Administrator privileges",
                    "composite": false,
                    "clientRole": true
-                },
-                {
-                   "name": "EMS_ADMIN",
-                   "description": "EMISERV Administrador",
-                   "composite": false,
-                   "clientRole": true
-                },
-                {
-                   "name": "EMS_RESP",
-                   "description": "Emiserv Responsable",
-                   "composite": false,
-                   "clientRole": true
-                }
-                ],
+                }],
             "goib-ws": [
                 {
                    "name": "EBO_SUPERVISOR",
