@@ -27,7 +27,7 @@ Clone this repository on your local machine.
 git clone https://github.com/Fundacio-Bit/jee-app-dist.git
 ```
 
-Fork this repository for specific purpose app is recommended
+Forking this repository for specific purpose app is recommended
 
 ## Setting environment values
 
@@ -43,7 +43,7 @@ Environment values are preconfigured. See ./settings.template.d folder.
 Once you have updated local files
 
 1. Execute [bin/app_setenv.sh](./bin/app_setenv.sh) to create an .env file and values configured in settings folder will take effect.
-2. You don't need to execute [bin/_app__loadenv.sh](./bin/_app__setenv.sh) by yourself. This script reads values from .env file and export them when is sourced from others, and should be updated with care.
+2. You don't need to execute [bin/_app__loadenv.sh](./bin/_app__setenv.sh) by yourself. This script is sourced from others for read and export values from .env file, and should be updated with care.
 
 ---
 
