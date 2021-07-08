@@ -83,13 +83,23 @@ while read line; do
     key="${strarr[0]}"
     value="${strarr[1]}"
  
- 
+    current=$(eval echo $value)
     case $key in
         LONG_APP_NAME)
-        echo "Value substitution for $key"
+        current_key_value=$(echo $key\=$current)
+        new_key_value=$(echo $key\=$NEW_LONG_APP_NAME)
+
+        echo "Value substitution from $current_key_value to $new_key_value"
+        sedstring=\'s/$current_key_value/$new_key_value/\'
+        echo $sedstring
+        sed -i 's/${key}=${current}/${key}=${NEW_LONG_APP_NAME}/' ${settings_file_pattern}.new
         export $key=$(eval echo $NEW_LONG_APP_NAME)
         echo "$key : $(eval echo \${$key})"
+        # sed 's/unix/linux/' geekfile.txt
+
+        #sed -i '${sedstring}' ${settings_file_pattern}.new
         # TODO: Finish substitution in file
+        
         ;;
         SHORT_APP_NAME)
         echo "Value substitution for $key"
@@ -104,7 +114,7 @@ while read line; do
     esac
 done < <(cat ${settings_file_pattern} | grep -v "#" | grep -v "^$")
 
-rm ${settings_file_pattern}.new
+cat ${settings_file_pattern}.new
 
 
 # LONG_APP_NAME_UPPER=EMISERVBACKOFFICE
