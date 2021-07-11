@@ -20,7 +20,20 @@ echo ""
 echo "[$(date +"%Y-%m-%d %T")] Stopping lingering containers..."
 echo ""
 
-source $PROJECT_PATH/bin/_app__loadenv.sh
+source $PROJECT_PATH/bin/lib_string_utils.sh 
+source $PROJECT_PATH/bin/lib_env_utils.sh
+
+lib_env_utils.loadenv ${PROJECT_PATH}
+echo ""
+lib_env_utils.check_os
+echo ""
+lib_env_utils.check_docker_compose
+echo ""
+
+if [[ "${DOCKER_COMPOSE}" == "/dev/null" ]]; then
+  echo "docker-compose not installed. Exiting"
+  exit 1
+fi
 
 export USER_ID=${UID}
 export GROUP_ID=${UID}

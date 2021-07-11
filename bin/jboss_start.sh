@@ -17,7 +17,10 @@ echo ""
 echo "[$(date +"%Y-%m-%d %T")] Starting JBOSS.."
 echo ""
 
-source $PROJECT_PATH/bin/_app__loadenv.sh
+source $PROJECT_PATH/bin/lib_string_utils.sh
+source $PROJECT_PATH/bin/lib_env_utils.sh
+
+lib_env_utils.loadenv ${PROJECT_PATH}
 
 JBOSS=$JBOSS_HOME/bin/run.sh
 echo "JBOSS at $JBOSS"

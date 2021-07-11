@@ -18,10 +18,23 @@ echo "[$(date +"%Y-%m-%d %T")] Saving database..."
 echo ""
 
 # Taking values from .env file
-source $PROJECT_PATH/bin/_app__loadenv.sh
+source $PROJECT_PATH/bin/lib_string_utils.sh 
+source $PROJECT_PATH/bin/lib_env_utils.sh
+
+lib_env_utils.loadenv ${PROJECT_PATH}
+echo ""
+lib_env_utils.check_os
+echo ""
+lib_env_utils.check_docker
+echo ""
+
+if [[ "${DOCKER}" == "/dev/null" ]]; then
+  echo "Docker not installed. Exiting"
+  exit 1
+fi
 
 echo Saving container bd with $SCHEMA_ONLY option
-sudo docker exec -i ${LONG_APP_NAME_LOWER}-pg pg_dump \
+${DOCKER} exec -i ${LONG_APP_NAME_LOWER}-pg pg_dump \
     $SCHEMA_ONLY \
     --file=${PG_DUMP_FILENAME} \
     --format=t \

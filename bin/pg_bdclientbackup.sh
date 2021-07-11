@@ -18,7 +18,12 @@ echo "[$(date +"%Y-%m-%d %T")] Saving database..."
 echo ""
 
 # Taking values from .env file
-source $PROJECT_PATH/bin/_app__loadenv.sh
+
+source $PROJECT_PATH/bin/lib_string_utils.sh
+source $PROJECT_PATH/bin/lib_env_utils.sh
+
+lib_env_utils.loadenv ${PROJECT_PATH}
+
 
 echo Saving with $SCHEMA_ONLY option
 ${PG_PATH}/pg_dump $SCHEMA_ONLY \

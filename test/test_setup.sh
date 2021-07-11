@@ -3,33 +3,39 @@
 set -o nounset
 set -o errexit
 
-#### Description: Runs webapp docker container
+#### Description: Checks Java and Maven version
 #### Written by: Guillermo de Ignacio - gdeignacio@fundaciobit.org on 04-2021
 
 ###################################
-###         Exec                ###
+###   Test environment values   ###
 ###################################
 
-echo ""
 PROJECT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )"
 echo "Project path at $PROJECT_PATH"
 echo ""
-echo "[$(date +"%Y-%m-%d %T")] Launching web server..."
+echo "[$(date +"%Y-%m-%d %T")] testing setup..."
 echo ""
 
 source $PROJECT_PATH/bin/lib_string_utils.sh 
 source $PROJECT_PATH/bin/lib_env_utils.sh
 
 lib_env_utils.loadenv ${PROJECT_PATH}
-echo ""
+
 lib_env_utils.check_os
-echo ""
+
 lib_env_utils.check_docker
+
+lib_env_utils.check_docker_compose
+
 echo ""
-
-if [[ "${DOCKER}" == "/dev/null" ]]; then
-  echo "Docker not installed. Exiting"
-  exit 1
-fi
-
-${DOCKER} exec -i -t wildfly-${LONG_APP_NAME_LOWER} /bin/bash
+echo Checking Java version
+echo ""
+java -version
+echo ""
+echo Checking Maven version
+echo ""
+mvn -version
+echo ""
+echo Checking Maven settings
+mvn help:effective-settings --settings $PROJECT_PATH/builds/maven-dist/maven/conf/settings.xml
+echo ""

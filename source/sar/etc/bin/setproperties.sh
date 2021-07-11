@@ -17,7 +17,7 @@ echo ""
 echo "[$(date +"%Y-%m-%d %T")] Build and deploy project..."
 echo ""
 
-#source $PROJECT_PATH/bin/_app__loadenv.sh
+#source $PROJECT_PATH/bin/lib_string_utils.sh source $PROJECT_PATH/bin/lib_env_utils.sh
 
 echo off
 if [[ -f help.txt ]]

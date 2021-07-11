@@ -17,7 +17,10 @@ echo ""
 echo "[$(date +"%Y-%m-%d %T")] Setting .template files..."
 echo ""
 
-source $PROJECT_PATH/bin/_app__loadenv.sh
+source $PROJECT_PATH/bin/lib_string_utils.sh 
+source $PROJECT_PATH/bin/lib_env_utils.sh
+
+lib_env_utils.loadenv ${PROJECT_PATH}
 
 CFPATH=$KEYCLOAK_CONF_PATH
 echo "Processing: "$CFPATH

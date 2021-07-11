@@ -18,7 +18,21 @@ echo "[$(date +"%Y-%m-%d %T")] Loading database..."
 echo ""
 
 # Taking values from .env file
-source $PROJECT_PATH/bin/_app__loadenv.sh
+
+source $PROJECT_PATH/bin/lib_string_utils.sh 
+source $PROJECT_PATH/bin/lib_env_utils.sh
+
+lib_env_utils.loadenv ${PROJECT_PATH}
+echo ""
+lib_env_utils.check_os
+echo ""
+lib_env_utils.check_docker
+echo ""
+
+if [[ "${DOCKER}" == "/dev/null" ]]; then
+  echo "Docker not installed. Exiting"
+  exit 1
+fi
 
 VERSIONS_ARRAY=(1.4.10.error 1.4.10 1.4.11)
 
@@ -32,14 +46,10 @@ for VERSION in ${VERSIONS_ARRAY[*]}; do
     for FILE in $VERSION_FOLDER/*; do
       if [[ -f "$FILE" ]]; then
         echo Loading $FILE
-        sudo docker exec -i ${LONG_APP_NAME_LOWER}-pg psql -v ON_ERROR_STOP=1 --username ${LONG_APP_NAME_LOWER} --dbname ${LONG_APP_NAME_LOWER} < $FILE
+        ${DOCKER} exec -i ${LONG_APP_NAME_LOWER}-pg psql -v ON_ERROR_STOP=1 --username ${LONG_APP_NAME_LOWER} --dbname ${LONG_APP_NAME_LOWER} < $FILE
       fi
     done
   else
     echo "${VERSION_FOLDER} not found"
   fi
 done
-
-
-
-
