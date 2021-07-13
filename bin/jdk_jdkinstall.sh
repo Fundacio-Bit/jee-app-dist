@@ -25,18 +25,31 @@ echo ""
 lib_env_utils.check_os
 echo ""
 
+if [ -d "$JDK_TARGET" ]; then
+    ### Take action if $DIR exists ###
+    echo --------- COPIANT FITXERS AL DESTÍ $JDK_TARGET ---------
+else
+    ###  Control will jump here if dir does NOT exists ###
+    echo "${JDK_TARGET} not found. Creating ..."
+    mkdir -p $JDK_TARGET
+fi
+
 if [[ isLinux -eq 1 ]]; then
     JDK_FILE=${JDK_LINUX_FILE}
+    JDK_URL=${JDK_BASEURL}${JDK_FILE}
+    echo ""
+    echo "Downloading" $JDK_URL "to" $JDK_TARGET
+    echo ""
+    wget $JDK_URL -P $JDK_TARGET
+    tar -zxvf $JDK_TARGET/$JDK_FILE --directory $JDK_TARGET
 else
     JDK_FILE=${JDK_WINDOWS_FILE}
+    JDK_URL=${JDK_BASEURL}${JDK_FILE}
+    echo ""
+    echo "Downloading" $JDK_URL "to" $JDK_TARGET
+    echo ""
+    curl $JDK_URL > $JDK_TARGET/$JDK_FILE
+    unzip -o $JDK_TARGET/$JDK_FILE -d $JDK_TARGET
 fi  
 
-JDK_URL=${JDK_BASEURL}${JDK_FILE}
-
-
-echo ""
-echo "Downloading" $JDK_URL "to" $JDK_TARGET
-echo ""
-wget $JDK_URL -P $JDK_TARGET
-tar -zxvf $JDK_TARGET/$JDK_FILE --directory $JDK_TARGET
 rm $JDK_TARGET/$JDK_FILE
