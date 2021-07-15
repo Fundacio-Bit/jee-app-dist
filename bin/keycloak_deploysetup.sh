@@ -36,7 +36,8 @@ if [ "$KEYCLOAK_IMPORT_REALM_JSON" == "" ]; then
     echo  =================================================================
 else
     if [[ -f "$TEMPLATE_FOLDER/$KEYCLOAK_IMPORT_REALM_JSON" ]]; then
-        echo Copying TEMPLATE_FOLDER/$KEYCLOAK_IMPORT_REALM_JSON to $KEYCLOAK_CONF_PATH
+        echo Copying $TEMPLATE_FOLDER/$KEYCLOAK_IMPORT_REALM_JSON to $KEYCLOAK_CONF_PATH
+        mkdir -p $SETTINGS_FOLDER
         cp $TEMPLATE_FOLDER/$KEYCLOAK_IMPORT_REALM_JSON $SETTINGS_FOLDER/import-goib-realm.json
     fi
 fi
