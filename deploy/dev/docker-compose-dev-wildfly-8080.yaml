@@ -68,7 +68,7 @@ services:
     hostname: nginx-${LONG_APP_NAME_LOWER}
     restart: always
     ports:
-      - "5442:80"
+      - "80:80"
       - "443:443"
     volumes:
       - ../../builds/nginx-dist/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro

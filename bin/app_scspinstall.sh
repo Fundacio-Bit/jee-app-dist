@@ -13,3 +13,4 @@ set -o errexit
 mkdir -p /app/scsp/logs
 mkdir -p /app/scsp/peticiones
 mkdir -p /app/scsp/certificados
+mkdir -p /app/scsp/xsd
