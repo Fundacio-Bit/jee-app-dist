@@ -36,7 +36,7 @@ services:
     volumes: 
       - ../../builds/keycloak-dist/keycloak/conf/import-goib-realm.json:/tmp/import-goib-realm.json
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://keycloak-${LONG_APP_NAME_LOWER}:8180/auth/realms/GOIB"]
+      test: ["CMD", "curl", "-f", "http://keycloak-${LONG_APP_NAME_LOWER}:${APP_KEYCLOAK_PORT}/auth/realms/GOIB"]
       interval: 10s
       timeout: 10s
       retries: 5

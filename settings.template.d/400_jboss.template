@@ -28,7 +28,7 @@ WILDFLY_CONF_PATH=${PROJECT_PATH}/builds/wildfly-dist/wildfly/conf
 CONF_PATH=$WILDFLY_CONF_PATH
 
 # keycloak section
-KEYCLOAK_URI_ARG=http://keycloak-${LONG_APP_NAME_LOWER}:8180
+KEYCLOAK_URI_ARG=http://keycloak-${LONG_APP_NAME_LOWER}:${APP_KEYCLOAK_PORT}
 KEYCLOAK_CONF_PATH=${PROJECT_PATH}/builds/keycloak-dist/keycloak/conf
 KEYCLOAK_IMPORT_REALM_JSON=${LONG_APP_NAME_LOWER}-import-goib-realm.json
 # end keycloak section
