@@ -33,7 +33,7 @@ if [[ "${DOCKER}" == "/dev/null" ]]; then
   exit 1
 fi
 
-APPLICATION_PATH=${PROJECT_PATH}/source/scripts/bbdd
+APPLICATION_PATH=${PROJECT_PATH}/${APP_SOURCE_FOLDER}/scripts/bbdd
 
 echo "Processing $APPLICATION_PATH"
 if [ -d "$APPLICATION_PATH" ]; then

@@ -33,6 +33,8 @@ SHORT_APP_NAME_UPPER=$(lib_string_utils.spinal_to_upper $SHORT_APP_NAME)
 SHORT_APP_NAME_LOWER=$(lib_string_utils.spinal_to_lower $SHORT_APP_NAME)
 SHORT_APP_NAME_CAMEL=$(lib_string_utils.spinal_to_camelcase $SHORT_APP_NAME)
 
+APP_SOURCE_FOLDER=source/${LONG_APP_NAME_LOWER}
+
 APP_VERSION=1.4
 APP_SGBD=postgres
 
