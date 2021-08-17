@@ -1,11 +1,19 @@
 # Maven Download section
-MAVEN_363_URL=https://ftp.cixug.es/apache/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
-MAVEN_363_TARGET=$HOME/maven/${LONG_APP_NAME_LOWER}
-MAVEN_363_TARFILE=apache-maven-3.6.3-bin.tar.gz
 
-MAVEN_URL=$MAVEN_363_URL
+MAVEN_363_BASEURL=https://ftp.cixug.es/apache/maven/maven-3/3.6.3/binaries/
+MAVEN_363_LINUX_FILE=apache-maven-3.6.3-bin.tar.gz
+MAVEN_363_WINDOWS_FILE=apache-maven-3.6.3-bin.zip
+
+# MAVEN_363_URL=https://ftp.cixug.es/apache/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
+MAVEN_363_TARGET=$HOME/maven/${LONG_APP_NAME_LOWER}
+
+# MAVEN_363_TARGET=$HOME/maven
+
+MAVEN_BASEURL=$MAVEN_363_BASEURL
 MAVEN_TARGET=$MAVEN_363_TARGET
-MAVEN_TARFILE=$MAVEN_363_TARFILE 
+
+MAVEN_LINUX_FILE=$MAVEN_363_LINUX_FILE
+MAVEN_WINDOWS_FILE=$MAVEN_363_WINDOWS_FILE
 
 # End Maven Download section
 
@@ -21,17 +29,20 @@ M2_CONF=$HOME/.m2
 M2_REPO=$MAVEN_TARGET/repository
 # end repo section
 
+
+# Set APP_POM_FILE=$PROJECT_PATH/source/$LONG_APP_NAME_LOWER/pom.xml if you want to use git submodule feature
+
 # Use $PROJECT_PATH/.. path if project folder is at same level than this.
 APP_FOLDER=$PROJECT_PATH/../$LONG_APP_NAME_LOWER
 APP_POM_FILE=$PROJECT_PATH/../$LONG_APP_NAME_LOWER/pom.xml 
 
 # SAR project file path if needed
-SAR_POM_PATH=$PROJECT_PATH/${APP_SOURCE_FOLDER}/sar
+SAR_POM_PATH=$PROJECT_PATH/source/sar
 SAR_POM_FILE=$SAR_POM_PATH/pom.xml
 
 # mvn clean install files
 EAR_FILE=$PROJECT_PATH/../$LONG_APP_NAME_LOWER/$LONG_APP_NAME_LOWER-ear/target/$LONG_APP_NAME_LOWER.ear
-SAR_FILE=$PROJECT_PATH/${APP_SOURCE_FOLDER}/sar/target/$LONG_APP_NAME_LOWER.sar
+SAR_FILE=$PROJECT_PATH/source/sar/target/$LONG_APP_NAME_LOWER.sar
 
 DB_SCRIPTS_FOLDER=$APP_FOLDER/scripts/bbdd/${APP_VERSION}/${APP_SGBD}
 # DB_SCRIPTS_FOLDER=$APP_FOLDER/scripts/bbdd/${APP_SGBD}
