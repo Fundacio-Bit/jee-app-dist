@@ -28,7 +28,7 @@ echo 'APP_WWW_USER_NAME='$APP_WWW_USER_NAME
 echo 'APP_TABLESPACES='$APP_TABLESPACES
 echo ''
 
-ls -l /var/lib/postgresql/app
+# ls -l /var/lib/postgresql/app
 
 
 echo 'Creating dir '$APP_TABLESPACES
