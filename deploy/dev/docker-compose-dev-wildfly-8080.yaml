@@ -26,7 +26,7 @@ services:
     build:
       context: ../../builds/keycloak-dist
     container_name: keycloak-${LONG_APP_NAME_LOWER}
-    hostname: ${APP_KEYCLOAK_SERVER}
+    hostname: keycloak-${LONG_APP_NAME_LOWER}
     environment:
      - KEYCLOAK_USER=admin
      - KEYCLOAK_PASSWORD=admin
