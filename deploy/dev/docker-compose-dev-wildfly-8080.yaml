@@ -36,7 +36,7 @@ services:
     volumes: 
       - ../../builds/keycloak-dist/keycloak/conf/import-goib-realm.json:/tmp/import-goib-realm.json
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://${APP_KEYCLOAK_SERVER}:${APP_KEYCLOAK_PORT}/auth/realms/GOIB"]
+      test: ["CMD", "curl", "-f", "http://${KEYCLOAK_URI_ARG}/auth/realms/GOIB"]
       interval: 10s
       timeout: 10s
       retries: 5
@@ -63,7 +63,7 @@ services:
       - SHORT_APP_NAME=${SHORT_APP_NAME_LOWER}
       - PGTABLESPACES=/var/lib/postgresql/data/tablespaces
   nginx:
-    image: nginx:alpine
+    image: nginx
     container_name: nginx-${LONG_APP_NAME_LOWER}
     hostname: nginx-${LONG_APP_NAME_LOWER}
     restart: always
@@ -72,6 +72,8 @@ services:
       - ${APP_HTTPS_PORT}:443
     volumes:
       - ../../builds/nginx-dist/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ../../builds/nginx-dist/nginx/bin/docker-entrypoint.d/nginx-entrypoint.sh:/docker-entrypoint.d/nginx-entrypoint.sh:ro
+
 
 
     
