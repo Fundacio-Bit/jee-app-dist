@@ -2,7 +2,7 @@
 <datasources>
     <datasource jndi-name="java:jboss/datasources/emiservDS" pool-name="emiservDS"
         enabled="true" use-java-context="true">
-        <connection-url>jdbc:postgresql://emiserv-pg:5441/emiserv</connection-url>
+        <connection-url>jdbc:postgresql://emiserv-pg:5432/emiserv</connection-url>
         <driver>postgresql</driver>
         <security>
             <user-name>emiserv</user-name>

@@ -1,0 +1,12 @@
+# keycloak section
+
+KEYCLOAK_PORT=8180
+KEYCLOAK_SERVER=${NGINX_URL}:${KEYCLOAK_PORT}
+KEYCLOAK_LOCAL_SERVER=keycloak-${LONG_APP_NAME_LOWER}
+
+
+KEYCLOAK_URI_ARG=http://${KEYCLOAK_SERVER}
+KEYCLOAK_CONF_PATH=${PROJECT_PATH}/builds/keycloak-dist/keycloak/conf
+KEYCLOAK_IMPORT_REALM_JSON=${LONG_APP_NAME_LOWER}-import-goib-realm.json
+
+# end keycloak section

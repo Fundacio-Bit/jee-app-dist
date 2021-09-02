@@ -1,5 +1,8 @@
 # Postgres section
 # Use this file for custom postgres settings
+
+PG_PORT=5441
+
 PG_DUMP_TARGET=/app/postgresql/backups
 PG_95_PATH=/usr/lib/postgresql/9.5/bin
 PG_PATH=$PG_95_PATH
