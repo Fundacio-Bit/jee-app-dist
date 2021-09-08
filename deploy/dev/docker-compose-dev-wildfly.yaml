@@ -71,7 +71,7 @@ services:
       - ${NGINX_SERVER_HTTP_PORT}:80
       - ${NGINX_SERVER_HTTPS_PORT}:443
     volumes:
-      - ../../builds/nginx-dist/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ../../builds/nginx-dist/nginx/conf/default.conf:/etc/nginx/conf.d/default.conf:ro
       - ../../builds/nginx-dist/nginx/bin/docker-entrypoint.d/nginx-entrypoint.sh:/docker-entrypoint.d/nginx-entrypoint.sh:ro
     depends_on:
       - wildfly

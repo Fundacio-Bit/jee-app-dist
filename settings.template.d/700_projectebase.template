@@ -12,5 +12,7 @@ perfilDir3Caib=true
 perfilDistribucio=true
 perfilPinbal=true
 perfilSistra2=true
+perfilWS=true
+perfilBatSh=true
 
 # end projectebase section
