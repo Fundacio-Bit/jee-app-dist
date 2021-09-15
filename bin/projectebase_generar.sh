@@ -80,6 +80,8 @@ else
       -DperfilDistribucio=${perfilDistribucio} \
       -DperfilPinbal=${perfilPinbal} \
       -DperfilSistra2=${perfilSistra2} \
+      -DperfilWS=${perfilWS} \
+      -DperfilBatSh=${perfilBatSh} \
       --settings $PROJECT_PATH/builds/maven-dist/maven/conf/settings.xml
     
   cd $PROJECT_PATH
