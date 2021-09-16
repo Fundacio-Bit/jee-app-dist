@@ -5,7 +5,7 @@ set -o errexit
 
 #### Description: Installs docker.
 #### Written by: Guillermo de Ignacio - gdeignacio@fundaciobit.org on 04-2021
-#### WARNING: Check if CUSTOM_USERNAME is set. See settings/500_docker file
+#### WARNING: Check if DOCKER_CUSTOM_USERNAME is set. See settings/500_docker file
 
 ###################################
 ###   DOCKER INSTALL UTILS      ###
@@ -39,7 +39,7 @@ if [[ isLinux -eq 1 ]]; then
     sudo systemctl status docker
     sudo useradd -p $(openssl passwd -1 docker) docker -g docker
     # sudo usermod -a -G docker emiserv
-    sudo usermod -a -G docker ${CUSTOM_USERNAME}
+    sudo usermod -a -G docker ${DOCKER_CUSTOM_USERNAME}
     sudo mkdir -p /app/docker
 else
     echo ""

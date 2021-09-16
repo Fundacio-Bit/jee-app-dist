@@ -142,8 +142,8 @@ Once you have updated local files
     # end path update section
 
     # Docker-compose section
-    CUSTOM_USERNAME=$LONG_APP_NAME_LOWER
-    CUSTOM_USERID=1000
+    DOCKER_CUSTOM_USERNAME=$LONG_APP_NAME_LOWER
+    DOCKER_CUSTOM_USERID=1000
     DOCKER_COMPOSE_DEFAULT=${PROJECT_PATH}/deploy/default/docker-compose.yaml
     DOCKER_COMPOSE_DEV_PATH=${PROJECT_PATH}/deploy/dev/
     DOCKER_COMPOSE_PRE_PATH=${PROJECT_PATH}/deploy/pre/
