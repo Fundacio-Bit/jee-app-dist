@@ -19,6 +19,8 @@ Shortcut to [Run Docker](#run-docker) if environment is already set.
 
 The specific steps to installing Docker will differ depending on the host's operating system. Full instructions can be found on [Docker's installation documentation](https://docs.docker.com/install/overview/)
 
+Also you can try [Docker Desktop](https://docs.docker.com/desktop/) on Windows or Mac
+
 ### Installing
 
 Clone this repository on your local machine.
@@ -37,33 +39,35 @@ Environment values are preconfigured. See ./settings.template.d folder.
 
 1. Execute [bin/app_settings.sh](./bin/app_settings.sh) script to create settings folder and .template files will be copied into. If a previous version exists will be backed up.
 2. Optionally execute [bin/app_clearenvbackup.sh](./bin/app_clearenvbackup.sh) to clean previous .backup files in settings folder.
-   
+3. Set app name by executing [bin/app_setappname.sh] (bin/app_setappname.sh). Set parameters codapp and app to long application name and short application name respectively.
+
+    ```bash
+    bin/app_setappname.sh --codapp=long-application-name --app=shortapplicationname
+    ```
+    Repeat this step every time app_settings have been executed. Otherwise app name will take default values.
+
 ### Update local settings values
 
 Once you have updated local files
 
 1. Execute [bin/app_setenv.sh](./bin/app_setenv.sh) to create an .env file and values configured in settings folder will take effect.
-2. You don't need to execute [bin/_app__loadenv ${PROJECT_PATH}.sh](./bin/_app__setenv.sh) by yourself. This script is sourced from others for read and export values from .env file, and should be updated with care.
+2. You don't need to execute bin/lib_xxx_utils.sh by yourself. These scripts are sourced from others for read and export values from .env file, and should be updated with care. Sourced scripts are
+    * [bin/lib_env_utils.sh](bin/lib_env_utils.sh)
+    * [bin/lib_string_utils.sh](bin/lib_string_utils.sh)
+
+
 
 ---
 
-1. Edit [100_app](./settings/100_app) file and set variables as shown
+1. Edit [100_app](./settings.template.d/100_app.template) file and check variable values as shown
 
     ```bash
-    # app section
-    # See also:
-    #
-    # bin/compile
-    # deploy/default/docker-compose.yaml
-    #
-    LONG_APP_NAME_UPPER=EMISERV
-    LONG_APP_NAME_LOWER=emiserv
-    LONG_APP_NAME_CAMEL=Emiserv
-    SHORT_APP_NAME_UPPER=EMS
-    SHORT_APP_NAME_LOWER=ems
-    SHORT_APP_NAME_CAMEL=Ems
-    # end app section
+    LONG_APP_NAME=long-app-name
+    SHORT_APP_NAME=short-app-name
     ```
+
+2. Edit [110_nginx](./settings.template.d/110_nginx.template). It contains all NGINX_xxx vars.
+
 
 2. Edit [20_jdk](./settings/20_jdk) file. These values set default Java Home and installation target. **The environment scope is local to your script**
 
@@ -231,16 +235,17 @@ Although is possible to config any type of parameter, passwords should never be 
 
 ---
 
-1. Run [start](./bin/start) script. Runs docker-compose and starts containers configured in docker-compose.yaml
+1. Run [docker_start](./bin/docker_start.sh) script. Runs docker-compose and starts containers configured in docker-compose.yaml
 
     ```bash
-    ./bin/start
+    # Execute bin/app_setenv.sh previously
+    ./bin/docker_start.sh
     ``` 
 
-2. Run [cleanup](./bin/cleanup) script. Stops all running containers
+2. Run [cleanup](./bin/docker_cleanup.sh) script. Stops all running containers
 
     ```bash
-    ./bin/cleanup
+    ./bin/docker_cleanup.sh
     ``` 
 
     Shortcut to [Getting started](#getting-started) if more detail is needed.
