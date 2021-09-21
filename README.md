@@ -19,7 +19,9 @@ Shortcut to [Run Docker](#run-docker) if environment is already set.
 
 The specific steps to installing Docker will differ depending on the host's operating system. Full instructions can be found on [Docker's installation documentation](https://docs.docker.com/install/overview/)
 
-Also you can try [Docker Desktop](https://docs.docker.com/desktop/) on Windows or Mac
+* Also, you may try [Docker Desktop](https://www.docker.com/products/docker-desktop) on Windows/Mac. See [docs](https://docs.docker.com/desktop/)
+* In any case, you can locally build your app with Maven using an isolated local repo. 
+
 
 ### Installing
 
@@ -38,7 +40,17 @@ Environment values are preconfigured. See ./settings.template.d folder.
 ### Generate local settings values from template
 
 1. Execute [bin/app_settings.sh](./bin/app_settings.sh) script to create settings folder and .template files will be copied into. If a previous version exists will be backed up.
+
+    ```bash
+    bin/app_settings.sh
+    ```
+
 2. Optionally execute [bin/app_clearenvbackup.sh](./bin/app_clearenvbackup.sh) to clean previous .backup files in settings folder.
+
+     ```bash
+    bin/app_clearenvbackup.sh
+    ```
+
 3. Set app name by executing [bin/app_setappname.sh] (bin/app_setappname.sh). Set parameters codapp and app to long application name and short application name respectively.
 
     ```bash
@@ -46,11 +58,17 @@ Environment values are preconfigured. See ./settings.template.d folder.
     ```
     Repeat this step every time app_settings have been executed. Otherwise app name will take default values.
 
-### Update local settings values
+### Update .env settings values
 
 Once you have updated local files
 
 1. Execute [bin/app_setenv.sh](./bin/app_setenv.sh) to create an .env file and values configured in settings folder will take effect.
+    
+    ```bash
+    bin/app_setenv.sh
+    ```
+
+
 2. You don't need to execute bin/lib_xxx_utils.sh by yourself. These scripts are sourced from others for read and export values from .env file, and should be updated with care. Sourced scripts are
     * [bin/lib_env_utils.sh](bin/lib_env_utils.sh)
     * [bin/lib_string_utils.sh](bin/lib_string_utils.sh)
@@ -59,109 +77,142 @@ Once you have updated local files
 
 ---
 
-1. Edit [100_app](./settings.template.d/100_app.template) file and check variable values as shown
+* Values in ${some_value} format are previously configured.
+* All vars in a file have a distinctive prefix except 200_jdk, 300_mvn, 400_jboss files.
+
+1. Edit [./settings/100_app](./settings.template.d/100_app.template) file and check variable values as shown
 
     ```bash
     LONG_APP_NAME=long-app-name
     SHORT_APP_NAME=short-app-name
     ```
 
-2. Edit [110_nginx](./settings.template.d/110_nginx.template). It contains all NGINX_xxx vars.
-
-
-2. Edit [20_jdk](./settings/20_jdk) file. These values set default Java Home and installation target. **The environment scope is local to your script**
+2. Edit [./settings/110_nginx](./settings.template.d/110_nginx.template) for reverse proxy config. It contains all NGINX_xxx vars.
 
     ```bash
-    # JDK Download section
-    # Downloading java version lower than 9 is up to you
-    JDK11_URL=https://download.java.net/java/ga/jdk11/openjdk-11_linux-x64_bin.tar.gz
+    # nginx section
+
+    NGINX_DOMAIN_NAME=your.domain
+    NGINX_SERVER_NAME=${LONG_APP_NAME_LOWER}
+    NGINX_SERVER_HTTP_PORT=80
+    NGINX_SERVER_HTTPS_PORT=443
+    NGINX_URL=${NGINX_SERVER_NAME}.${NGINX_DOMAIN_NAME}
+
+    NGINX_CONF_PATH=${PROJECT_PATH}/builds/nginx-dist/nginx/conf
+    NGINX_DEFAULT_CONF=default.conf
+
+    # end of nginx section
+    ```
+
+
+3. Edit [./settings/200_jdk](./settings.template.d/200_jdk.template) file. These values set default Java Home and installation target. **The environment scope is local to your script**
+
+    By default, JDK version is 11. See [./settings.template.d/200_jdk.template](./settings.template.d/200_jdk.template) to find some examples of other versions downloading. Also, default target is located at HOME dir.
+
+    ```bash
     JDK11_TARGET=$HOME/java/${LONG_APP_NAME_LOWER}
-    JDK11_TARFILE=openjdk-11_linux-x64_bin.tar.gz
-    JDK_URL=$JDK11_URL
-    JDK_TARGET=$JDK11_TARGET
-    JDK_TARFILE=$JDK11_TARFILE
-    # End JDK Download section
-
-    # jdk section
-    # set here previously installed jdk path  
-    JDK8_HOME=/usr/lib/jvm/java-8-oracle
-    JDK7_HOME=/usr/lib/jvm/jdk1.7.0_80
-    OPENJDK11_HOME=$JDK11_TARGET/jdk-11
-    JAVA_HOME=$OPENJDK11_HOME
-    JDK_HOME=$JDK7_HOME
-    # end jdk section
     ```
+    See [bin/jdk_jdkinstall.sh](bin/jdk_jdkinstall.sh) for jdk installation.
+    Shortcut to [Installing Java Tools](#installing-java-tools) if more detail is needed.
 
-3. Edit [30_mvn](./settings/30_mvn) file. These values set default Maven Home and installation target according environment. **The environment scope is local to your script**
+
+4. Edit [./settings/300_mvn](./settings.template.d/300_mvn.template) file. These values set default Maven Home and installation target according environment. **The environment scope is local to your script**
+
+    By default, maven version is 3.6.3. See [./settings.template.d/300_mvn.template](./settings.template.d/300_mvn.template) to find some examples of other versions downloading. Also, default target is located at HOME dir.
 
     ```bash
-    # Maven Download section
-    MAVEN_363_URL=https://ftp.cixug.es/apache/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
     MAVEN_363_TARGET=$HOME/maven/${LONG_APP_NAME_LOWER}
-    MAVEN_363_TARFILE=apache-maven-3.6.3-bin.tar.gz
-
-    MAVEN_URL=$MAVEN_363_URL
-    MAVEN_TARGET=$MAVEN_363_TARGET
-    MAVEN_TARFILE=$MAVEN_363_TARFILE 
-
-    # End Maven Download section
-
-    # maven section
-    M2_365_HOME=$MAVEN_363_TARGET/apache-maven-3.6.3
-    M2_HOME=$M2_365_HOME
-    # end maven section
     ```
+    See [bin/mvn_maveninstall.sh](bin/mvn_maveninstall.sh) for maven installation.
+    Shortcut to [Installing Java Tools](#installing-java-tools) if more detail is needed.
 
 
-4. Edit [40_jboss](./settings/40_jboss) file. These values set default Jboss EAP Home and installation target according environment. **The environment scope is local to your script**
+5. Edit [./settings/400_jboss](./settings.template.d/400_jboss.template) file. These values set default Jboss EAP Home and installation target according environment. **The environment scope is local to your script**
 
     If jboss version < 7 should be manually installed. Othewise, keycloak uri arg must be set.
+    By default, jboss environment is Wildfly/Keycloak
+    Shortcut to [Build and deploy](#build-and-deploy) if more detail is needed.
+
+6. Edit [./settings/410_keycloak](./settings.template.d/410_keycloak.template) file. These values set default keycloak url and port. **The environment scope is local to your script**
 
     ```bash
-    # jboss section
-    JBOSS_EAP_52_HOME=/usr/local/desarrollo/ServidoresJ2EE/jboss-eap-5.2/jboss-as
-    JBOSS_EAP_52_DEPLOYDIR=$JBOSS_EAP_52_HOME/server/default/deploy$LONG_APP_NAME_LOWER
-    JBOSS_HOME=$JBOSS_EAP_52_HOME
-    JBOSS_DEPLOYDIR=$JBOSS_EAP_52_DEPLOYDIR
-    # end jboss section
-
     # keycloak section
-    KEYCLOAK_URI_ARG=http://keycloak-${LONG_APP_NAME_LOWER}:8180
+
+    KEYCLOAK_PORT=8180
+    KEYCLOAK_SERVER=${NGINX_URL}:${KEYCLOAK_PORT}
+    KEYCLOAK_LOCAL_SERVER=keycloak-${LONG_APP_NAME_LOWER}
+
+    # Set KEYCLOAK_SERVER to your IP if needed
+    # and KEYCLOAK_URI_ARG to http://${KEYCLOAK_SERVER}:${KEYCLOAK_PORT}
+
+    KEYCLOAK_URI_ARG=http://${KEYCLOAK_SERVER}
+
+    KEYCLOAK_CONF_PATH=${PROJECT_PATH}/builds/keycloak-dist/keycloak/conf
+    KEYCLOAK_IMPORT_REALM_JSON=${LONG_APP_NAME_LOWER}-import-goib-realm.json
+
     # end keycloak section
     ```
 
+    Shortcut to [Build and deploy](#build-and-deploy) if more detail is needed.
 
-5. Edit [50_custom](./settings/50_custom) file.
+7. Edit [./settings/500_docker](./settings.template.d/500_docker.template) file. These values set default docker-compose.yaml file and docker username. **The environment scope is local to your script**
 
-    These values set custom to-deploy filenames, path updates, username for docker-compose args, and docker-compose.yaml file path. You can choose config depending on stage and services to enable. **The environment scope is local to your script**
+    By default, a pod is composed by postgres + wildfly + keycloak + nginx. See [./settings.template.d/500_docker.template](./settings.template.d/500_docker.template). Also, default username is lowercase app name.
 
     ```bash
-    # Custom section 
-    EAR_FILE=$PROJECT_PATH/src/$LONG_APP_NAME_LOWER/$LONG_APP_NAME_LOWER-ear/target/$LONG_APP_NAME_LOWER.ear
+    DOCKER_CUSTOM_USERNAME=${LONG_APP_NAME_LOWER}
+    DOCKER_CUSTOM_USERID=1000
+    ```
+    Shortcut to [Docker Settings](#docker-settings) if more detail is needed.
+
+8. Edit [./settings/600_postgres](./settings.template.d/600_postgres.template) file. **The environment scope is local to your script**
+
+    PostgreSQL is the default database, then environment vars use PG_ prefix. If other db is chosen this prefix can vary e.g. ORA_ , *etc.*
+
+    You may set values for other databases in separate files e.g. ./settings.template.d/610_oracle.template, ./settings.template.d/620_mysql.template
+
+    ```bash
+    # Postgres section
+    # Use this file for custom postgres settings
+
+    PG_PORT=5441
+
+    PG_DUMP_TARGET=/app/postgresql/backups
+    PG_95_PATH=/usr/lib/postgresql/9.5/bin
+    PG_PATH=$PG_95_PATH
+
+    PG_DUMP_DBNAME=${LONG_APP_NAME_LOWER}
+    PG_DUMP_SCHEMA=${LONG_APP_NAME_LOWER}
+    PG_DUMP_NAME=${LONG_APP_NAME_LOWER}
+    PG_DUMP_HOSTNAME=localhost
+    PG_DUMP_PORT=5441
+    PG_DUMP_FILENAME=${PG_DUMP_TARGET}/${LONG_APP_NAME_LOWER}.tar
+
+    # End postgres section
+    ```
+    Shortcut to [Database backup and restore](#database-backup-and-restore) if more detail is needed.
+
+
+
+9. Edit [./settings/900_custom](./settings.template.d/900_custom.template) file.
+
+    These values set any custom value not previously included in other files, like PATH **The environment scope is local to your script**
+
+    ```bash
+    # Custom section
+    # Use this file for custom app settings
 
     # End custom section
 
     # path update section
     PATH=$JBOSS_HOME/bin:$JAVA_HOME/bin:$M2_HOME/bin:$PATH
     # end path update section
-
-    # Docker-compose section
-    DOCKER_CUSTOM_USERNAME=$LONG_APP_NAME_LOWER
-    DOCKER_CUSTOM_USERID=1000
-    DOCKER_COMPOSE_DEFAULT=${PROJECT_PATH}/deploy/default/docker-compose.yaml
-    DOCKER_COMPOSE_DEV_PATH=${PROJECT_PATH}/deploy/dev/
-    DOCKER_COMPOSE_PRE_PATH=${PROJECT_PATH}/deploy/pre/
-    DOCKER_COMPOSE_PRO_PATH=${PROJECT_PATH}/deploy/pro/
-    DOCKER_COMPOSE_PATH=$DOCKER_COMPOSE_DEV_PATH
-
-    DOCKER_COMPOSE_FILE=$DOCKER_COMPOSE_DEFAULT
-    # end docker-compose section
     ```
 
     **Actual values could be different than above once files in setting folder had been edited. Take these only as an example.**
 
-6. Preconfigured values are stored in settings folder and can be used *as is* or modified at your discretion.
-Although is possible to config any type of parameter, passwords should never be set there. *All changes will be committed against repo*.
+10. Preconfigured values are stored in settings folder and can be used *as is* or locally modified at your discretion
+Although is possible to config any type of parameter, passwords should never be set at settings.template.d folder. *All changes will be committed against repo*. Always set critical data at settings local folder and set permission if needed.
 
 
 ## Run
@@ -171,7 +222,7 @@ Although is possible to config any type of parameter, passwords should never be 
 1. Clone this repository on your local machine if you didn't yet. 
 
     ```bash
-    git clone https://github.com/Fundacio-Bit/emiserv-dist.git
+    git clone https://github.com/Fundacio-Bit/jee-app-dist.git
     ```
 
 2. Run [installdocker](./bin/installdocker) script to update and install docker.
