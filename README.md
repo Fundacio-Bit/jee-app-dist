@@ -329,13 +329,13 @@ To build and deploy a jee project with Maven.
 
 ---
 
-5. Optionally, run [jdkinstall](./bin/jdk_jdkinstall.sh) script. It downloads a tar.gz file and inflates into preconfigured target. See ./settings/200_jdk file. If jdk version is lower than 9, jdk platform must be manually installed.
+1. Optionally, run [jdkinstall](./bin/jdk_jdkinstall.sh) script. It downloads a tar.gz file and inflates into preconfigured target. See ./settings/200_jdk file. If jdk version is lower than 9, jdk platform must be manually installed.
 
     ```bash
     ./bin/jdk_jdkinstall.sh
     ```
 
-6. Optionally, run [maveninstall](./bin/mvn_maveninstall.sh) script. It downloads a tar.gz file and inflates into preconfigured target. See ./settings/300_mvn file. Running maven requires JAVA_HOME variable.
+2. Optionally, run [maveninstall](./bin/mvn_maveninstall.sh) script. It downloads a tar.gz file and inflates into preconfigured target. See ./settings/300_mvn file. Running maven requires JAVA_HOME variable.
     
     ```bash
     ./bin/mvn_maveninstall.sh
@@ -344,15 +344,11 @@ To build and deploy a jee project with Maven.
 
 ## Docker settings
 
-
-
-
+\#TO-DO
 
 ## docker-compose
 
-
-
-
+\#TO-DO
 
 ## Run docker
 
@@ -376,10 +372,33 @@ To build and deploy a jee project with Maven.
 
 ## Database backup and restore
 
+Export and import database using pg_dump/pg_restore
+
+Using local PostgreSQL installation as a client. See [client backup](./bin/pg_bdclientbackup.sh) and [client restore](./bin/pg_bdclientrestore.sh) files. 
+
+```bash
+# Local Folder /app/postgresql/backups
+# Backup
+bin/pg_bdclientbackup.sh
+
+# Restore
+bin/pg_bdclientrestore.sh
+```
+
+Using containers. See [container backup](./bin/pg_bdcontainerbackup.sh) and [container restore](./bin/pg_bdcontainerrestore.sh) files. 
+
+```bash
+# Local Folder /app/docker/postgresql/${LONG_APP_NAME_LOWER}/backups
+# Backup
+bin/pg_bdcontainerbackup.sh
+
+# Restore
+bin/pg_bdcontainerrestore.sh
+```
+
 
 
 ---
-
 ## Authors
 
 * **gdeignacio**  - [gdeignacio-fundaciobit](https://github.com/gdeignacio-fundaciobit)
