@@ -24,6 +24,7 @@ The specific steps to installing Docker will differ depending on the host's oper
 
 
 ### Installing
+---
 
 Clone this repository on your local machine.
 
@@ -34,10 +35,12 @@ git clone https://github.com/Fundacio-Bit/jee-app-dist.git
 Forking this repository for specific purpose app is recommended
 
 ## Setting environment values
+---
 
 Environment values are preconfigured. See ./settings.template.d folder.
 
 ### Generate local settings values from template
+---
 
 1. Execute [bin/app_settings.sh](./bin/app_settings.sh) script to create settings folder and .template files will be copied into. If a previous version exists will be backed up.
 
@@ -59,6 +62,7 @@ Environment values are preconfigured. See ./settings.template.d folder.
     Repeat this step every time app_settings have been executed. Otherwise app name will take default values.
 
 ### Update .env settings values
+---
 
 Once you have updated local files
 
@@ -74,7 +78,7 @@ Once you have updated local files
     * [bin/lib_string_utils.sh](bin/lib_string_utils.sh)
 
 
-
+### Settings files contents in detail
 ---
 
 * Values in ${some_value} format are previously configured.
@@ -214,6 +218,72 @@ Once you have updated local files
 10. Preconfigured values are stored in settings folder and can be used *as is* or locally modified at your discretion
 Although is possible to config any type of parameter, passwords should never be set at settings.template.d folder. *All changes will be committed against repo*. Always set critical data at settings local folder and set permission if needed.
 
+## Build and deploy
+---
+
+To build and deploy a jee project with Maven.
+
+
+1. Clone app repository at ${PROJECT_PATH}/.. by executing
+
+   ```bash
+   cd ..
+   git clone app-repository-url
+   ```
+   App folder should be at same directory than jee-app-dist
+
+2. Execute [test_setup](./test/test_setup.sh) to check if all values are right
+
+   ```bash
+   test/test_setup.sh
+   ```
+
+3. Generate from template local versions of config files.
+    
+    * JBoss EAP 5.1/5.2 using sar file
+
+        * source/\${LONG_APP_NAME_LOWER}/sar/src/main/resources/\${LONG_APP_NAME_LOWER}.properties
+
+        Generated from template by executing previously
+
+        ```bash
+        source/${LONG_APP_NAME_LOWER}/sar/etc/bin/setproperties.sh
+        ```
+    * JBoss 7/Wildfly properties files
+
+        * \${LONG_APP_NAME_LOWER}.properties
+        * \${LONG_APP_NAME_LOWER}.system.properties
+
+    * \${LONG_APP_NAME_LOWER}-ds.xml as datasource
+
+    Execute [deploysetup](./bin/jboss_deploysetup.sh)
+
+    ```bash
+    bin/jboss_deploysetup.sh
+    ```
+
+4. Generate local config for [keycloak](./bin/keycloak_deploysetup.sh)
+
+    ```bash
+    bin/keycloak_deploysetup.sh
+    ```
+
+5. Edit files in folders **(local changes will not be committed)**
+   * builds/wildfly-dist/wildfly/bin
+   * builds/wildfly-dist/wildfly/conf
+   * builds/wildfly-dist/wildfly/deploy
+
+6. Build project
+
+    ```bash
+    bin/mvn_compile.sh
+    ```
+    or build and copy files in deployment folder. If deployments folder needs root permission, then remove it first.
+    JBoss deploy dir is set by default at /tmp/\${LONG_APP_NAME_LOWER}/deployments.
+
+    ```bash
+    bin/mvn_jboss_deploy.sh
+    ```
 
 ## Run
 
@@ -225,10 +295,10 @@ Although is possible to config any type of parameter, passwords should never be 
     git clone https://github.com/Fundacio-Bit/jee-app-dist.git
     ```
 
-2. Run [installdocker](./bin/installdocker) script to update and install docker.
+2. Run [docker_install](./bin/docker_install.sh) script to update and install docker.
 
     ```bash
-    ./bin/installdocker.sh
+    ./bin/docker_install.sh
     ```
     Note that we add a new user which default password is "docker" and would better update it, even in preproduction stage.
 
@@ -243,13 +313,15 @@ Although is possible to config any type of parameter, passwords should never be 
         You should make sure the password respects the system's password policy. 
     ```
 
+    See [docker_install](./bin/docker_install.sh)
+
 3. Check preconfigured values and change them as explained above if needed.
 
 
-4. Run [setenv](./bin/setenv) script. It generates an .env file from settings folder content to be allocated in main folder. When loading env variables, this file will be used as input. Repeat steps 2 and 3 as times as you need.
+4. Run [app_setenv](./bin/app_setenv.sh) script. It generates an .env file from settings folder content to be allocated in main folder. When loading env variables, this file will be used as input. Repeat steps 2 and 3 as times as you need.
 
     ```bash
-    ./bin/setenv
+    ./bin/app.setenv.sh
     ```
     **Please remember run after edit settings. Otherwise, .env will remain unmodified.**
 
@@ -257,16 +329,16 @@ Although is possible to config any type of parameter, passwords should never be 
 
 ---
 
-5. Optionally, run [installjdk](./bin/installjdk) script. It downloads a tar.gz file and inflates into preconfigured target. See ./settings/20_jdk file. If jdk version is lower than 9, jdk platform must be manually installed.
+5. Optionally, run [jdkinstall](./bin/jdk_jdkinstall.sh) script. It downloads a tar.gz file and inflates into preconfigured target. See ./settings/200_jdk file. If jdk version is lower than 9, jdk platform must be manually installed.
 
     ```bash
-    ./bin/installjdk
+    ./bin/jdk_jdkinstall.sh
     ```
 
-6. Optionally, run [installmaven](./bin/installmaven) script. It downloads a tar.gz file and inflates into preconfigured target. See ./settings/30_mvn file. Running maven requires JAVA_HOME variable.
+6. Optionally, run [maveninstall](./bin/mvn_maveninstall.sh) script. It downloads a tar.gz file and inflates into preconfigured target. See ./settings/300_mvn file. Running maven requires JAVA_HOME variable.
     
     ```bash
-    ./bin/installmaven
+    ./bin/mvn_maveninstall.sh
     ```
 
 
@@ -300,6 +372,11 @@ Although is possible to config any type of parameter, passwords should never be 
     ``` 
 
     Shortcut to [Getting started](#getting-started) if more detail is needed.
+
+
+## Database backup and restore
+
+
 
 ---
 
