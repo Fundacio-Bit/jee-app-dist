@@ -1,0 +1,13 @@
+# app section
+# See also:
+#
+# bin/compile
+# deploy/default/docker-compose.yaml
+#
+
+APP_SOURCE_FOLDER=source/${LONG_APP_NAME_LOWER}
+
+APP_VERSION=1.4
+APP_SGBD=postgres
+
+# end app section
