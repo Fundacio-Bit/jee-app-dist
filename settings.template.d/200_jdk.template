@@ -6,13 +6,13 @@
 JDK11_BASEURL=https://download.java.net/java/ga/jdk11/
 JDK11_LINUX_FILE=openjdk-11_linux-x64_bin.tar.gz
 JDK11_WINDOWS_FILE=openjdk-11_windows-x64_bin.zip
-JDK11_TARGET=$HOME/java/${LONG_APP_NAME_LOWER}
+JDK11_TARGET=$HOME/java/${APP_PROJECT_NAME}
 
 # JDK11_URL=https://download.java.net/java/ga/jdk11/openjdk-11_linux-x64_bin.tar.gz
 
 
 JDK8_URL=https://javadl.oracle.com/webapps/download/GetFile/1.8.0_281-b09/89d678f2be164786b292527658ca1605/linux-i586/jdk-8u281-linux-x64.tar.gz
-JDK8_TARGET=$HOME/java/${LONG_APP_NAME_LOWER}
+JDK8_TARGET=$HOME/java/${APP_PROJECT_NAME}
 JDK8_TARFILE=jdk-8u281-linux-x64.tar.gz
 
 

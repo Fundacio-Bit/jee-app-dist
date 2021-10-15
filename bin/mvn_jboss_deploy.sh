@@ -34,9 +34,9 @@ fi
 # Array to compile
 POM_ARRAY=($APP_POM_FILE $SAR_POM_FILE)
 # Array to deploy
-# FILE_ARRAY=($EAR_FILE $SAR_FILE $DS_FILE)
+# FILE_ARRAY=($APP_EAR_FILE $APP_SAR_FILE $DS_FILE)
 
-FILE_ARRAY=($EAR_FILE $DS_FILE)
+FILE_ARRAY=($APP_EAR_FILE $DS_FILE)
 PROPERTIES_ARRAY=($PROPERTIES_FILE $SYSTEM_PROPERTIES_FILE)
 
 # POM compile section
@@ -120,7 +120,7 @@ if [ $? == 0 ]; then
     done
 
 
-    for FILE in ${BO_LIB_FOLDER}/*.jar; do
+    for FILE in ${APP_LIB_FOLDER}/*.jar; do
       if [[ -f "$FILE" ]]; then
         echo "Copying $FILE to $JBOSS_LIB_DIR"
         cp $FILE $JBOSS_LIB_DIR

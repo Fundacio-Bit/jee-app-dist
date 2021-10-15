@@ -35,7 +35,7 @@ if [[ "${DOCKER}" == "/dev/null" ]]; then
 fi
 
 #APPLICATION_PATH=${PROJECT_PATH}/../${LONG_APP_NAME_LOWER}/scripts/bbdd/${APP_VERSION}/${APP_SGBD}
-APPLICATION_PATH=${DB_SCRIPTS_FOLDER}
+APPLICATION_PATH=${APP_DB_SCRIPTS_FOLDER}
 echo "Processing $APPLICATION_PATH"
 if [ -d "$APPLICATION_PATH" ]; then
   # Copy section

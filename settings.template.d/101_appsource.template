@@ -5,9 +5,29 @@
 # deploy/default/docker-compose.yaml
 #
 
-APP_SOURCE_FOLDER=source/${LONG_APP_NAME_LOWER}
+# Set APP_POM_FILE=$PROJECT_PATH/${APP_DIST_SOURCE_FOLDER}/$LONG_APP_NAME_LOWER/pom.xml if you want to use git submodule feature
+
+# Use $PROJECT_PATH/.. path if project folder is at same level than this.
+# See 100_app file
+
+APP_POM_FILE=$APP_FOLDER/pom.xml 
+
+# SAR project file path if needed
+SAR_PROJECT_NAME=sar
+SAR_PROJECT_PATH=$APP_DIST_SOURCE_FOLDER
+SAR_PROJECT_FOLDER=${SAR_PROJECT_PATH}/${SAR_PROJECT_NAME}
+SAR_POM_FILE=$SAR_PROJECT_FOLDER/pom.xml
 
 APP_VERSION=1.4
 APP_SGBD=postgres
+APP_DB_SCRIPTS_FOLDER=$APP_FOLDER/scripts/bbdd/${APP_VERSION}/${APP_SGBD}
+
+# mvn clean install files
+APP_EAR_FILE=$APP_FOLDER/${APP_PROJECT_NAME}-ear/target/$APP_BUNDLE_NAME.ear
+APP_SAR_FILE=$SAR_PROJECT_FOLDER/target/$APP_BUNDLE_NAME.sar
+
+APP_DB_SCRIPTS_FOLDER=$APP_FOLDER/scripts/bbdd/${APP_VERSION}/${APP_SGBD}
+# APP_DB_SCRIPTS_FOLDER=$APP_FOLDER/scripts/bbdd/${APP_SGBD}
+APP_LIB_FOLDER=${APP_FOLDER}/${APP_PROJECT_NAME}-ear/src/main/docker/lib
 
 # end app section

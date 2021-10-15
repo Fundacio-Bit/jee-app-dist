@@ -5,7 +5,7 @@ MAVEN_363_LINUX_FILE=apache-maven-3.6.3-bin.tar.gz
 MAVEN_363_WINDOWS_FILE=apache-maven-3.6.3-bin.zip
 
 # MAVEN_363_URL=https://ftp.cixug.es/apache/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
-MAVEN_363_TARGET=$HOME/maven/${LONG_APP_NAME_LOWER}
+MAVEN_363_TARGET=$HOME/maven/${APP_PROJECT_NAME}
 
 # MAVEN_363_TARGET=$HOME/maven
 
@@ -28,22 +28,3 @@ M2_CONF=$HOME/.m2
 #M2_REPO=$M2_CONF/repository
 M2_REPO=$MAVEN_TARGET/repository
 # end repo section
-
-
-# Set APP_POM_FILE=$PROJECT_PATH/${APP_SOURCE_FOLDER}/$LONG_APP_NAME_LOWER/pom.xml if you want to use git submodule feature
-
-# Use $PROJECT_PATH/.. path if project folder is at same level than this.
-APP_FOLDER=$PROJECT_PATH/../$LONG_APP_NAME_LOWER
-APP_POM_FILE=$PROJECT_PATH/../$LONG_APP_NAME_LOWER/pom.xml 
-
-# SAR project file path if needed
-SAR_POM_PATH=$PROJECT_PATH/${APP_SOURCE_FOLDER}/sar
-SAR_POM_FILE=$SAR_POM_PATH/pom.xml
-
-# mvn clean install files
-EAR_FILE=$PROJECT_PATH/../$LONG_APP_NAME_LOWER/$LONG_APP_NAME_LOWER-ear/target/$LONG_APP_NAME_LOWER.ear
-SAR_FILE=$PROJECT_PATH/${APP_SOURCE_FOLDER}/sar/target/$LONG_APP_NAME_LOWER.sar
-
-DB_SCRIPTS_FOLDER=$APP_FOLDER/scripts/bbdd/${APP_VERSION}/${APP_SGBD}
-# DB_SCRIPTS_FOLDER=$APP_FOLDER/scripts/bbdd/${APP_SGBD}
-BO_LIB_FOLDER=${APP_FOLDER}/${LONG_APP_NAME_LOWER}-ear/src/main/docker/lib

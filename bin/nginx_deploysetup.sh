@@ -28,17 +28,17 @@ TEMPLATE_FOLDER=$CFPATH.template.d
 SETTINGS_FOLDER=$CFPATH
 
 
-if [ "$NGINX_DEFAULT_CONF" == "" ]; then
+if [ "$NGINX_CONF_FILE" == "" ]; then
     # Deploy dir value is empty
     echo  =================================================================
-    echo    Definex la variable d\'entorn NGINX_DEFAULT_CONF apuntant al
+    echo    Definex la variable d\'entorn NGINX_CONF_FILE apuntant al
     echo    directori de configuracio del NGINX 
     echo  =================================================================
 else
-    if [[ -f "$TEMPLATE_FOLDER/$NGINX_DEFAULT_CONF" ]]; then
-        echo Copying $TEMPLATE_FOLDER/$NGINX_DEFAULT_CONF to $NGINX_CONF_PATH
+    if [[ -f "$TEMPLATE_FOLDER/$NGINX_CONF_FILE" ]]; then
+        echo Copying $TEMPLATE_FOLDER/$NGINX_CONF_FILE to $NGINX_CONF_PATH
         mkdir -p $SETTINGS_FOLDER
-        cp $TEMPLATE_FOLDER/$NGINX_DEFAULT_CONF $SETTINGS_FOLDER/default.conf
+        cp $TEMPLATE_FOLDER/$NGINX_CONF_FILE $SETTINGS_FOLDER/default.conf
     fi
 fi
 

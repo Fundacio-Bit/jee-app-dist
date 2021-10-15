@@ -34,7 +34,7 @@ fi
 # Array to compile
 POM_ARRAY=($APP_POM_FILE $SAR_POM_FILE)
 # Array to deploy
-FILE_ARRAY=($EAR_FILE $SAR_FILE $DS_FILE)
+FILE_ARRAY=($APP_EAR_FILE $APP_SAR_FILE $DS_FILE)
 
 # POM compile section
 for POM in ${POM_ARRAY[*]}; do
