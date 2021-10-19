@@ -100,7 +100,7 @@ Once you have updated local files
     NGINX_SERVER_NAME=${LONG_APP_NAME_LOWER}
     NGINX_SERVER_HTTP_PORT=80
     NGINX_SERVER_HTTPS_PORT=443
-    NGINX_URL=${NGINX_SERVER_NAME}.${NGINX_DOMAIN_NAME}
+    NGINX_SERVER=${NGINX_SERVER_NAME}.${NGINX_DOMAIN_NAME}
 
     NGINX_CONF_PATH=${PROJECT_PATH}/builds/nginx-dist/nginx/conf
     NGINX_DEFAULT_CONF=default.conf
@@ -143,7 +143,7 @@ Once you have updated local files
     # keycloak section
 
     KEYCLOAK_PORT=8180
-    KEYCLOAK_SERVER=${NGINX_URL}:${KEYCLOAK_PORT}
+    KEYCLOAK_SERVER=${NGINX_SERVER}:${KEYCLOAK_PORT}
     KEYCLOAK_LOCAL_SERVER=keycloak-${LONG_APP_NAME_LOWER}
 
     # Set KEYCLOAK_SERVER to your IP if needed

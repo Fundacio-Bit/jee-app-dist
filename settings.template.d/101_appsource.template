@@ -10,7 +10,13 @@
 # Use $PROJECT_PATH/.. path if project folder is at same level than this.
 # See 100_app file
 
-APP_POM_FILE=$APP_FOLDER/pom.xml 
+APP_PROJECT_POM_FILE=$APP_PROJECT_FOLDER/pom.xml
+
+# use this if you want to use git submodule feature
+APP_DIST_SOURCE_POM_FILE=$APP_DIST_SOURCE_FOLDER/${APP_PROJECT_NAME}/pom.xml
+
+
+APP_POM_FILE=
 
 # SAR project file path if needed
 SAR_PROJECT_NAME=sar
