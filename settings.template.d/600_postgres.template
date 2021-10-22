@@ -1,7 +1,7 @@
 # Postgres section
 # Use this file for custom postgres settings
 
-PG_LONG_APP_NAME=${APP_DB_NAME}
+PG_LONG_APP_NAME=${APP_PROJECT_DB_NAME}
 
 PG_PORT=5441
 

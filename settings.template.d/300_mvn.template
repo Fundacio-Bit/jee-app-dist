@@ -5,7 +5,7 @@ MAVEN_363_LINUX_FILE=apache-maven-3.6.3-bin.tar.gz
 MAVEN_363_WINDOWS_FILE=apache-maven-3.6.3-bin.zip
 
 # MAVEN_363_URL=https://ftp.cixug.es/apache/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
-MAVEN_363_TARGET=$HOME/maven/${APP_PROJECT_NAME}
+MAVEN_363_TARGET=$HOME/maven/${APP_NAME}
 
 # MAVEN_363_TARGET=$HOME/maven
 
