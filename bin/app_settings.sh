@@ -6,9 +6,9 @@ set -o errexit
 #### Description: Creates custom settings files from template
 #### Written by: Guillermo de Ignacio - gdeignacio@fundaciobit.org on 04-2021
 
-###################################
-###   SETUP UTILS               ###
-###################################
+######################################
+###   SETUP FROM TEMPLATE UTILS    ###
+######################################
 
 echo ""
 PROJECT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )"

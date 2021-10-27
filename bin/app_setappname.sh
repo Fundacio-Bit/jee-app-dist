@@ -3,12 +3,12 @@
 set -o nounset
 set -o errexit
 
-#### Description: Overrides default app name with custom names
+#### Description: Overrides default app name with custom values
 #### Written by: Guillermo de Ignacio - gdeignacio@fundaciobit.org on 04-2021
 
-###################################
-###   SETUP UTILS         ###
-###################################
+################################
+###   SETUP APP NAME UTILS   ###
+################################
 
 echo ""
 PROJECT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )"

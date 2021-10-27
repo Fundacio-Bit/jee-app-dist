@@ -3,7 +3,8 @@
 set -o nounset
 set -o errexit
 
-#### Description: Build from source
+#### Description: Run database scripts from APP_PROJECT_DB_SCRIPTS_FOLDER
+####              by executing psql from docker container
 #### Written by: Guillermo de Ignacio - gdeignacio@fundaciobit.org on 04-2021
 
 ###################################
@@ -35,14 +36,15 @@ if [[ "${DOCKER}" == "/dev/null" ]]; then
 fi
 
 #APPLICATION_PATH=${PROJECT_PATH}/../${LONG_APP_NAME_LOWER}/scripts/bbdd/${APP_VERSION}/${APP_SGBD}
-APPLICATION_PATH=${APP_DB_SCRIPTS_FOLDER}
+
+APPLICATION_PATH=${APP_PROJECT_DB_SCRIPTS_FOLDER}
 echo "Processing $APPLICATION_PATH"
 if [ -d "$APPLICATION_PATH" ]; then
   # Copy section
   for FILE in $APPLICATION_PATH/*.sql; do
     if [[ -f "$FILE" ]]; then
       echo Loading $FILE
-      ${DOCKER} exec -i ${LONG_APP_NAME_LOWER}-pg psql -v ON_ERROR_STOP=1 --username ${LONG_APP_NAME_LOWER} --dbname ${LONG_APP_NAME_LOWER} < $FILE
+      ${DOCKER} exec -i ${APP_PROJECT_DB_NAME}-pg psql -v ON_ERROR_STOP=1 --username ${APP_PROJECT_DB_NAME} --dbname ${APP_PROJECT_DB_NAME} < $FILE
     fi
   done
   exit 0

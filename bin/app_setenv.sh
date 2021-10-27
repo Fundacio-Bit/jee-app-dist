@@ -6,9 +6,9 @@ set -o errexit
 #### Description: Creates an .env file from xx_XXenv files in alpabethical order
 #### Written by: Guillermo de Ignacio - gdeignacio@fundaciobit.org on 04-2021
 
-###################################
-###   SETUP UTILS         ###
-###################################
+##############################
+###   SETUP ENV VALUES     ###
+##############################
 
 echo ""
 PROJECT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )"
