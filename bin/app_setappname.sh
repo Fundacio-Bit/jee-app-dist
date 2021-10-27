@@ -3,7 +3,7 @@
 set -o nounset
 set -o errexit
 
-#### Description: 
+#### Description: Overrides default app name with custom names
 #### Written by: Guillermo de Ignacio - gdeignacio@fundaciobit.org on 04-2021
 
 ###################################
