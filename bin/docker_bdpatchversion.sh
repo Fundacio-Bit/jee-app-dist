@@ -3,7 +3,8 @@
 set -o nounset
 set -o errexit
 
-#### Description: Build from source
+#### Description: Run version patch database scripts from APP_PROJECT_DB_SCRIPTS_FOLDER
+####              by executing psql from docker container
 #### Written by: Guillermo de Ignacio - gdeignacio@fundaciobit.org on 04-2021
 
 ###################################
