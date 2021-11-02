@@ -3,12 +3,12 @@
 set -o nounset
 set -o errexit
 
-#### Description: Run version patch database scripts from APP_PROJECT_DB_SCRIPTS_FOLDER
+#### Description: Run version patch database scripts from APP_PROJECT_DB_PATCH_FOLDER
 ####              by executing psql from docker container
 #### Written by: Guillermo de Ignacio - gdeignacio@fundaciobit.org on 04-2021
 
 ###################################
-###   BUILD MVN UTILS           ###
+###   PATCH DATABASE UTILS      ###
 ###################################
 
 echo ""
@@ -35,9 +35,8 @@ if [[ "${DOCKER}" == "/dev/null" ]]; then
   exit 1
 fi
 
-VERSIONS_ARRAY=(1.4.10.error 1.4.10 1.4.11)
-
-VERSIONS_PATH=${PROJECT_PATH}/${APP_DIST_SOURCE_FOLDER}/versions
+VERSIONS_ARRAY=${APP_PROJECT_DB_PATCH_ARRAY}
+VERSIONS_PATH=${APP_PROJECT_DB_PATCH_FOLDER}
 
 for VERSION in ${VERSIONS_ARRAY[*]}; do
   VERSION_FOLDER=${VERSIONS_PATH}/${VERSION}
@@ -47,7 +46,7 @@ for VERSION in ${VERSIONS_ARRAY[*]}; do
     for FILE in $VERSION_FOLDER/*; do
       if [[ -f "$FILE" ]]; then
         echo Loading $FILE
-        ${DOCKER} exec -i ${LONG_APP_NAME_LOWER}-pg psql -v ON_ERROR_STOP=1 --username ${LONG_APP_NAME_LOWER} --dbname ${LONG_APP_NAME_LOWER} < $FILE
+        ${DOCKER} exec -i ${APP_PROJECT_DB_NAME}-pg psql -v ON_ERROR_STOP=1 --username ${APP_PROJECT_DB_NAME} --dbname ${APP_PROJECT_DB_NAME} < $FILE
       fi
     done
   else

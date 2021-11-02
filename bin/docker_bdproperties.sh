@@ -3,11 +3,12 @@
 set -o nounset
 set -o errexit
 
-#### Description: Build from source
+#### Description: Run version patch database scripts from APP_PROJECT_DB_PROPERTIES_FOLDER
+####              by executing psql from docker container
 #### Written by: Guillermo de Ignacio - gdeignacio@fundaciobit.org on 04-2021
 
 ###################################
-###   BUILD MVN UTILS           ###
+###   SET DB PROPERTIES UTILS   ###
 ###################################
 
 echo ""
@@ -33,15 +34,14 @@ if [[ "${DOCKER}" == "/dev/null" ]]; then
   exit 1
 fi
 
-APPLICATION_PATH=${PROJECT_PATH}/${APP_DIST_SOURCE_FOLDER}/scripts/bbdd
-
+APPLICATION_PATH=${APP_PROJECT_DB_PROPERTIES_FOLDER}
 echo "Processing $APPLICATION_PATH"
 if [ -d "$APPLICATION_PATH" ]; then
   # Copy section
   for FILE in $APPLICATION_PATH/*.sql; do
     if [[ -f "$FILE" ]]; then
       echo Loading $FILE
-      ${DOCKER} exec -i ${LONG_APP_NAME_LOWER}-pg psql -v ON_ERROR_STOP=1 --username ${LONG_APP_NAME_LOWER} --dbname ${LONG_APP_NAME_LOWER} < $FILE
+      ${DOCKER} exec -i ${APP_PROJECT_DB_NAME}-pg psql -v ON_ERROR_STOP=1 --username ${APP_PROJECT_DB_NAME} --dbname ${APP_PROJECT_DB_NAME} < $FILE
     fi
   done
   exit 0
