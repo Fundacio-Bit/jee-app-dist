@@ -44,7 +44,7 @@ if [ -d "$APPLICATION_PATH" ]; then
   for FILE in $APPLICATION_PATH/*.sql; do
     if [[ -f "$FILE" ]]; then
       echo Loading $FILE
-      ${DOCKER} exec -i ${APP_PROJECT_DB_NAME}-pg psql -v ON_ERROR_STOP=1 --username ${APP_PROJECT_DB_NAME} --dbname ${APP_PROJECT_DB_NAME} < $FILE
+      ${DOCKER} exec -i ${APP_PROJECT_DOCKER_SERVER_NAME}-pg psql -v ON_ERROR_STOP=1 --username ${APP_PROJECT_DB_NAME} --dbname ${APP_PROJECT_DB_NAME} < $FILE
     fi
   done
   exit 0

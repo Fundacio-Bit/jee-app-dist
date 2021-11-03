@@ -32,4 +32,4 @@ if [[ "${DOCKER}" == "/dev/null" ]]; then
   exit 1
 fi
 
-${DOCKER} exec -i -t wildfly-${LONG_APP_NAME_LOWER} /bin/bash
+${DOCKER} exec -i -t wildfly-${APP_PROJECT_DOCKER_SERVER_NAME} /bin/bash
