@@ -32,10 +32,10 @@ else
 fi
 
 
-if [ "$APP_FOLDER" == "" ]; then
+if [ "$APP_PROJECT_FOLDER" == "" ]; then
   # Project dir value is empty
   echo  =================================================================
-  echo    Definex la variable d\'entorn APP_FOLDER apuntant al
+  echo    Definex la variable d\'entorn APP_PROJECT_FOLDER apuntant al
   echo    directori del projecte a generar.
   echo  =================================================================
   # End of not project section
@@ -43,16 +43,17 @@ else
   # Project dir value is informed
   echo on
   # Check if APP_FOLDER directory exists 
-  if [ -d "$APP_FOLDER" ]; then
+  if [ -d "$APP_PROJECT_FOLDER" ]; then
     ### Take action if $DIR exists ###
-    echo --------- La carpeta $APP_FOLDER existeix  ---------
+    echo --------- La carpeta $APP_PROJECT_FOLDER existeix  ---------
   else
     ###  Control will jump here if dir does NOT exists ###
-    echo "${APP_FOLDER} not found. Creating ..."
-    mkdir -p $APP_FOLDER
+    echo "${APP_PROJECT_FOLDER} not found. Creating ..."
+    mkdir -p $APP_PROJECT_FOLDER
   fi
 
-  cd $PROJECT_PATH/..
+  #cd $PROJECT_PATH/..
+  cd $APP_PROJECT_PATH
 
   MAVEN_OPTS="-Dfile.encoding=UTF-8" && mvn org.apache.maven.plugins:maven-archetype-plugin:3.2.0:generate \
       -B -DarchetypeGroupId=es.caib.projectebase \
