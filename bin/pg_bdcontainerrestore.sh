@@ -34,7 +34,7 @@ if [[ "${DOCKER}" == "/dev/null" ]]; then
 fi
 
 echo Restoring container bd with $SCHEMA_ONLY option
-${DOCKER} exec -i ${APP_PROJECT_NAME}-pg pg_restore \
+${DOCKER} exec -i ${APP_PROJECT_DOCKER_SERVER_NAME}-pg pg_restore \
     --file=${PG_DUMP_FILENAME} \
     --format=t \
     --verbose \
