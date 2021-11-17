@@ -130,6 +130,13 @@ under the License.
       <passphrase>optional; leave empty if not used.</passphrase>
     </server>
     -->
+    
+    <server>
+      <id>github_governib_maven</id>
+      <username>${env.M2_GITHUB_USER}</username>
+      <password>${env.M2_GITHUB_TOKEN}</password>
+    </server>
+
   </servers>
 
   <!-- mirrors
@@ -156,6 +163,15 @@ under the License.
       <url>http://my.repository.com/repo/path</url>
     </mirror>
      -->
+
+    <mirror>
+       <id>github_governib_maven</id>
+       <name>github_governib_maven</name>
+       <url>http://GovernIB.github.io/maven/maven/</url>
+       <mirrorOf>github_governib_maven</mirrorOf>
+    </mirror>
+
+
   </mirrors>
 
   <!-- profiles
@@ -244,6 +260,7 @@ under the License.
       </properties>
     </profile>
     -->
+
     <profile>
       <id>repositorigovernib</id>
       <repositories>
@@ -252,6 +269,16 @@ under the License.
           <name>GitHub GovernIB Maven Repository</name>
           <url>https://governib.github.io/maven/maven/</url>
         </repository>
+      </repositories>
+    </profile>
+
+    <profile>
+      <id>standard-extra-repos</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <repositories>
+
       </repositories>
     </profile>
 
