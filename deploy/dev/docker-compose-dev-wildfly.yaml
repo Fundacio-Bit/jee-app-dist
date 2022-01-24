@@ -41,7 +41,7 @@ services:
       timeout: 10s
       retries: 5
   app-db:
-    image: postgres:9.5-alpine
+    image: postgres:10.2-alpine
     #build:
     #  context: ../../builds/postgresql-dist
     #build:
