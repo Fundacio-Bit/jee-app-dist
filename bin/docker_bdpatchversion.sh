@@ -35,15 +35,24 @@ if [[ "${DOCKER}" == "/dev/null" ]]; then
   exit 1
 fi
 
-VERSIONS_ARRAY=(${APP_PROJECT_DB_PATCH_ARRAY})
+IFS=' '
+#Read the split words into an array based on space delimiter
+read -a VERSIONS_ARRAY <<< ${APP_PROJECT_DB_PATCH_ARRAY}
+
+# VERSIONS_ARRAY=${APP_PROJECT_DB_PATCH_ARRAY}
+
 VERSIONS_PATH=${APP_PROJECT_DB_PATCH_FOLDER}
+
+for VERSION in ${VERSIONS_ARRAY[*]}; do
+  echo "Processing "$VERSION "folder"
+done
 
 for VERSION in ${VERSIONS_ARRAY[*]}; do
   VERSION_FOLDER=${VERSIONS_PATH}/${VERSION}
   echo "Executing "$VERSION "version patch"
   if [ -d "$VERSION_FOLDER" ]; then
     # Copy section
-    for FILE in $VERSION_FOLDER/*; do
+    for FILE in $VERSION_FOLDER/*${APP_PROJECT_SGBD}*; do
       if [[ -f "$FILE" ]]; then
         echo Loading $FILE
         ${DOCKER} exec -i ${APP_PROJECT_DOCKER_SERVER_NAME}-pg psql -v ON_ERROR_STOP=1 --username ${APP_PROJECT_DB_NAME} --dbname ${APP_PROJECT_DB_NAME} < $FILE
