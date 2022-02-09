@@ -1,0 +1,13 @@
+embed-server --server-config=${server.config:standalone.xml}
+# Create the logger for our quickstart class
+### NOTE: To view different logging levels, change the level below from TRACE to DEBUG, INFO, WARN, ERROR, or FATAL, then access the application.
+# /subsystem=logging/logger=org.springframework:add(level=DEBUG)
+# /subsystem=logging/logger=org.jboss.as.ee:add(level=DEBUG)
+# /subsystem=logging/logger=es.caib.emiserv:add(level=DEBUG)
+# /subsystem=logging/logger=org.hibernate.SQL:add(level=DEBUG)
+# /subsystem=logging/logger=org.hibernate.type:add(level=TRACE)
+# /subsystem=logging/logger=es.caib.emiserv.war.config:add(level=DEBUG)
+# /subsystem=logging/logger=es.caib.emiserv.backoffice:add(level=DEBUG
+# /subsystem=logging/logger=es.caib.emiserv.logic.helper.BackofficeHelper:add(level=DEBUG)
+# /subsystem=logging/logger=es.scsp:add(level=DEBUG)
+stop-embedded-server

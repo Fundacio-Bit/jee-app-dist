@@ -26,8 +26,9 @@ LABEL MAINTAINER="Govern de les Illes Balears <suport@caib.es>"
 
 ARG KEYCLOAK_URI_ARG=http://keycloak-goib:8180
 
-ENV WILDFLY_VERSION=14.0.1.Final \
-    WILDFLY_SHA1=757d89d86d01a9a3144f34243878393102d57384 \
+ENV WILDFLY_VERSION=18.0.1.Final \
+    WILDFLY_SHA1=ef0372589a0f08c36b15360fe7291721a7e3f7d9 \
+    # WILDFLY_SHA1=757d89d86d01a9a3144f34243878393102d57384 \
     JBOSS_HOME=/opt/jboss/wildfly \
     ADMIN_USER=admin \
     ADMIN_PASSWORD=admin \
@@ -35,6 +36,7 @@ ENV WILDFLY_VERSION=14.0.1.Final \
     KEYCLOAK_VERSION=6.0.1 \
     POSTGRESQL_JDBC_VERSION=42.2.5 \
     ORACLE_JDBC_VERSION=12.2.0.1 \
+    LOMBOK_VERSION=1.18.18 \
     PATH=${JBOSS_HOME}/bin:/tmp:${PATH}
 
 USER root
@@ -88,6 +90,20 @@ RUN sed -i "s/<resolve-parameter-values>false<\/resolve-parameter-values>/ <reso
 COPY ./wildfly/bin/add-system-properties.cli bin
 RUN bin/jboss-cli.sh --file=bin/add-system-properties.cli && \
     rm bin/add-system-properties.cli
+
+# Project lombok
+# RUN curl -OL https://repo1.maven.org/maven2/org/projectlombok/lombok/${LOMBOK_VERSION}/lombok-${LOMBOK_VERSION}.jar
+# COPY ./wildfly/bin/lombok-install-offline.cli bin
+# RUN bin/jboss-cli.sh --file=bin/lombok-install-offline.cli && \
+#    rm lombok-${LOMBOK_VERSION}.jar && \
+#    rm bin/lombok-install-offline.cli
+
+# Log settings
+# COPY ./wildfly/bin/logger-add-offline.cli bin
+# RUN bin/jboss-cli.sh --file=bin/logger-add-offline.cli && \
+#    rm bin/logger-add-offline.cli
+
+######################################################################################################
 
 RUN rm -rf standalone/configuration/standalone_xml_history/current
 

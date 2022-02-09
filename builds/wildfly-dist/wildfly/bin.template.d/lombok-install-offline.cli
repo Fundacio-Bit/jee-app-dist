@@ -1,0 +1,3 @@
+embed-server --server-config=${server.config:standalone.xml}
+module add --name=org.projectlombok --resources=lombok-1.18.18.jar --dependencies=javax.api,javax.transaction.api
+stop-embedded-server
