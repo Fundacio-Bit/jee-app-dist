@@ -25,8 +25,8 @@ source $PROJECT_PATH/bin/lib_env_utils.sh
 lib_env_utils.loadenv ${PROJECT_PATH}
 
 
-echo Saving with $SCHEMA_ONLY option
-${PG_PATH}/pg_dump $SCHEMA_ONLY \
+echo Saving with $PG_DUMP_SCHEMA_ONLY option
+${PG_PATH}/pg_dump $PG_DUMP_SCHEMA_ONLY \
     --file=${PG_DUMP_FILENAME} \
     --format=t \
     --verbose \

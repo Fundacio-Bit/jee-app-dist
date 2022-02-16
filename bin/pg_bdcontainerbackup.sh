@@ -33,9 +33,9 @@ if [[ "${DOCKER}" == "/dev/null" ]]; then
   exit 1
 fi
 
-echo Saving container bd with $SCHEMA_ONLY option
+echo Saving container bd with $PG_DUMP_SCHEMA_ONLY option
 ${DOCKER} exec -i ${APP_PROJECT_DOCKER_SERVER_NAME}-pg pg_dump \
-    $SCHEMA_ONLY \
+    $PG_DUMP_SCHEMA_ONLY \
     --file=${PG_DUMP_FILENAME} \
     --format=t \
     --verbose \
