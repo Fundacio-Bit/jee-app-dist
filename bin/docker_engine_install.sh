@@ -3,9 +3,8 @@
 set -o nounset
 set -o errexit
 
-#### Description: Installs docker.
+#### Description: Installs docker-engine.
 #### Written by: Guillermo de Ignacio - gdeignacio@fundaciobit.org on 04-2021
-#### WARNING: Check if DOCKER_CUSTOM_USERNAME is set. See settings/500_docker file
 
 ###################################
 ###   DOCKER INSTALL UTILS      ###
@@ -29,6 +28,7 @@ lib_env_utils.check_os
 echo ""
 
 if [[ isLinux -eq 1 ]]; then
+
     sudo apt-get update
     sudo apt-get upgrade
     sudo apt-get autoremove
@@ -57,11 +57,8 @@ if [[ isLinux -eq 1 ]]; then
     sudo systemctl enable containerd.service
     sudo systemctl start docker.service
     sudo systemctl start containerd.service
-    sudo systemctl status docker.service
-    # sudo useradd -p $(openssl passwd -1 docker) docker -g docker
-    # # sudo usermod -a -G docker emiserv
-    # sudo usermod -a -G docker ${DOCKER_CUSTOM_USERNAME}
     sudo mkdir -p /app/docker
+
 else
     echo ""
     echo "Docker unavailable"
