@@ -1,0 +1,67 @@
+###
+# Par\u00ef\u00bf\u00bdmetres d'acc\u00ef\u00bf\u00bds a base de dades
+# ###
+# es.caib.emiserv.datasource.jndi=java:es.caib.emiserv.db
+es.caib.emiserv.datasource.jndi=java:jboss/datasources/emiservDS
+es.caib.emiserv.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+
+#spring.jpa.properties.hibernate.dialect=es.caib.emiserv.persist.dialect.OracleCaibDialect
+#spring.jpa.properties.hibernate.dialect=es.caib.emiserv.persist.dialect.PostgreSQLDialect
+
+es.caib.emiserv.hibernate.show_sql=false
+# es.caib.emiserv.hibernate.hbm2ddl.auto=update
+es.caib.emiserv.hibernate.hbm2ddl.auto=none
+
+# ###
+# Configuraci\u00ef\u00bf\u00bd dels serveis publicats
+# ###
+es.caib.emiserv.servei.sample.url=https://proves.caib.es/emiserv/sample/AuthEmiservBackoffice?wsdl
+es.caib.emiserv.servei.sample.auth.tipus=none
+es.caib.emiserv.servei.sample.user=none
+es.caib.emiserv.servei.sample.pass=none
+
+# ###
+# Configuraci\u00ef\u00bf\u00bd del plugin d'usuaris
+# ###
+es.caib.emiserv.plugin.dades.usuari.class=es.caib.emiserv.plugin.caib.usuari.DadesUsuariPluginJdbc
+es.caib.emiserv.plugin.dades.usuari.jdbc.datasource.jndi.name=java:es.caib.seycon.db.wl
+es.caib.emiserv.plugin.dades.usuari.jdbc.query=select usu_codi, usu_nom, usu_nif, usu_codi || '@caib.es' from sc_wl_usuari where usu_codi = :codi
+es.caib.emiserv.plugin.dades.usuari.jdbc.query.nif=select usu_codi, usu_nom, usu_nif, usu_codi || '@caib.es' from sc_wl_usuari where usu_nif = :nif
+es.caib.emiserv.plugin.dades.usuari.jdbc.query.rols=select ugr_codgru from sc_wl_usugru where ugr_codusu=:codi
+
+
+# ###
+# Configuraci\u00ef\u00bf\u00bd SCSP
+# ###
+es.caib.emiserv.scsp.axis2.client.xml=/axis2/axis2.xml
+es.caib.emiserv.scsp.axis2.client.repository=/axis2/
+es.caib.emiserv.scsp.almacenamiento.ficheros=/app/emiserv/peticiones
+es.caib.emiserv.scsp.almacenamiento.transmisiones=1
+es.caib.emiserv.scsp.afirma.enabled=false
+es.caib.emiserv.scsp.afirma.url=https://des-afirma.redsara.es/afirmaws/services/ValidarCertificado
+es.caib.emiserv.scsp.afirma.idAplicacion=xxx.yyy
+es.caib.emiserv.scsp.afirma.modoValidacion=2
+es.caib.emiserv.scsp.custom.cert.validation.class=es.scsp.common.certificates.revocation.IgnoreRevocationManager
+es.caib.emiserv.scsp.keystoreType=JKS
+es.caib.emiserv.scsp.keystoreFile=file://app/emiserv/certificados/pinbal.jks
+es.caib.emiserv.scsp.keystorePass=xxx
+es.caib.emiserv.scsp.validacion.formatoFirma=permisivo
+es.caib.emiserv.scsp.polling.enabled=true
+es.caib.emiserv.scsp.task.polling.intervalo=1800
+es.caib.emiserv.scsp.task.polling.espera=1000
+
+# ###
+# Usuari per connectar-se a backooffice autenticats
+# ###
+es.caib.emiserv.backoffice.caib.auth.username=
+es.caib.emiserv.backoffice.caib.auth.password=
+
+es.caib.emiserv.backoffice.caib.log.actiu=true
+
+es.caib.emiserv.tasca.backoffice.async.processar.pendents=1
+#es.caib.emiserv.tasca.backoffice.async.processar.pendents=10000
+
+es.caib.emiserv.xsd.base.path=/app/emiserv/xsd
+
+#spring.jpa.properties.hibernate.dialect=es.caib.emiserv.persist.dialect.OracleCaibDialect
+#spring.jpa.properties.hibernate.dialect=es.caib.emiserv.persist.dialect.PostgreSQLCaibDialect
