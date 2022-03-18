@@ -25,7 +25,7 @@ echo ""
 lib_env_utils.check_os
 echo ""
 
-KEYSTORE_FOLDER=$APP_FILES_BASE_FOLDER/certificados
+KEYSTORE_FOLDER=$APP_FILES_BASE_FOLDER/firma
 
 if [ -d "$KEYSTORE_FOLDER" ]; then
     ### Take action if $DIR exists ###

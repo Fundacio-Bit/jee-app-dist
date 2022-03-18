@@ -41,18 +41,23 @@ fi
 KEYTOOL=$(which keytool)
 echo "keytool at $KEYTOOL"
 
-remaining=2
+remaining=3
 
 for i in "$@"
 do
     case $i in
-        -srckeystore=*)
-        SRCKEYSTORE="${i#*=}"
+        -keystore=*)
+        KEYSTORE="${i#*=}"
         let "remaining--"
         shift # past argument=value
         ;;
-        -destkeystore=*)
-        DESTKEYSTORE="${i#*=}"
+        -alias=*)
+        ALIAS="${i#*=}"
+        let "remaining--"
+        shift # past argument=value
+        ;;
+        -destalias=*)
+        DESTALIAS="${i#*=}"
         let "remaining--"
         shift # past argument=value
         ;;
@@ -64,23 +69,22 @@ done
 
 
 if [[ remaining -eq 0 ]]; then
-    SRCKEYSTORE=${KEYSTORE_FOLDER}/${SRCKEYSTORE}
+    KEYSTORE=${KEYSTORE_FOLDER}/${KEYSTORE}
     echo Loading parameter
-    echo srckeystore set to $SRCKEYSTORE
-    DESTKEYSTORE=${KEYSTORE_FOLDER}/${DESTKEYSTORE}
+    echo keystore set to $KEYSTORE
     echo Loading parameter
-    echo destkeystore set to $DESTKEYSTORE
+    echo destalias set to $DESTALIAS
 else
-    if [[ remaining -eq 2 ]]; then
+    if [[ remaining -eq 3 ]]; then
         echo Loading default values
-        SRCKEYSTORE=${KEYSTORE_FOLDER}/${APP_PROJECT_NAME}.pfx
-        echo destkeystore set to $SRCKEYSTORE
-        DESTKEYSTORE=${KEYSTORE_FOLDER}/${APP_PROJECT_NAME}.jks
-        echo destkeystore set to $DESTKEYSTORE
+        KEYSTORE=${KEYSTORE_FOLDER}/${APP_PROJECT_NAME}.jks
+        echo keystore set to $KEYSTORE
+        DESTALIAS=${APP_PROJECT_NAME}cert
+        echo alias set to $DESTALIAS
     else
         echo Wrong number of parameters $remaining more expected
         exit 1
     fi
 fi
 
-$KEYTOOL -importkeystore -srckeystore $SRCKEYSTORE -srcstoretype pkcs12 -destkeystore $DESTKEYSTORE -deststoretype JKS
+$KEYTOOL -changealias -alias $ALIAS -destalias $DESTALIAS -keystore $KEYSTORE # -keypasswd
