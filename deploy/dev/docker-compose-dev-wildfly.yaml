@@ -49,7 +49,7 @@ services:
     #  context: ../../builds/postgresql-dist
     container_name: ${APP_PROJECT_NAME}-pg
     hostname: ${APP_PROJECT_DOCKER_SERVER_NAME}-pg
-    restart: always
+    #restart: always
     ports:
       - ${PG_PORT}:5432
     volumes:
@@ -67,7 +67,7 @@ services:
     image: nginx
     container_name: nginx-${APP_PROJECT_NAME}
     hostname: nginx-${APP_PROJECT_DOCKER_SERVER_NAME}
-    restart: always
+    #restart: always
     ports:
       - ${NGINX_SERVER_HTTP_PORT}:80
       - ${NGINX_SERVER_HTTPS_PORT}:443

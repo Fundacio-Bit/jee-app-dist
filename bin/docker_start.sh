@@ -38,15 +38,15 @@ fi
 export USER_ID=${UID}
 export GROUP_ID=${UID}
 
-${DOCKER_COMPOSE} \
-    -f ${DOCKER_COMPOSE_FILE} \
-    down --remove-orphans    
+#${DOCKER_COMPOSE} \
+#    -f ${DOCKER_COMPOSE_FILE} \
+#    down --remove-orphans    
 
 echo "[$(date +"%Y-%m-%d %T")] Starting the containers..."
 
 ${DOCKER_COMPOSE} \
     -f ${DOCKER_COMPOSE_FILE} \
-    up -d --build    
+    up -d --build
 
 ${DOCKER_COMPOSE} \
     -f ${DOCKER_COMPOSE_FILE} \
