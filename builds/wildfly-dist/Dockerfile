@@ -99,9 +99,9 @@ RUN bin/jboss-cli.sh --file=bin/add-system-properties.cli && \
 #    rm bin/lombok-install-offline.cli
 
 # Log settings
-# COPY ./wildfly/bin/logger-add-offline.cli bin
-# RUN bin/jboss-cli.sh --file=bin/logger-add-offline.cli && \
-#    rm bin/logger-add-offline.cli
+COPY ./wildfly/bin/logger-add-offline.cli bin
+ RUN bin/jboss-cli.sh --file=bin/logger-add-offline.cli && \
+    rm bin/logger-add-offline.cli
 
 ######################################################################################################
 
