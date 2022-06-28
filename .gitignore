@@ -58,3 +58,4 @@ builds/jboss-dist/jboss/conf
 builds/keycloak-dist/keycloak/conf
 builds/nginx-dist/nginx/conf
 settings/
+.exported/
