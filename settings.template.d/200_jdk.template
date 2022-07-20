@@ -2,17 +2,20 @@
 # Downloading java version lower than 9 is up to you
 # See https://jdk.java.net/archive/
 
+# Former JDK_BASE_PATH. ${HOME} value deprecated, use ${APP_PROJECT_PATH} instead
+# JDK_BASE_PATH=${HOME}/java
+JDK_BASE_PATH=${APP_PROJECT_PATH}/java
 
 JDK11_BASEURL=https://download.java.net/java/ga/jdk11/
 JDK11_LINUX_FILE=openjdk-11_linux-x64_bin.tar.gz
 JDK11_WINDOWS_FILE=openjdk-11_windows-x64_bin.zip
-JDK11_TARGET=$HOME/java/${APP_NAME}
+JDK11_TARGET=${JDK_BASE_PATH}/${APP_NAME}
 
 # JDK11_URL=https://download.java.net/java/ga/jdk11/openjdk-11_linux-x64_bin.tar.gz
 
 
 JDK8_URL=https://javadl.oracle.com/webapps/download/GetFile/1.8.0_281-b09/89d678f2be164786b292527658ca1605/linux-i586/jdk-8u281-linux-x64.tar.gz
-JDK8_TARGET=$HOME/java/${APP_NAME}
+JDK8_TARGET=${JDK_BASE_PATH}/${APP_NAME}
 JDK8_TARFILE=jdk-8u281-linux-x64.tar.gz
 
 

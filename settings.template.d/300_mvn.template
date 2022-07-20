@@ -1,11 +1,15 @@
 # Maven Download section
 
+# Former MAVEN_BASE_PATH. ${HOME} value deprecated, use ${APP_PROJECT_PATH} instead
+# MAVEN_BASE_PATH=${HOME}/maven
+MAVEN_BASE_PATH=${APP_PROJECT_PATH}/maven
+
 MAVEN_363_BASEURL=https://ftp.cixug.es/apache/maven/maven-3/3.6.3/binaries/
 MAVEN_363_LINUX_FILE=apache-maven-3.6.3-bin.tar.gz
 MAVEN_363_WINDOWS_FILE=apache-maven-3.6.3-bin.zip
 
 # MAVEN_363_URL=https://ftp.cixug.es/apache/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
-MAVEN_363_TARGET=$HOME/maven/${APP_NAME}
+MAVEN_363_TARGET=${MAVEN_BASE_PATH}/${APP_NAME}
 
 # MAVEN_363_TARGET=$HOME/maven
 

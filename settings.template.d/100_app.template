@@ -82,6 +82,15 @@ APP_PROJECT_DB_PROPERTIES_PROJECT_NAME=scripts/bbdd
 APP_PROJECT_DB_PROPERTIES_PATH=${PROJECT_PATH}/source/${APP_NAME}
 APP_PROJECT_DB_PROPERTIES_FOLDER=${APP_PROJECT_DB_PROPERTIES_PATH}/${APP_PROJECT_DB_PROPERTIES_PROJECT_NAME}
 
-APP_FILES_BASE_FOLDER=/app/${APP_PROJECT_NAME}
+# Former default path. /app value deprecated, use ${APP_PROJECT_PATH}/app/${APP_PROJECT_NAME} instead.
+# However you may use this for convenience
+# APP_FILES_BASE_FOLDER=/app/${APP_PROJECT_NAME}
+
+# Recommended path
+APP_FILES_BASE_FOLDER=${APP_PROJECT_PATH}/app/${APP_PROJECT_NAME}
+
+# Array of app names camel case separated by spaces. New feature to test.
+# APP_ARRAY ="first-app second-app third-app"
+APP_ARRAY=""
 
 # end app section
