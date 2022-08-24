@@ -58,7 +58,7 @@ else
   MAVEN_OPTS="-Dfile.encoding=UTF-8" && mvn org.apache.maven.plugins:maven-archetype-plugin:3.2.0:generate \
       -B -DarchetypeGroupId=es.caib.projectebase \
       -DarchetypeArtifactId=projectebase-archetype \
-      -DarchetypeVersion=1.0.9 \
+      -DarchetypeVersion=${archetypeVersion} \
       -Dpackage=es.caib.${LONG_APP_NAME_LOWER} \
       -Dpackagepath=es/caib/${LONG_APP_NAME_LOWER} \
       -Dinversepackage=${LONG_APP_NAME_LOWER}.caib.es \

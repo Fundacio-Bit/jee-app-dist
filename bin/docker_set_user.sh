@@ -1,7 +1,7 @@
 #!/bin/bash
 
-#set -o nounset
-#set -o errexit
+set -o nounset
+set -o errexit
 
 #### Description: Installs docker.
 #### Written by: Guillermo de Ignacio - gdeignacio@fundaciobit.org on 04-2021
@@ -29,23 +29,9 @@ lib_env_utils.check_os
 echo ""
 
 if [[ isLinux -eq 1 ]]; then
-
-    sudo apt-get update
-    sudo apt-get upgrade
-    
-    sudo apt-get remove docker docker-engine docker.io docker-compose containerd runc
-    echo "remove docker docker-engine docker.io docker-compose containerd runc"
-    #sudo apt-get autoremove
-    #sudo apt-get install docker.io docker-compose zip
-    #sudo systemctl enable docker
-    #sudo systemctl start docker
-    #sudo systemctl status docker
-    
     # sudo useradd -p $(openssl passwd -1 docker) docker -g docker
     # sudo usermod -a -G docker emiserv
-    # sudo usermod -a -G docker ${DOCKER_CUSTOM_USERNAME_ON_INSTALL}
-    
-    #sudo mkdir -p /app/docker
+    sudo usermod -a -G docker ${DOCKER_CUSTOM_USERNAME_ON_INSTALL}
 else
     echo ""
     echo "Docker should be installed manually"

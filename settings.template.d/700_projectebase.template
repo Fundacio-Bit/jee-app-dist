@@ -1,5 +1,6 @@
 # Projecte base section
 
+archetypeVersion=1.0.12
 perfilBack=true
 perfilFront=true
 perfilApiInterna=true

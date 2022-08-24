@@ -38,8 +38,10 @@ else
     mkdir -p ${KEYSTORE_FOLDER}
 fi
 
-KEYTOOL=$(which keytool)
-echo "keytool at $KEYTOOL"
+COMMAND=keytool
+
+KEYTOOL=$(command -v $COMMAND)
+echo "$COMMAND at $KEYTOOL"
 
 remaining=2
 

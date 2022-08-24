@@ -28,6 +28,10 @@ lib_env_utils.check_docker
 lib_env_utils.check_docker_compose
 
 echo ""
+echo Docker username $DOCKER_CUSTOM_USERNAME
+echo Docker username on install $DOCKER_CUSTOM_USERNAME_ON_INSTALL
+
+echo ""
 echo Checking Java version
 echo ""
 java -version

@@ -44,7 +44,7 @@ for POM in ${POM_ARRAY[*]}; do
   if [[ -f "$POM" ]]
   then
       echo "Compiling $POM"
-      env mvn -f $POM -DskipTests $@ clean install \
+      env mvn -f $POM $@ clean install \
         --settings $PROJECT_PATH/builds/maven-dist/maven/conf/settings.xml \
         --toolchains $PROJECT_PATH/builds/maven-dist/maven/conf/toolchains.xml
   fi

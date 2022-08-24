@@ -1,7 +1,7 @@
 #!/bin/bash
 
-set -o nounset
-set -o errexit
+#set -o nounset
+#set -o errexit
 
 #### Description: Test for string values
 #### Written by: Guillermo de Ignacio - gdeignacio@fundaciobit.org on 04-2021

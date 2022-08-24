@@ -10,7 +10,9 @@ set -o errexit
 ###         Start               ###
 ###################################
 
-DOCKER_COMPOSE=$(which docker-compose)
+COMMAND=docker_compose
+
+DOCKER_COMPOSE=$(command -v $COMMAND)
 echo "docker-compose at $DOCKER_COMPOSE"
 
 echo ""

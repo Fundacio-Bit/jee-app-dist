@@ -1,7 +1,7 @@
 #!/bin/bash
 
-set -o nounset
-set -o errexit
+#set -o nounset
+#set -o errexit
 
 #### Description: Loads environment variables from .env file
 #### Written by: Guillermo de Ignacio - gdeignacio@fundaciobit.org on 04-2021
@@ -42,32 +42,36 @@ lib_env_utils.check_os(){
 
 lib_env_utils.check_docker_compose(){
 
+    COMMAND=docker-compose
+    
+    echo ""
+
+    echo "Checking $COMMAND settings ..."
+
     DOCKER_COMPOSE=/dev/null
-    if [[ isLinux -eq 1 ]]; then
-        DOCKER_COMPOSE=$(which docker-compose)
-        echo ""
-        echo "Docker compose at $DOCKER_COMPOSE"
-        echo ""
+    if command -v $COMMAND > /dev/null; then
+        DOCKER_COMPOSE=$(command -v $COMMAND)
+        echo $COMMAND is available at $DOCKER_COMPOSE
     else
-        echo ""
-        echo "Docker compose unavailable"
-        echo ""
+        echo $COMMAND is not available. $COMMAND set to $DOCKER_COMPOSE
     fi
+
 }
 
 
 lib_env_utils.check_docker(){
 
+    COMMAND=docker
+    
+    echo ""
+    echo "Checking $COMMAND settings ..."
+
     DOCKER=/dev/null
-    if [[ isLinux -eq 1 ]]; then
-        DOCKER=$(which docker)
-        echo ""
-        echo "Docker at $DOCKER"
-        echo ""
+    if command -v $COMMAND > /dev/null; then
+        DOCKER=$(command -v $COMMAND)
+        echo $COMMAND is available at $DOCKER
     else
-        echo ""
-        echo "Docker unavailable"
-        echo ""
+        echo $COMMAND is not available. $COMMAND set to $DOCKER
     fi
 
 }
