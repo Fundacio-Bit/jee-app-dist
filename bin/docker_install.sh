@@ -33,19 +33,48 @@ if [[ isLinux -eq 1 ]]; then
     sudo apt-get update
     sudo apt-get upgrade
     
-    sudo apt-get remove docker docker-engine docker.io docker-compose containerd runc
-    echo "remove docker docker-engine docker.io docker-compose containerd runc"
-    #sudo apt-get autoremove
-    #sudo apt-get install docker.io docker-compose zip
-    #sudo systemctl enable docker
-    #sudo systemctl start docker
-    #sudo systemctl status docker
+    sudo apt-get remove \
+        docker \
+        docker.io \
+        docker-compose \
+        containerd \
+        runc
+
+    echo "remove docker docker.io docker-compose containerd runc"
+
+    sudo apt-get remove docker-engine
+    echo "remove docker-engine"
+
+    sudo apt-get autoremove
     
-    # sudo useradd -p $(openssl passwd -1 docker) docker -g docker
-    # sudo usermod -a -G docker emiserv
-    # sudo usermod -a -G docker ${DOCKER_CUSTOM_USERNAME_ON_INSTALL}
+    sudo apt-get update
+
+    sudo apt-get install \
+        ca-certificates \
+        curl \
+        gnupg \
+        lsb-release
+
+    sudo mkdir -p /etc/apt/keyrings
+
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o  /etc/apt/keyrings/docker.gpg
+
+    echo \
+        "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+        $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
     
-    #sudo mkdir -p /app/docker
+    echo Adding: \
+        "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+        $(lsb_release -cs) stable"
+
+    sudo apt-get update
+
+    sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+
+    sudo docker run hello-world
+
+    sudo mkdir -p /app/docker
+
 else
     echo ""
     echo "Docker should be installed manually"

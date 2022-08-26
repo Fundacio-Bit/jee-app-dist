@@ -42,7 +42,7 @@ lib_env_utils.check_os(){
 
 lib_env_utils.check_docker_compose(){
 
-    COMMAND=docker-compose
+    COMMAND=docker compose
     
     echo ""
 
@@ -50,7 +50,7 @@ lib_env_utils.check_docker_compose(){
 
     DOCKER_COMPOSE=/dev/null
     if command -v $COMMAND > /dev/null; then
-        DOCKER_COMPOSE=$(command -v $COMMAND)
+        DOCKER_COMPOSE=$(command -v $(echo $COMMAND))
         echo $COMMAND is available at $DOCKER_COMPOSE
     else
         echo $COMMAND is not available. $COMMAND set to $DOCKER_COMPOSE
