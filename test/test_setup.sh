@@ -25,11 +25,25 @@ lib_env_utils.check_os
 
 lib_env_utils.check_docker
 
-lib_env_utils.check_docker_compose
+# Deprecated
+# lib_env_utils.check_docker_compose
 
 echo ""
 echo Docker username $DOCKER_CUSTOM_USERNAME
 echo Docker username on install $DOCKER_CUSTOM_USERNAME_ON_INSTALL
+
+echo ""
+echo Checking Docker version
+echo ""
+docker version
+echo ""
+
+echo ""
+echo Checking Docker Compose Version
+echo ""
+docker compose version
+echo ""
+
 
 echo ""
 echo Checking Java version

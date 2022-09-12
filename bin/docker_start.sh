@@ -10,10 +10,10 @@ set -o errexit
 ###         Start               ###
 ###################################
 
-COMMAND=docker_compose
+COMMAND=docker
 
-DOCKER_COMPOSE=$(command -v $COMMAND)
-echo "docker-compose at $DOCKER_COMPOSE"
+DOCKER=$(command -v $COMMAND)
+echo "docker at $DOCKER"
 
 echo ""
 PROJECT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )"
@@ -29,30 +29,30 @@ lib_env_utils.loadenv ${PROJECT_PATH}
 echo ""
 lib_env_utils.check_os
 echo ""
-lib_env_utils.check_docker_compose
+lib_env_utils.check_docker
 echo ""
 
-if [[ "${DOCKER_COMPOSE}" == "/dev/null" ]]; then
-  echo "docker-compose not installed. Exiting"
+if [[ "${DOCKER}" == "/dev/null" ]]; then
+  echo "docker compose not installed. Exiting"
   exit 1
 fi
 
 export USER_ID=${UID}
 export GROUP_ID=${UID}
 
-#${DOCKER_COMPOSE} \
+#${DOCKER} compose \
 #    -f ${DOCKER_COMPOSE_FILE} \
 #    down --remove-orphans    
 
 echo "[$(date +"%Y-%m-%d %T")] Starting the containers..."
 
-${DOCKER_COMPOSE} \
+${DOCKER} compose \
     -f ${DOCKER_COMPOSE_FILE} \
     up -d --build
 
-${DOCKER_COMPOSE} \
+${DOCKER} compose \
     -f ${DOCKER_COMPOSE_FILE} \
     logs -f --tail 40    
 
 
-# ${DOCKER_COMPOSE} -f ${PROJECT_PATH}/docker-compose.api.yml logs -f
+# ${DOCKER} compose -f ${PROJECT_PATH}/docker-compose.api.yml logs -f

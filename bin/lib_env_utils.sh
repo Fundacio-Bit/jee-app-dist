@@ -38,15 +38,16 @@ lib_env_utils.check_os(){
 }
 
 ##################################################################
+# This should be deprecated
 ##################################################################
 
 lib_env_utils.check_docker_compose(){
 
-    COMMAND=docker compose
+    COMMAND="docker compose"
     
     echo ""
 
-    echo "Checking $COMMAND settings ..."
+    echo "Checking $COMMAND settings ... This should be deprecated"
 
     DOCKER_COMPOSE=/dev/null
     if command -v $COMMAND > /dev/null; then
@@ -57,6 +58,10 @@ lib_env_utils.check_docker_compose(){
     fi
 
 }
+
+
+##################################################################
+##################################################################
 
 
 lib_env_utils.check_docker(){

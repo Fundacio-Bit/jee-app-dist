@@ -87,7 +87,9 @@ APP_PROJECT_DB_PROPERTIES_FOLDER=${APP_PROJECT_DB_PROPERTIES_PATH}/${APP_PROJECT
 # APP_FILES_BASE_FOLDER=/app/${APP_PROJECT_NAME}
 
 # Recommended path
-APP_FILES_BASE_FOLDER=${APP_PROJECT_PATH}/app/${APP_PROJECT_NAME}
+# APP_FILES_BASE_FOLDER=${APP_PROJECT_PATH}/app/${APP_PROJECT_NAME}
+APP_FILES_BASE_FOLDER=${APP_PROJECT_PATH}/data
+APP_FILES_SUBFOLDER_ARRAY="assets bundle var"
 
 # Array of app names camel case separated by spaces. New feature to test.
 # APP_ARRAY ="first-app second-app third-app"

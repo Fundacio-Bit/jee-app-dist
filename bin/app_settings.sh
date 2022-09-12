@@ -39,4 +39,3 @@ for FILE in $TEMPLATE_FOLDER/*; do
     cp $FILE $NEWFILE
 done
 echo ""
-

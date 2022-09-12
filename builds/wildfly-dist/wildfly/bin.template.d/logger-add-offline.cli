@@ -1,6 +1,6 @@
 embed-server --server-config=${server.config:standalone.xml}
 # /subsystem=logging/periodic-rotating-file-handler=MYLOG:add(autoflush="true", formatter="%d{dd-MM-yyyy HH:mm:ss,SSS}|%-5p|%m%n", file={"relative-to"=>"jboss.server.log.dir","path"=>"mylog_example.log"}, suffix=".yyyy-MM-dd", append=true)
-#/subsystem=logging/periodic-rotating-file-handler=EMISERVLOG:add(autoflush="true", formatter="%d{dd-MM-yyyy HH:mm:ss,SSS}|%-5p|%m%n", file={"path"=>"/app/emiserv/logs/emiserv.log"}, suffix=".yyyy-MM-dd", append=true)
+#/subsystem=logging/periodic-rotating-file-handler=EMISERVLOG:add(autoflush="true", formatter="%d{dd-MM-yyyy HH:mm:ss,SSS}|%-5p|%m%n", file={"path"=>"/app/emiserv/var/logs/emiserv.log"}, suffix=".yyyy-MM-dd", append=true)
 # Create the logger for our quickstart class
 ### NOTE: To view different logging levels, change the level below from TRACE to DEBUG, INFO, WARN, ERROR, or FATAL, then access the application.
 # /subsystem=logging/logger=org.springframework:add(level=DEBUG)

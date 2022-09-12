@@ -30,7 +30,6 @@ echo ""
 
 if [[ isLinux -eq 1 ]]; then
 
-
     sudo systemctl disable docker.service
     sudo systemctl disable containerd.service
 

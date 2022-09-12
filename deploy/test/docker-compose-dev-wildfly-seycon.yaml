@@ -1,0 +1,86 @@
+version: '3.2'
+services:
+  wildfly:
+    build:
+      context: ../../builds/wildfly-dist
+      args:
+        - KEYCLOAK_URI_ARG=${KEYCLOAK_URI_ARG}
+    container_name: wildfly-${LONG_APP_NAME_LOWER}
+    hostname: wildfly-${LONG_APP_NAME_LOWER}
+    environment:
+     - ADMIN_USER=admin
+     - ADMIN_PASSWORD=admin
+    ports:
+     - 8080:8080
+     - 9990:9990
+    volumes:
+     - ${WILDFLY_DEPLOY_DIR}:/opt/jboss/wildfly/standalone/deployments
+     - ${WILDFLY_CONFIG_DIR}:/opt/jboss/wildfly/standalone/deployments
+    depends_on:
+      - keycloak
+      - app-db
+      - seycon-db
+  keycloak:
+    build:
+      context: ../../builds/keycloak-dist
+    container_name: keycloak-${LONG_APP_NAME_LOWER}
+    hostname: keycloak-${LONG_APP_NAME_LOWER}
+    environment:
+     - KEYCLOAK_USER=admin
+     - KEYCLOAK_PASSWORD=admin
+     - KEYCLOAK_IMPORT=/tmp/import-goib-realm.json
+    ports:
+     - 8180:8180
+    volumes: 
+      - ../../builds/keycloak-dist/keycloak/conf/import-goib-realm.json:/tmp/import-goib-realm.json
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://keycloak-goib:8180/auth/realms/GOIB"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+  app-db:
+    image: postgres:9.5-alpine
+    #build:
+    #  context: ../../builds/postgresql-dist
+    #build:
+    #  context: ../../builds/postgresql-dist
+    container_name: ${LONG_APP_NAME_LOWER}-pg
+    hostname: ${LONG_APP_NAME_LOWER}-pg
+    restart: always
+    ports:
+      - "5441:5432"
+    volumes:
+      - ../../builds/postgresql-dist/postgresql/bin/docker-entrypoint-initdb.d/00_initdb.sh:/docker-entrypoint-initdb.d/00_initdb.sh:ro
+      - /app/docker/postgresql/${LONG_APP_NAME_LOWER}/data:/var/lib/postgresql/data
+      - /app/docker/postgresql/${LONG_APP_NAME_LOWER}/backups:/app/postgresql/backups
+      #- ../../builds/postgresql-dist/postgresql/tablespaces/${LONG_APP_NAME_LOWER}:/var/lib/postgresql/app/tablespaces
+      #- ../../builds/postgresql-dist/postgresql/backups/${LONG_APP_NAME_LOWER}:/var/lib/postgresql/app/backups
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - LONG_APP_NAME=${LONG_APP_NAME_LOWER}
+      - SHORT_APP_NAME=${SHORT_APP_NAME_LOWER}
+      - PGTABLESPACES=/var/lib/postgresql/data/tablespaces
+  seycon-db:
+    image: postgres:9.5-alpine
+    #build:
+    #  context: ../../builds/postgresql-dist
+    container_name: seycon-${SHORT_APP_NAME_LOWER}-pg
+    hostname: seycon-${SHORT_APP_NAME_LOWER}-pg
+    restart: always
+    ports:
+      - "5442:5432"
+    volumes:
+      - ../../builds/postgresql-dist/postgresql/bin/docker-entrypoint-initdb.d/00_initdb.sh:/docker-entrypoint-initdb.d/00_initdb.sh:ro
+      - /app/docker/postgresql/seycon-${SHORT_APP_NAME_LOWER}/data:/var/lib/postgresql/data
+      - /app/docker/postgresql/seycon-${SHORT_APP_NAME_LOWER}/backups:/app/postgresql/backups
+      #- ../../builds/postgresql-dist/postgresql/data/seycon-${SHORT_APP_NAME_LOWER}:/var/lib/postgresql/app/tablespaces
+      #- ../../builds/postgresql-dist/postgresql/data/seycon-${SHORT_APP_NAME_LOWER}:/var/lib/postgresql/app/backups
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - LONG_APP_NAME=seycon
+      - SHORT_APP_NAME=sc
+      - PGTABLESPACES=/var/lib/postgresql/data/tablespaces
+
+
+
+    

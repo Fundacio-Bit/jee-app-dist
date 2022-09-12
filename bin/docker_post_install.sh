@@ -4,7 +4,7 @@
 #set -o errexit
 
 #### Description: Installs docker.
-#### Written by: Guillermo de Ignacio - gdeignacio@fundaciobit.org on 04-2021
+#### Written by: Guillermo de Ignacio - gdeignacio@fundaciobit.org on 09-2021
 #### WARNING: Check if DOCKER_CUSTOM_USERNAME is set. See settings/500_docker file
 
 ###################################

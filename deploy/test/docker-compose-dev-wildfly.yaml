@@ -15,12 +15,11 @@ services:
      - ${WILDFLY_ADMIN_PORT}:9990
     volumes:
      - ${WILDFLY_DEPLOY_DIR}:/opt/jboss/wildfly/standalone/deployments
-     #- ${WILDFLY_LIB_DIR}/backoffice.jar:/opt/jboss/wildfly/standalone/lib/backoffice.jar:ro
-     #- ${M2_REPO}/es/caib/emiserv/emiserv-service-intf/2.0.2/emiserv-service-intf-2.0.2.jar:/opt/jboss/wildfly/standalone/lib/emiserv-service-intf-2.0.2.jar:ro
-     ##- ${WILDFLY_STANDALONE_CONFIGURATION_DIR}:/opt/jboss/wildfly/standalone/configuration
+     - ${WILDFLY_LIB_DIR}/backoffice.jar:/opt/jboss/wildfly/standalone/lib/backoffice.jar:ro
+     - ${M2_REPO}/es/caib/emiserv/emiserv-service-intf/2.0.2/emiserv-service-intf-2.0.2.jar:/opt/jboss/wildfly/standalone/lib/emiserv-service-intf-2.0.2.jar:ro
+     #- ${WILDFLY_STANDALONE_CONFIGURATION_DIR}:/opt/jboss/wildfly/standalone/configuration
      - ${WILDFLY_CONFIG_DIR}:/opt/jboss/webapps/config
-     - ${APP_FILES_BASE_FOLDER}/assets:/app/${APP_PROJECT_NAME}/assets
-     - ${APP_FILES_BASE_FOLDER}/var:/app/${APP_PROJECT_NAME}/var
+     - /app/${APP_PROJECT_NAME}:/app/${APP_PROJECT_NAME}
     depends_on:
       - keycloak
       - app-db
@@ -55,8 +54,8 @@ services:
       - ${PG_PORT}:5432
     volumes:
       - ../../builds/postgresql-dist/postgresql/bin/docker-entrypoint-initdb.d/00_initdb.sh:/docker-entrypoint-initdb.d/00_initdb.sh:ro
-      - ${APP_FILES_BASE_FOLDER}/postgresql/data:/var/lib/postgresql/data
-      - ${APP_FILES_BASE_FOLDER}/postgresql/backups:/app/postgresql/backups
+      - /app/docker/postgresql/${APP_PROJECT_NAME}/data:/var/lib/postgresql/data
+      - /app/docker/postgresql/${APP_PROJECT_NAME}/backups:/app/postgresql/backups
       #- ../../builds/postgresql-dist/postgresql/tablespaces/${LONG_APP_NAME_LOWER}:/var/lib/postgresql/app/tablespaces
       #- ../../builds/postgresql-dist/postgresql/backups/${LONG_APP_NAME_LOWER}:/var/lib/postgresql/app/backups
     environment:

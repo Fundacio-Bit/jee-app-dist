@@ -1,0 +1,55 @@
+version: '2'
+services:
+  app-db:
+    image: postgres:9.5-alpine
+    #build:
+    #  context: ../../builds/postgresql-dist
+    #build:
+    #  context: ../../builds/postgresql-dist
+    container_name: ${LONG_APP_NAME_LOWER}-pg
+    hostname: ${LONG_APP_NAME_LOWER}-pg
+    restart: always
+    ports:
+      - "5441:5432"
+    volumes:
+      - ../../builds/postgresql-dist/postgresql/bin/docker-entrypoint-initdb.d/00_initdb.sh:/docker-entrypoint-initdb.d/00_initdb.sh:ro
+      - /app/docker/postgresql/${LONG_APP_NAME_LOWER}/data:/var/lib/postgresql/data
+      - /app/docker/postgresql/${LONG_APP_NAME_LOWER}/backups:/app/postgresql/backups
+      #- ../../builds/postgresql-dist/postgresql/tablespaces/${LONG_APP_NAME_LOWER}:/var/lib/postgresql/app/tablespaces
+      #- ../../builds/postgresql-dist/postgresql/backups/${LONG_APP_NAME_LOWER}:/var/lib/postgresql/app/backups
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - LONG_APP_NAME=${LONG_APP_NAME_LOWER}
+      - SHORT_APP_NAME=${SHORT_APP_NAME_LOWER}
+      - PGTABLESPACES=/var/lib/postgresql/data/tablespaces
+  seycon-db:
+    image: postgres:9.5-alpine
+    #build:
+    #  context: ../../builds/postgresql-dist
+    container_name: seycon-${SHORT_APP_NAME_LOWER}-pg
+    hostname: seycon-${SHORT_APP_NAME_LOWER}-pg
+    restart: always
+    ports:
+      - "5442:5432"
+    volumes:
+      - ../../builds/postgresql-dist/postgresql/bin/docker-entrypoint-initdb.d/00_initdb.sh:/docker-entrypoint-initdb.d/00_initdb.sh:ro
+      - /app/docker/postgresql/seycon-${SHORT_APP_NAME_LOWER}/data:/var/lib/postgresql/data
+      - /app/docker/postgresql/seycon-${SHORT_APP_NAME_LOWER}/backups:/app/postgresql/backups
+      #- ../../builds/postgresql-dist/postgresql/data/seycon-${SHORT_APP_NAME_LOWER}:/var/lib/postgresql/app/tablespaces
+      #- ../../builds/postgresql-dist/postgresql/data/seycon-${SHORT_APP_NAME_LOWER}:/var/lib/postgresql/app/backups
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - LONG_APP_NAME=seycon
+      - SHORT_APP_NAME=sc
+      - PGTABLESPACES=/var/lib/postgresql/data/tablespaces
+  #Nginx Service
+  nginx:
+    image: nginx:alpine
+    container_name: nginx-${LONG_APP_NAME_LOWER}
+    hostname: nginx-${LONG_APP_NAME_LOWER}
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ../../builds/nginx-dist/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
