@@ -22,4 +22,3 @@ PG_DUMP_FILENAME=${PG_DUMP_TARGET}/${PG_LONG_APP_NAME}.tar
 
 PG_DUMP_SCHEMA_ONLY= 
 # End postgres section
-

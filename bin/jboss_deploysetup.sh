@@ -22,8 +22,41 @@ source $PROJECT_PATH/bin/lib_env_utils.sh
 
 lib_env_utils.loadenv ${PROJECT_PATH}
 
+echo ""
+
+
+PROJECT_PROPERTIES_FOLDER=${APP_PROJECT_FOLDER}/scripts/configuracio
+if [ -d "$PROJECT_PROPERTIES_FOLDER" ]; then
+  # Copy section
+  for FILE in $PROJECT_PROPERTIES_FOLDER/*.properties; do
+    if [[ -f "$FILE" ]]; then
+      echo Loading $FILE
+      cp $FILE $WILDFLY_PROPERTIESCONF_PATH
+    fi
+  done
+else
+  echo "${PROJECT_PROPERTIES_FOLDER} not found"
+fi
+
+echo ""
+
+PROJECT_DATASOURCES_FOLDER=${APP_PROJECT_FOLDER}/scripts/datasources/${APP_PROJECT_SGBD}
+if [ -d "$PROJECT_DATASOURCES_FOLDER" ]; then
+  # Copy section
+  for FILE in $PROJECT_DATASOURCES_FOLDER/*-ds.xml; do
+    if [[ -f "$FILE" ]]; then
+      echo Loading $FILE
+      cp $FILE $WILDFLY_DEPLOYCONF_PATH
+    fi
+  done
+else
+  echo "${PROJECT_DATASOURCES_FOLDER} not found"
+fi
+
+
+
 CONF_PATH_ARRAY=($JBOSS_EAP_52_DEPLOYCONF_PATH $WILDFLY_DEPLOYCONF_PATH $WILDFLY_PROPERTIESCONF_PATH $WILDFLY_BIN_CLI_PATH)
-echo $JBOSS_EAP_52_CONF_PATH
+# echo $JBOSS_EAP_52_CONF_PATH
 for CFPATH in ${CONF_PATH_ARRAY[*]}; do
     echo "Processing: "$CFPATH
     #TEMPLATE_FOLDER=$DEPLOY_CONF_PATH.template.d

@@ -41,10 +41,15 @@ APPLICATION_PATH=${APP_PROJECT_DB_SCRIPTS_FOLDER}
 echo "Processing $APPLICATION_PATH"
 if [ -d "$APPLICATION_PATH" ]; then
   # Copy section
+  PATTERN='drop_schema'
   for FILE in $APPLICATION_PATH/*.sql; do
-    if [[ -f "$FILE" ]]; then
-      echo Loading $FILE
-      ${DOCKER} exec -i ${APP_PROJECT_DOCKER_SERVER_NAME}-pg psql -v ON_ERROR_STOP=1 --username ${APP_PROJECT_DB_NAME} --dbname ${APP_PROJECT_DB_NAME} < $FILE
+    if [[ "$FILE" =~ .*"$PATTERN".* ]]; then
+      echo Skipping $FILE
+    else
+      if [[ -f "$FILE" ]]; then
+        echo Loading $FILE
+        ${DOCKER} exec -i ${APP_PROJECT_DOCKER_SERVER_NAME}-pg psql -v ON_ERROR_STOP=1 --username ${APP_PROJECT_DB_NAME} --dbname ${APP_PROJECT_DB_NAME} < $FILE
+      fi
     fi
   done
   exit 0
