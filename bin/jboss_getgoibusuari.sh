@@ -29,4 +29,4 @@ GOIBUSUARI_EAR_URL=https://github.com/GovernIB/docker-imatges/raw/docker-imatges
 GOIBUSUARI_EAR_TARGET=$PROJECT_PATH/builds/wildfly-dist/wildfly/deploy
 
 echo "Downloading" $GOIBUSUARI_EAR_URL "to" $GOIBUSUARI_EAR_TARGET
-wget $GOIBUSUARI_EAR_URL -P $GOIBUSUARI_EAR_TARGET
+wget $GOIBUSUARI_EAR_URL -P $GOIBUSUARI_EAR_TARGET --no-check-certificate

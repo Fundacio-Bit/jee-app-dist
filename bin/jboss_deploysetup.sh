@@ -31,6 +31,7 @@ if [ -d "$PROJECT_PROPERTIES_FOLDER" ]; then
   for FILE in $PROJECT_PROPERTIES_FOLDER/*.properties; do
     if [[ -f "$FILE" ]]; then
       echo Loading $FILE
+      mkdir -p $WILDFLY_PROPERTIESCONF_PATH
       cp $FILE $WILDFLY_PROPERTIESCONF_PATH
     fi
   done
@@ -46,6 +47,7 @@ if [ -d "$PROJECT_DATASOURCES_FOLDER" ]; then
   for FILE in $PROJECT_DATASOURCES_FOLDER/*-ds.xml; do
     if [[ -f "$FILE" ]]; then
       echo Loading $FILE
+      mkdir -p $WILDFLY_DEPLOYCONF_PATH
       cp $FILE $WILDFLY_DEPLOYCONF_PATH
     fi
   done
