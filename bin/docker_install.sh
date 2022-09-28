@@ -74,7 +74,8 @@ if [[ isLinux -eq 1 ]]; then
     sudo docker run hello-world
 
     # TO DO:  Check path if needed
-    sudo mkdir -p /app/docker
+    # Deprecated
+    # sudo mkdir -p /app/docker
 
 else
     echo ""
