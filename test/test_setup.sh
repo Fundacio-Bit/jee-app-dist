@@ -28,6 +28,20 @@ lib_env_utils.check_docker
 # Deprecated
 # lib_env_utils.check_docker_compose
 
+
+echo ""
+echo Checking Java version
+echo ""
+java -version
+echo ""
+echo Checking Maven version
+echo ""
+mvn -version
+echo ""
+echo Checking Maven settings
+mvn help:effective-settings --settings $PROJECT_PATH/builds/maven-dist/maven/conf/settings.xml
+echo ""
+
 echo ""
 echo Docker username $DOCKER_CUSTOM_USERNAME
 echo Docker username on install $DOCKER_CUSTOM_USERNAME_ON_INSTALL
@@ -42,18 +56,4 @@ echo ""
 echo Checking Docker Compose Version
 echo ""
 docker compose version
-echo ""
-
-
-echo ""
-echo Checking Java version
-echo ""
-java -version
-echo ""
-echo Checking Maven version
-echo ""
-mvn -version
-echo ""
-echo Checking Maven settings
-mvn help:effective-settings --settings $PROJECT_PATH/builds/maven-dist/maven/conf/settings.xml
 echo ""
