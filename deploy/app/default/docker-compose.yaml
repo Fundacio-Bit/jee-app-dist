@@ -1,0 +1,79 @@
+version: '3.2'
+services:
+  wildfly:
+    build:
+      context: ../../builds/wildfly-dist
+      args:
+        - KEYCLOAK_URI_ARG=${KEYCLOAK_URI_ARG}
+    container_name: wildfly-${APP_PROJECT_NAME}
+    hostname: wildfly-${APP_PROJECT_DOCKER_SERVER_NAME}
+    environment:
+     - ADMIN_USER=admin
+     - ADMIN_PASSWORD=admin
+    ports:
+     - ${WILDFLY_PORT}:8080
+     - ${WILDFLY_ADMIN_PORT}:9990
+    volumes:
+     - ${WILDFLY_DEPLOY_DIR}:/opt/jboss/wildfly/standalone/deployments
+     - ${WILDFLY_CONFIG_DIR}:/opt/jboss/webapps/config
+     - ${APP_FILES_BASE_FOLDER}/assets:/app/${APP_PROJECT_NAME}/assets
+     - ${APP_FILES_BASE_FOLDER}/var:/app/${APP_PROJECT_NAME}/var
+    depends_on:
+      - keycloak
+      - app-db
+  keycloak:
+    build:
+      context: ../../builds/keycloak-dist
+    container_name: keycloak-${APP_PROJECT_NAME}
+    hostname: keycloak-${APP_PROJECT_DOCKER_SERVER_NAME}
+    environment:
+     - KEYCLOAK_USER=admin
+     - KEYCLOAK_PASSWORD=admin
+     - KEYCLOAK_IMPORT=/tmp/import-goib-realm.json
+    ports:
+     - ${KEYCLOAK_PORT}:8180
+    volumes: 
+      - ../../builds/keycloak-dist/keycloak/conf/import-goib-realm.json:/tmp/import-goib-realm.json
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://${KEYCLOAK_URI_ARG}/auth/realms/GOIB"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+  app-db:
+    image: postgres:10.2-alpine
+    #build:
+    #  context: ../../builds/postgresql-dist
+    #build:
+    #  context: ../../builds/postgresql-dist
+    container_name: ${APP_PROJECT_NAME}-pg
+    hostname: ${APP_PROJECT_DOCKER_SERVER_NAME}-pg
+    #restart: always
+    ports:
+      - ${PG_PORT}:5432
+    volumes:
+      - ../../builds/postgresql-dist/postgresql/bin/docker-entrypoint-initdb.d/00_initdb.sh:/docker-entrypoint-initdb.d/00_initdb.sh:ro
+      - ${APP_FILES_BASE_FOLDER}/postgresql/data:/var/lib/postgresql/data
+      - ${APP_FILES_BASE_FOLDER}/postgresql/backups:/app/postgresql/backups
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - LONG_APP_NAME=${APP_PROJECT_DB_NAME}
+      - SHORT_APP_NAME=${SHORT_APP_NAME_LOWER}
+      - PGTABLESPACES=/var/lib/postgresql/data/tablespaces
+  nginx:
+    image: nginx
+    container_name: nginx-${APP_PROJECT_NAME}
+    hostname: nginx-${APP_PROJECT_DOCKER_SERVER_NAME}
+    #restart: always
+    ports:
+      - ${NGINX_SERVER_HTTP_PORT}:80
+      - ${NGINX_SERVER_HTTPS_PORT}:443
+    volumes:
+      - ../../builds/nginx-dist/nginx/conf/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ../../builds/nginx-dist/nginx/bin/docker-entrypoint.d/nginx-entrypoint.sh:/docker-entrypoint.d/nginx-entrypoint.sh:ro
+    depends_on:
+      - wildfly
+      - keycloak
+      - app-db
+
+
+    
