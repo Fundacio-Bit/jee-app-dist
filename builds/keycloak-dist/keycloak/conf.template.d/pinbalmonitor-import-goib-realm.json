@@ -1,0 +1,113 @@
+{
+    "realm": "GOIB",
+    "enabled": true,
+    "clients": [
+        {
+            "clientId": "goib-default",
+            "description": "Autenticación de aplicaciones (entorno de desarrollo local)",
+            "enabled": true,
+            "publicClient": true,
+            "standardFlowEnabled": true,
+            "implicitFlowEnabled": false,
+            "directAccessGrantsEnabled": true,
+            "authorizationServicesEnabled": false,
+            "rootUrl": "/goib-default",
+            "redirectUris": [
+                "*"
+            ],
+            "adminUrl": "/goib-default",
+            "webOrigins": [
+                "*"
+            ],
+            "attributes": {
+                "login_theme": "keycloak"
+            }
+        },
+        {
+            "clientId": "goib-ws",
+            "description": "Autenticación de servicios API REST (entorno de desarrollo local)",
+            "enabled": true,
+            "clientAuthenticatorType": "client-secret",
+            "secret": "e73e8e95-d88c-42bf-a76b-273be6708018",
+            "bearerOnly" : true,
+            "publicClient": true,
+            "standardFlowEnabled": true,
+            "implicitFlowEnabled": false,
+            "directAccessGrantsEnabled": true,
+            "serviceAccountsEnabled": true,
+            "authorizationServicesEnabled": true,
+            "redirectUris": [
+                "*"
+            ],
+            "webOrigins": [
+                "*"
+            ]
+        }
+    ],
+    "users": [
+        {
+            "username": "u999000",
+            "enabled": true,
+            "firstName": "NomUsuari",
+            "lastName": "LlinatgeUsuari",
+            "email":"u999000@caib.es",
+            "credentials": [
+                {
+                    "type": "password",
+                    "value": "u999000"
+                }
+            ],
+            "clientRoles": {
+                    "goib-default": [
+                        "EBO_SUPERVISOR", "PBM_ADMIN", "PBM_USER"
+                    ]
+            }
+        },
+        {   
+            "username": "$GOIB_USUARI",
+            "enabled": true,
+            "credentials": [
+                {
+                    "type": "password",
+                    "value": "$GOIB_USUARI"
+                }
+            ],
+            "clientRoles": {
+                    "goib-ws": [
+                        "EBO_SUPERVISOR"
+                    ]
+            }
+        }
+    ],
+    "roles": {
+        "client": {
+            "goib-default": [
+                {
+                   "name": "EBO_SUPERVISOR",
+                   "description": "Administrator privileges",
+                   "composite": false,
+                   "clientRole": true
+                },
+                {
+                   "name": "EMS_ADMIN",
+                   "description": "EMISERV Administrador",
+                   "composite": false,
+                   "clientRole": true
+                },
+                {
+                   "name": "EMS_RESP",
+                   "description": "Emiserv Responsable",
+                   "composite": false,
+                   "clientRole": true
+                }
+                ],
+            "goib-ws": [
+                {
+                   "name": "EBO_SUPERVISOR",
+                   "description": "Administrator privileges",
+                   "composite": false,
+                   "clientRole": true
+                }]
+        }
+    }
+}
