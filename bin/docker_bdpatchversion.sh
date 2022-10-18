@@ -39,26 +39,58 @@ IFS=' '
 #Read the split words into an array based on space delimiter
 read -a VERSIONS_ARRAY <<< ${APP_PROJECT_DB_PATCH_ARRAY}
 
+IFS=' '
+#Read the split words into an array based on space delimiter
+read -a EXCLUSIONS_ARRAY <<< ${APP_PROJECT_SGBD_EXCLUDE_ARRAY}
+
+
 # VERSIONS_ARRAY=${APP_PROJECT_DB_PATCH_ARRAY}
 
 VERSIONS_PATH=${APP_PROJECT_DB_PATCH_FOLDER}
 
 for VERSION in ${VERSIONS_ARRAY[*]}; do
-  echo "Processing "$VERSION "folder"
-done
+  
+  # Begin version section
 
-for VERSION in ${VERSIONS_ARRAY[*]}; do
   VERSION_FOLDER=${VERSIONS_PATH}/${VERSION}
+  echo ""
   echo "Executing "$VERSION "version patch"
+  echo "Processing "${VERSION_FOLDER} "folder"
+  echo ""
+ 
   if [ -d "$VERSION_FOLDER" ]; then
+    
     # Copy section
-    for FILE in $VERSION_FOLDER/*${APP_PROJECT_SGBD}*; do
-      if [[ -f "$FILE" ]]; then
+    for FILE in $VERSION_FOLDER/* $VERSION_FOLDER/**/* ; do
+      echo ""
+      echo "Processing "${FILE}
+      SKIP_FILE=0
+
+      for EXCLUSION in ${EXCLUSIONS_ARRAY[*]}; do
+        echo "Processing "$EXCLUSION "pattern on "${FILE}
+        if [[ "$FILE" =~ .*"$EXCLUSION".* ]]; then
+          SKIP_FILE=1
+          echo $FILE will be skipped
+        fi
+      done
+
+      if [[ -f "$FILE" ]] && [[ $SKIP_FILE -eq 0 ]]; then
+        echo ""
         echo Loading $FILE
-        ${DOCKER} exec -i ${APP_PROJECT_DOCKER_SERVER_NAME}-pg psql -v ON_ERROR_STOP=1 --username ${APP_PROJECT_DB_NAME} --dbname ${APP_PROJECT_DB_NAME} < $FILE
+        echo ""
+        # ${DOCKER} exec -i ${APP_PROJECT_DOCKER_SERVER_NAME}-pg psql -v ON_ERROR_STOP=1 --username ${APP_PROJECT_DB_NAME} --dbname ${APP_PROJECT_DB_NAME} < $FILE
+      else
+        echo ""
+        echo Skipping $FILE
+        echo ""
       fi
-    done
+
+    done  
+
   else
     echo "${VERSION_FOLDER} not found"
   fi
+
+  # End version section 
+
 done
