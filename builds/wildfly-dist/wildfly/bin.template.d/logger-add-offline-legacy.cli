@@ -1,0 +1,33 @@
+embed-server --server-config=${server.config:standalone.xml}
+# /subsystem=logging/periodic-rotating-file-handler=MYLOG:add(autoflush="true", formatter="%d{dd-MM-yyyy HH:mm:ss,SSS}|%-5p|%m%n", file={"relative-to"=>"jboss.server.log.dir","path"=>"mylog_example.log"}, suffix=".yyyy-MM-dd", append=true)
+#/subsystem=logging/periodic-rotating-file-handler=EMISERVLOG:add(autoflush="true", formatter="%d{dd-MM-yyyy HH:mm:ss,SSS}|%-5p|%m%n", file={"path"=>"/app/emiserv/var/logs/emiserv.log"}, suffix=".yyyy-MM-dd", append=true)
+# Create the logger for our quickstart class
+### NOTE: To view different logging levels, change the level below from TRACE to DEBUG, INFO, WARN, ERROR, or FATAL, then access the application.
+# /subsystem=logging/logger=org.springframework:add(level=DEBUG)
+# /subsystem=logging/logger=org.jboss.as.ee:add(level=DEBUG)
+ /subsystem=logging/logger=es.caib.emiserv:add(level=DEBUG)
+# /subsystem=logging/logger=org.hibernate.SQL:add(level=DEBUG)
+# /subsystem=logging/logger=org.hibernate.type:add(level=TRACE)
+ /subsystem=logging/logger=es.caib.emiserv.war.config:add(level=DEBUG)
+ /subsystem=logging/logger=es.caib.emiserv.backoffice:add(level=DEBUG)
+ /subsystem=logging/logger=es.caib.emiserv.logic.helper.BackofficeHelper:add(level=DEBUG)
+ /subsystem=logging/logger=es.scsp:add(level=DEBUG)
+stop-embedded-server
+
+#### NOTE: To view different logging levels, change the level below from TRACE to DEBUG, INFO, WARN, ERROR, or FATAL, then access the application.
+## /subsystem=logging/logger=org.springframework:add(use-parent-handlers=false, handlers=[handler="EMISERVLOG"], level=DEBUG)
+## /subsystem=logging/logger=org.jboss.as.ee:add(use-parent-handlers=false, handlers=[handler="EMISERVLOG"], level=DEBUG)
+# /subsystem=logging/logger=es.caib.emiserv:add(use-parent-handlers=false, handlers=[handler="EMISERVLOG"], level=DEBUG)
+## /subsystem=logging/logger=org.hibernate.SQL:add(use-parent-handlers=false, handlers=[handler="EMISERVLOG"], level=DEBUG)
+## /subsystem=logging/logger=org.hibernate.type:add(use-parent-handlers=false, handlers=[handler="EMISERVLOG"], level=TRACE)
+# /subsystem=logging/logger=es.caib.emiserv.war.config:add(use-parent-handlers=false, handlers=[handler="EMISERVLOG"], level=DEBUG)
+# /subsystem=logging/logger=es.caib.emiserv.backoffice:add(use-parent-handlers=false, handlers=[handler="EMISERVLOG"], level=DEBUG)
+# /subsystem=logging/logger=es.caib.emiserv.logic.helper.BackofficeHelper:add(use-parent-handlers=false, handlers=[handler="EMISERVLOG"], level=DEBUG)
+# /subsystem=logging/logger=es.scsp:add(use-parent-handlers=false, handlers=[handler="EMISERVLOG"], level=DEBUG)
+#stop-embedded-server
+
+
+
+
+
+
