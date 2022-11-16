@@ -53,7 +53,7 @@ if [ -d "$JDK_TARGET" ]; then
 else
     ###  Control will jump here if dir does NOT exists ###
     echo "${JDK_TARGET} not found. Creating ..."
-    $PROJECT_PATH/bin/app_jdkinstall.sh
+    $PROJECT_PATH/bin/jdk_jdkinstall.sh
 fi
 
 echo ""
@@ -64,7 +64,7 @@ if [ -d "$MAVEN_TARGET" ]; then
 else
     ###  Control will jump here if dir does NOT exists ###
     echo "${MAVEN_TARGET} not found. Creating ..."
-    $PROJECT_PATH/bin/app_maveninstall.sh
+    $PROJECT_PATH/bin/mvn_maveninstall.sh
 fi
 
 CONF_PATH_ARRAY=($WILDFLY_DEPLOYCONF_PATH $WILDFLY_PROPERTIESCONF_PATH $WILDFLY_BIN_CLI_PATH)

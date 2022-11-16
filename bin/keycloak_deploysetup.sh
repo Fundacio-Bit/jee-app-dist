@@ -39,6 +39,12 @@ else
         echo Copying $TEMPLATE_FOLDER/$KEYCLOAK_IMPORT_REALM_JSON to $KEYCLOAK_CONF_PATH
         mkdir -p $SETTINGS_FOLDER
         cp $TEMPLATE_FOLDER/$KEYCLOAK_IMPORT_REALM_JSON $SETTINGS_FOLDER/import-goib-realm.json
+    else 
+        if [[ -f "${TEMPLATE_FOLDER}/import-goib-realm.json" ]]; then
+            echo Copying default $TEMPLATE_FOLDER/import-goib-realm.json to $KEYCLOAK_CONF_PATH
+            mkdir -p $SETTINGS_FOLDER
+            cp $TEMPLATE_FOLDER/import-goib-realm.json $SETTINGS_FOLDER/import-goib-realm.json
+        fi
     fi
 fi
 

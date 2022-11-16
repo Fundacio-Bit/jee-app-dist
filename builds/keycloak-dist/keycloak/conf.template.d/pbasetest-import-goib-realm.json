@@ -59,7 +59,7 @@
             ],
             "clientRoles": {
                     "goib-default": [
-                        "EBO_SUPERVISOR", "EMP_USER", "EMP_ADMIN"
+                        "EBO_SUPERVISOR", "PBT_USER", "PBT_ADMIN"
                     ]
             }
         },
@@ -89,14 +89,14 @@
                    "clientRole": true
                 },
                 {
-                   "name": "EMP_ADMIN",
-                   "description": "EMPIWEB Administrador",
+                   "name": "PBT_ADMIN",
+                   "description": "Administrador",
                    "composite": false,
                    "clientRole": true
                 },
                 {
-                   "name": "EMP_USER",
-                   "description": "Emiserv Responsable",
+                   "name": "PBT_USER",
+                   "description": "Usuari",
                    "composite": false,
                    "clientRole": true
                 }
