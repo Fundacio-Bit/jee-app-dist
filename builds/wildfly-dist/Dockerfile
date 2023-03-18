@@ -41,6 +41,14 @@ ENV WILDFLY_VERSION=18.0.1.Final \
 
 USER root
 
+RUN yum -y update && \
+    yum -y install glibc-common glibc-locale-source && \
+    localedef -i es_ES -f UTF-8 es_ES.UTF-8
+
+ENV LANG=es_ES.UTF-8 \
+    LANGUAGE=es_ES:es \
+    LC_ALL=es_ES.UTF-8
+
 # Add the WildFly distribution to /opt, and make wildfly the owner of the extracted tar content
 # Make sure the distribution is available from a well-known place
 RUN cd $HOME \

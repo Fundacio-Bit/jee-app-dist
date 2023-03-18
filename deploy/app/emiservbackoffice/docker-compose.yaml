@@ -64,6 +64,9 @@ services:
       - LONG_APP_NAME=${APP_PROJECT_DB_NAME}
       - SHORT_APP_NAME=${SHORT_APP_NAME_LOWER}
       - PGTABLESPACES=/var/lib/postgresql/data/tablespaces
+      - LANG=es_ES.UTF-8
+      - LANGUAGE=es_ES:es
+      - LC_ALL=es_ES.UTF-8
   nginx:
     image: nginx
     container_name: nginx-${APP_PROJECT_NAME}
