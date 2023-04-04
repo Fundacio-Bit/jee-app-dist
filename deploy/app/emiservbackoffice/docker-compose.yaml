@@ -43,7 +43,7 @@ services:
       timeout: 10s
       retries: 5
   app-db:
-    image: postgres:10.2-alpine
+    image: postgres:15-alpine
     #build:
     #  context: ${DOCKER_PROJECT_PATH}/builds/postgresql-dist
     #build:

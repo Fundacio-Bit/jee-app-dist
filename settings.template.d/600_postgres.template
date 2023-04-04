@@ -8,6 +8,7 @@ PG_PORT=5441
 PG_DUMP_TARGET=/app/postgresql/backups
 PG_95_PATH=/usr/lib/postgresql/9.5/bin
 PG_10_2_PATH=/usr/lib/postgresql/10.2/bin
+PG_15_PATH=/usr/lib/postgresql/15/bin
 PG_PATH=$PG_10_2_PATH
 
 PG_DUMP_DBNAME=${PG_LONG_APP_NAME}
