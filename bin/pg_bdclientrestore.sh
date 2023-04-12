@@ -23,13 +23,16 @@ source $PROJECT_PATH/bin/lib_env_utils.sh
 
 lib_env_utils.loadenv ${PROJECT_PATH}
 
+FILENAME=${PROJECT_PATH}/../data/postgresql/15.2-alpine/backups/${PG_LONG_APP_NAME}.tar
+
+cp ${FILENAME} /tmp/restore.tar
+
 ${PG_PATH}/pg_restore \
-    --file=${PG_DUMP_FILENAME} \
+    --file=/tmp/restore.tar \
     --format=t \
     --verbose \
     --schema=${PG_DUMP_SCHEMA} \
-    --column-inserts \
     --host=${PG_DUMP_HOSTNAME} \
-    --port=${PG_DUMP_PORT} \
+    --port=${PG_PORT} \
     --username=${PG_DUMP_NAME} \
     ${PG_DUMP_DBNAME}

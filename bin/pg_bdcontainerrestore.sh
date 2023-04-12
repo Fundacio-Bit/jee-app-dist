@@ -33,14 +33,14 @@ if [[ "${DOCKER}" == "/dev/null" ]]; then
   exit 1
 fi
 
-echo Restoring container bd with $SCHEMA_ONLY option
+echo Restoring container bd with $PG_DUMP_SCHEMA_ONLY option
 ${DOCKER} exec -i ${APP_PROJECT_DOCKER_SERVER_NAME}-pg pg_restore \
-    --file=${PG_DUMP_FILENAME} \
+    $PG_DUMP_SCHEMA_ONLY \
     --format=t \
     --verbose \
     --schema=${PG_DUMP_SCHEMA} \
-    --column-inserts \
     --host=${PG_DUMP_HOSTNAME} \
     --port=${PG_DUMP_PORT} \
     --username=${PG_DUMP_NAME} \
-    ${PG_DUMP_DBNAME}
+    --dbname ${PG_DUMP_DBNAME} \
+    ${PG_DUMP_FILENAME}
