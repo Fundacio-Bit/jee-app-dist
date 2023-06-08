@@ -56,6 +56,7 @@ builds/wildfly-dist/wildfly/lib
 builds/jboss-dist/jboss/deploy
 builds/jboss-dist/jboss/conf
 builds/keycloak-dist/keycloak/conf
+builds/keycloak-dist/keycloak/bin
 builds/nginx-dist/nginx/conf
 settings/
 .exported/

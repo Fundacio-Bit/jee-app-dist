@@ -37,6 +37,7 @@ services:
      - ${KEYCLOAK_PORT}:8180
     volumes: 
       - ${DOCKER_PROJECT_PATH}/builds/keycloak-dist/keycloak/conf/import-goib-realm.json:/tmp/import-goib-realm.json
+      - ${KEYCLOAK_HTTPS_KEYSTORE_PATH}:/opt/jboss/keycloak/standalone/configuration/keystores
     healthcheck:
       test: ["CMD", "curl", "-f", "http://keycloak-${APP_PROJECT_DOCKER_SERVER_NAME}:8180/auth/realms/GOIB"]
       interval: 10s

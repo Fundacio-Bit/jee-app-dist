@@ -22,7 +22,12 @@ KEYCLOAK_URI_ARG_HOST=${KEYCLOAK_SERVER_BASE_URL}
 #
 KEYCLOAK_URI_ARG=${KEYCLOAK_SERVER_BASE_URL}
 
-KEYCLOAK_CONF_PATH=${PROJECT_PATH}/builds/keycloak-dist/keycloak/conf
+KEYCLOAK_DEPLOYCONF_PATH=${PROJECT_PATH}/builds/keycloak-dist/keycloak/conf
 KEYCLOAK_IMPORT_REALM_JSON=${APP_PROJECT_NAME}-import-goib-realm.json
+
+# BIN-CLI configuration files path
+KEYCLOAK_BIN_CLI_PATH=${PROJECT_PATH}/builds/keycloak-dist/keycloak/bin
+
+KEYCLOAK_HTTPS_KEYSTORE_PATH=${APP_FILES_BASE_FOLDER}/assets/certificados
 
 # end keycloak section

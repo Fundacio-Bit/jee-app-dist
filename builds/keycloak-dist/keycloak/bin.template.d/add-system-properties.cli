@@ -1,0 +1,6 @@
+embed-server --server-config=${server.config:standalone.xml}
+/system-property=org.keycloak.https.keystore.file:add(value=keystore.jks)
+/system-property=org.keycloak.https.keystore.pass:add(value=password)
+/system-property=org.keycloak.https.keystore.alias.name:add(value=alias)
+/system-property=org.keycloak.https.keystore.alias.pass:add(value=password)
+stop-embedded-server

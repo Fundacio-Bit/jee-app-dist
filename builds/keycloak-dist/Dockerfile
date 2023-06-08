@@ -26,8 +26,25 @@ WORKDIR /opt/jboss/
 
 COPY ./keycloak/conf/import-goib-realm.json /tmp
 
+# Https settings
+# COPY ./keycloak/bin/https-add-offline.cli /tmp
+
 USER jboss
+
+COPY ./keycloak/bin/add-system-properties.cli keycloak/bin
+RUN keycloak/bin/jboss-cli.sh --file=keycloak/bin/add-system-properties.cli && \
+    rm keycloak/bin/add-system-properties.cli
+
+# Log settings
+COPY ./keycloak/bin/https-add-offline.cli keycloak/bin
+RUN keycloak/bin/jboss-cli.sh --file=keycloak/bin/https-add-offline.cli && \
+   rm keycloak/bin/https-add-offline.cli
+
+# #####################################################################################################
+
+RUN rm -rf keycloak/standalone/configuration/standalone_xml_history/current
 
 EXPOSE 8180
 
 CMD ["-b 0.0.0.0 -bmanagement 0.0.0.0 -Djboss.socket.binding.port-offset=100"]
+
