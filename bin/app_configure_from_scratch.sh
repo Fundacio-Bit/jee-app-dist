@@ -96,7 +96,7 @@ fi
 
 echo ""
 echo "Setting up keycloak"
-CFPATH=$KEYCLOAK_CONF_PATH
+CFPATH=$KEYCLOAK_DEPLOYCONF_PATH
 echo "Processing: "$CFPATH
 SETTINGS_FOLDER=$CFPATH
 
