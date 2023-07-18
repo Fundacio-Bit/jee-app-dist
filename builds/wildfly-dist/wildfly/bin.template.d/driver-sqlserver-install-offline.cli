@@ -1,0 +1,4 @@
+embed-server --server-config=${server.config:standalone.xml}
+module add --name=com.microsoft.sqlserver --resources=sqljdbc_12.2.0.0_enu/sqljdbc_12.2/enu/mssql-jdbc-12.2.0.jre11.jar --dependencies=javax.api,javax.transaction.api
+/subsystem=datasources/jdbc-driver=sqlserver:add(driver-module-name=com.microsoft.sqlserver,driver-name=sqlserver,driver-xa-datasource-class-name=com.microsoft.sqlserver.jdbc.SQLServerXADataSource)
+stop-embedded-server
