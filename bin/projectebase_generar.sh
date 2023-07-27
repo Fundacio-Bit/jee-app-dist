@@ -62,7 +62,7 @@ else
       -Dpackage=${APP_PACKAGE_NAME}.${LONG_APP_NAME_LOWER} \
       -Dpackagepath=${APP_PACKAGE_PATH}/${LONG_APP_NAME_LOWER} \
       -Dinversepackage=${LONG_APP_NAME_LOWER}.${APP_DOMAIN_NAME} \
-      -DgroupId=es.caib.${LONG_APP_NAME_LOWER} \
+      -DgroupId=${APP_PACKAGE_NAME}.${LONG_APP_NAME_LOWER} \
       -DartifactId=${LONG_APP_NAME_LOWER} \
       -Dversion=${APP_PROJECT_TAG} \
       -Dprojectname=${LONG_APP_NAME_CAMEL} \
