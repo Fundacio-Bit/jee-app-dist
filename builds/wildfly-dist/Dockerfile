@@ -88,13 +88,14 @@ RUN bin/jboss-cli.sh --file=bin/driver-oracle-install-offline.cli && \
     rm ojdbc8-${ORACLE_JDBC_VERSION}.jar && \
     rm bin/driver-oracle-install-offline.cli
 
-RUN curl -o sqljdbc_12.2.0.0_enu.tar.gz -L https://go.microsoft.com/fwlink/?linkid=2222954 && \
-    tar -xvzf sqljdbc_12.2.0.0_enu.tar.gz
-COPY ./wildfly/bin/driver-sqlserver-install-offline.cli bin
-RUN bin/jboss-cli.sh --file=bin/driver-sqlserver-install-offline.cli && \
-    rm sqljdbc_12.2.0.0_enu.tar.gz && \
-    rm -rf sqljdbc_12.2  && \
-    rm bin/driver-sqlserver-install-offline.cli
+# SQL Server Drivers
+# RUN curl -o sqljdbc_12.2.0.0_enu.tar.gz -L https://go.microsoft.com/fwlink/?linkid=2222954 && \
+#     tar -xvzf sqljdbc_12.2.0.0_enu.tar.gz
+# COPY ./wildfly/bin/driver-sqlserver-install-offline.cli bin
+# RUN bin/jboss-cli.sh --file=bin/driver-sqlserver-install-offline.cli && \
+#     rm sqljdbc_12.2.0.0_enu.tar.gz && \
+#     rm -rf sqljdbc_12.2  && \
+#     rm bin/driver-sqlserver-install-offline.cli
 
 # Wildfly-Keycloak connector
 RUN curl -L https://downloads.jboss.org/keycloak/${KEYCLOAK_VERSION}/adapters/keycloak-oidc/keycloak-wildfly-adapter-dist-${KEYCLOAK_VERSION}.tar.gz | tar zx &&\

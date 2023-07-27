@@ -59,7 +59,7 @@
             ],
             "clientRoles": {
                     "goib-default": [
-                        "EBO_SUPERVISOR", "IEC_USER", "IEC_ADMIN"
+                        "EBO_SUPERVISOR", "ECD_USER", "ECD_ADMIN"
                     ]
             }
         },
@@ -89,13 +89,13 @@
                    "clientRole": true
                 },
                 {
-                   "name": "IEC_ADMIN",
+                   "name": "ECD_ADMIN",
                    "description": "EmiservBackoffice Administrador",
                    "composite": false,
                    "clientRole": true
                 },
                 {
-                   "name": "IEC_USER",
+                   "name": "ECD_USER",
                    "description": "EmiservBackoffice Usuari",
                    "composite": false,
                    "clientRole": true

@@ -59,12 +59,12 @@ else
       -B -DarchetypeGroupId=es.caib.projectebase \
       -DarchetypeArtifactId=projectebase-archetype \
       -DarchetypeVersion=${archetypeVersion} \
-      -Dpackage=es.caib.${LONG_APP_NAME_LOWER} \
-      -Dpackagepath=es/caib/${LONG_APP_NAME_LOWER} \
-      -Dinversepackage=${LONG_APP_NAME_LOWER}.caib.es \
+      -Dpackage=${APP_PACKAGE_NAME}.${LONG_APP_NAME_LOWER} \
+      -Dpackagepath=${APP_PACKAGE_PATH}/${LONG_APP_NAME_LOWER} \
+      -Dinversepackage=${LONG_APP_NAME_LOWER}.${APP_DOMAIN_NAME} \
       -DgroupId=es.caib.${LONG_APP_NAME_LOWER} \
       -DartifactId=${LONG_APP_NAME_LOWER} \
-      -Dversion=1.0.0 \
+      -Dversion=${APP_PROJECT_TAG} \
       -Dprojectname=${LONG_APP_NAME_CAMEL} \
       -Dprojectnameuppercase=${LONG_APP_NAME_UPPER} \
       -Dprefix=${SHORT_APP_NAME_LOWER} \

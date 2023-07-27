@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datasources>
+    <datasource jndi-name="java:jboss/datasources/emiservcedentDS" pool-name="emiservcedentDS"
+        enabled="true" use-java-context="true">
+        <connection-url>jdbc:postgresql://emiservcedent-pg:5432/emiservcedent</connection-url>
+        <driver>postgresql</driver>
+        <security>
+            <user-name>emiservcedent</user-name>
+            <password>emiservcedent</password>
+        </security>
+    </datasource>
+</datasources>
