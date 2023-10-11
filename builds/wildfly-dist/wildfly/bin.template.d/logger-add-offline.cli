@@ -1,6 +1,6 @@
 embed-server --server-config=${server.config:standalone.xml}
 # /subsystem=logging/periodic-rotating-file-handler=MYLOG:add(autoflush="true", formatter="%d{dd-MM-yyyy HH:mm:ss,SSS}|%-5p|%m%n", file={"relative-to"=>"jboss.server.log.dir","path"=>"mylog_example.log"}, suffix=".yyyy-MM-dd", append=true)
-/subsystem=logging/periodic-rotating-file-handler=${env.LONG_APP_NAME_UPPER}LOG:add(autoflush="true", formatter="%d{dd-MM-yyyy HH:mm:ss,SSS}|%-5p|%m%n", file={"path"=>"/app/${env.LONG_APP_NAME_LOWER}/var/logs/${env.LONG_APP_NAME_LOWER}.log"}, suffix=".yyyy-MM-dd", append=true)
+/subsystem=logging/periodic-rotating-file-handler=${env.LONG_APP_NAME_UPPER}LOG:add(autoflush="true", formatter="%d{dd-MM-yyyy HH:mm:ss,SSS}|%-5p|%m%n", file={"path"=>"/app/${env.LONG_APP_NAME_LOWER}/var/logs/${env.LONG_APP_NAME_LOWER}.log"}, suffix=".yyyy-MM-dd.zip", append=true)
 # Create the logger for our quickstart class
 ### NOTE: To view different logging levels, change the level below from TRACE to DEBUG, INFO, WARN, ERROR, or FATAL, then access the application.
 /subsystem=logging/logger=es.caib.${env.LONG_APP_NAME_LOWER}:add(use-parent-handlers=false, handlers=["${env.LONG_APP_NAME_UPPER}LOG"], level=DEBUG)
