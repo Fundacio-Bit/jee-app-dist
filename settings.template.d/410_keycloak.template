@@ -30,4 +30,9 @@ KEYCLOAK_BIN_CLI_PATH=${PROJECT_PATH}/builds/keycloak-dist/keycloak/bin
 
 KEYCLOAK_HTTPS_KEYSTORE_PATH=${APP_FILES_BASE_FOLDER}/assets/certificados
 
+# change these values on install
+KEYCLOAK_ADMIN_USER=admin
+KEYCLOAK_ADMIN_PASS=admin
+
+
 # end keycloak section
