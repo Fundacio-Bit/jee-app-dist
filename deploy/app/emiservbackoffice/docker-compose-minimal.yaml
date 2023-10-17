@@ -1,0 +1,52 @@
+version: '3.2'
+name: emiservbackoffice
+services:
+  wildfly:
+    build:
+      context: ${DOCKER_PROJECT_PATH}/builds/wildfly-dist
+      args:
+        - KEYCLOAK_URI_ARG=${KEYCLOAK_URI_ARG}
+    container_name: wildfly-${APP_PROJECT_NAME}
+    hostname: wildfly-${APP_PROJECT_DOCKER_SERVER_NAME}
+    environment:
+     - ADMIN_USER=$WILDFLY_ADMIN_USER
+     - ADMIN_PASSWORD=$WILDFLY_ADMIN_PASS
+    ports:
+     - ${WILDFLY_PORT}:8080
+     - ${WILDFLY_ADMIN_PORT}:9990
+    volumes:
+     - ${WILDFLY_DEPLOY_DIR}:/opt/jboss/wildfly/standalone/deployments
+     #- ${WILDFLY_LIB_DIR}/backoffice.jar:/opt/jboss/wildfly/standalone/lib/backoffice.jar:ro
+     - ${M2_REPO}/es/caib/emiserv/emiserv-service-intf/2.0.4/emiserv-service-intf-2.0.4.jar:/opt/jboss/wildfly/standalone/lib/emiserv-service-intf-2.0.4.jar:ro
+     - ${WILDFLY_CONFIG_DIR}:/opt/jboss/webapps/config
+     - ${APP_FILES_BASE_FOLDER}/assets:/app/${APP_PROJECT_NAME}/assets
+     - ${APP_FILES_BASE_FOLDER}/var:/app/${APP_PROJECT_NAME}/var
+    depends_on:
+      - app-db
+  app-db:
+    image: postgres:15.2-alpine
+    #build:
+    #  context: ${DOCKER_PROJECT_PATH}/builds/postgresql-dist
+    #build:
+    #  context: ${DOCKER_PROJECT_PATH}/builds/postgresql-dist
+    container_name: ${APP_PROJECT_NAME}-pg
+    hostname: ${APP_PROJECT_DOCKER_SERVER_NAME}-pg
+    #restart: always
+    ports:
+      - ${PG_PORT}:5432
+    volumes:
+      - ${DOCKER_PROJECT_PATH}/builds/postgresql-dist/postgresql/bin/docker-entrypoint-initdb.d/00_initdb.sh:/docker-entrypoint-initdb.d/00_initdb.sh:ro
+      - ${APP_FILES_BASE_FOLDER}/postgresql/15.2-alpine/data:/var/lib/postgresql/data
+      - ${APP_FILES_BASE_FOLDER}/postgresql/15.2-alpine/backups:/app/postgresql/backups
+      #- ${DOCKER_PROJECT_PATH}/builds/postgresql-dist/postgresql/tablespaces/${LONG_APP_NAME_LOWER}:/var/lib/postgresql/app/tablespaces
+      #- ${DOCKER_PROJECT_PATH}/builds/postgresql-dist/postgresql/backups/${LONG_APP_NAME_LOWER}:/var/lib/postgresql/app/backups
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - LONG_APP_NAME=${APP_PROJECT_DB_NAME}
+      - SHORT_APP_NAME=${SHORT_APP_NAME_LOWER}
+      - PGTABLESPACES=/var/lib/postgresql/data/tablespaces
+      - LANG=es_ES.UTF-8
+      - LANGUAGE=es_ES:es
+      - LC_ALL=es_ES.UTF-8
+  
+    
