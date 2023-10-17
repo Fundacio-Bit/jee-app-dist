@@ -42,7 +42,7 @@ for i in "$@"
 do
     case $i in
         -jdk|--java)
-        ENABLE_JDK=1
+        ENABLE_JAVA=1
         let "remaining--"
         shift # past argument=value
         ;;
@@ -84,7 +84,7 @@ else
 fi
 
 
-if [[ ENABLE_JDK -eq 1 ]]; then
+if [[ ENABLE_JAVA -eq 1 ]]; then
     echo ""
     echo "Creating jdk installation folder if not exists"
     if [ -d "$JDK_TARGET" ]; then
@@ -142,10 +142,11 @@ if [[ ENABLE_WILDFLY -eq 1 ]]; then
 
 fi
 
+
 if [[ ENABLE_KEYCLOAK -eq 1 ]]; then
     echo ""
     echo "Setting up keycloak"
-    CFPATH=$KEYCLOAK_CONF_PATH
+    CFPATH=$KEYCLOAK_DEPLOYCONF_PATH
     echo "Processing: "$CFPATH
     SETTINGS_FOLDER=$CFPATH
 
