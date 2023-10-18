@@ -1,0 +1,45 @@
+version: '3.2'
+name: main
+services:
+  keycloak:
+    build:
+      context: ${DOCKER_PROJECT_PATH}/builds/keycloak-dist
+    container_name: keycloak-${APP_PROJECT_NAME}
+    hostname: keycloak-${APP_PROJECT_DOCKER_SERVER_NAME}
+    environment:
+     - KEYCLOAK_USER=${KEYCLOAK_ADMIN_USER}
+     - KEYCLOAK_PASSWORD=${KEYCLOAK_ADMIN_PASS}
+     - KEYCLOAK_IMPORT=/tmp/import-goib-realm.json
+    ports:
+     - ${KEYCLOAK_PORT}:8180
+    volumes: 
+      - ${DOCKER_PROJECT_PATH}/builds/keycloak-dist/keycloak/conf/import-goib-realm.json:/tmp/import-goib-realm.json
+      - ${KEYCLOAK_HTTPS_KEYSTORE_PATH}:/opt/jboss/keycloak/standalone/configuration/keystores
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://keycloak-${APP_PROJECT_DOCKER_SERVER_NAME}:8180/auth/realms/GOIB"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+  nginx:
+    image: nginx
+    container_name: nginx-${APP_PROJECT_NAME}
+    hostname: nginx-${APP_PROJECT_DOCKER_SERVER_NAME}
+    #restart: always
+    ports:
+      - ${NGINX_SERVER_HTTP_PORT}:80
+      - ${NGINX_SERVER_HTTPS_PORT}:443
+    volumes:
+      - ${DOCKER_PROJECT_PATH}/builds/nginx-dist/nginx/conf/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ${DOCKER_PROJECT_PATH}/builds/nginx-dist/nginx/bin/docker-entrypoint.d/nginx-entrypoint.sh:/docker-entrypoint.d/nginx-entrypoint.sh:ro
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer-${APP_PROJECT_NAME}
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ${APP_FILES_BASE_FOLDER}/portainer/data:/data
+    ports:
+      - ${PORTAINER_PORT}:9000
