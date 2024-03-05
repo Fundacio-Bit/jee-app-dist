@@ -38,14 +38,20 @@ IFS=' '
 read -a START_ARRAY <<< ${APP_ARRAY}
 
 APPS_PATH=${PROJECT_PATH}/../../..
+echo ${APPS_PATH}
+# bin/docker_start.sh
 
-bin/docker_start.sh
 
 for START in ${START_ARRAY[*]}; do
-    echo ${APPS_PATH}/${START}
+    echo $START
     cd ${APPS_PATH}/${START}/jee-app-dist
     echo Current folder $(pwd)
-    bin/docker_start.sh
+    echo
+    bin/docker_start.sh&
+    cd ${APPS_PATH}
+    echo Current folder $(pwd)
+    echo
+    
 done
 
 cd $PROJECT_PATH
