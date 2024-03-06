@@ -3,14 +3,8 @@ embed-server --server-config=${server.config:standalone.xml}
 /subsystem=logging/periodic-rotating-file-handler=${env.LONG_APP_NAME_UPPER}LOG:add(autoflush="true", formatter="%d{dd-MM-yyyy HH:mm:ss,SSS}|%-5p|%m%n", file={"path"=>"/app/${env.LONG_APP_NAME_LOWER}/var/logs/${env.LONG_APP_NAME_LOWER}.log"}, suffix=".yyyy-MM-dd.zip", append=true)
 # Create the logger for our quickstart class
 ### NOTE: To view different logging levels, change the level below from TRACE to DEBUG, INFO, WARN, ERROR, or FATAL, then access the application.
-/subsystem=logging/logger=es.caib.${env.LONG_APP_NAME_LOWER}:add(use-parent-handlers=false, handlers=["${env.LONG_APP_NAME_UPPER}LOG"], level=DEBUG)
+/subsystem=logging/logger=${env.APP_PACKAGE_NAME}.${env.LONG_APP_NAME_LOWER}:add(use-parent-handlers=false, handlers=["${env.LONG_APP_NAME_UPPER}LOG"], level=DEBUG)
 # /subsystem=logging/logger=org.hibernate.SQL:add(use-parent-handlers=false, handlers=["${env.LONG_APP_NAME_UPPER}LOG"], level=DEBUG)
 # /subsystem=logging/logger=org.hibernate.type:add(use-parent-handlers=false, handlers=["${env.LONG_APP_NAME_UPPER}LOG"], level=TRACE)
-/subsystem=logging/logger=es.caib.${env.LONG_APP_NAME_LOWER}.war.config:add(use-parent-handlers=false, handlers=["${env.LONG_APP_NAME_UPPER}LOG"], level=DEBUG)
+/subsystem=logging/logger=${env.APP_PACKAGE_NAME}.${env.LONG_APP_NAME_LOWER}.war.config:add(use-parent-handlers=false, handlers=["${env.LONG_APP_NAME_UPPER}LOG"], level=DEBUG)
 stop-embedded-server
-
-
-
-
-
-
