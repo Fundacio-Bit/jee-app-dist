@@ -44,7 +44,7 @@ RUN keycloak/bin/jboss-cli.sh --file=keycloak/bin/https-add-offline.cli && \
 
 RUN rm -rf keycloak/standalone/configuration/standalone_xml_history/current
 
-EXPOSE 8180
+EXPOSE 8180 8443
 
 CMD ["-b 0.0.0.0 -bmanagement 0.0.0.0 -Djboss.socket.binding.port-offset=100"]
 
