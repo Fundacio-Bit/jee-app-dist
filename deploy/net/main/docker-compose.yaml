@@ -43,3 +43,14 @@ services:
       - ${APP_FILES_BASE_FOLDER}/portainer/data:/data
     ports:
       - ${PORTAINER_PORT}:9000
+  pgadmin:
+    image: dpage/pgadmin:latest
+    container_name: pgadmin-${APP_PROJECT_NAME}
+    hostname: pgadmin-${APP_PROJECT_DOCKER_SERVER_NAME}
+    environment:
+         PGADMIN_DEFAULT_EMAIL: admin@pgadmin.com
+         PGADMIN_DEFAULT_PASSWORD: password
+         PGADMIN_LISTEN_PORT: 80
+    ports:
+      - ${PGADMIN_PORT}:80
+    
