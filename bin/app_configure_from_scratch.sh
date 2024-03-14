@@ -88,8 +88,8 @@ echo ""
 if [[ SKIP_DEPLOYSETUP -eq 0 ]]; then
     echo "Config files not found. Creatinng from template"
     $PROJECT_PATH/bin/jboss_deploysetup.sh
-    $PROJECT_PATH/bin/jboss_getgoibusuari.sh
-    $PROJECT_PATH/bin/jboss_deploygoibusuari.sh
+    #$PROJECT_PATH/bin/jboss_getgoibusuari.sh
+    #$PROJECT_PATH/bin/jboss_deploygoibusuari.sh
 else
     echo "Config files already exist. Skipping"
 fi
