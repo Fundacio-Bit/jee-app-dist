@@ -15,36 +15,37 @@
 #
 #############################################################################################
 
-FROM jboss/keycloak:6.0.1
+FROM quay.io/keycloak/keycloak:24.0.1
 
 LABEL MAINTAINER="Govern de les Illes Balears <suport@caib.es>"
-ENV KEYCLOAK_USER=admin \
-    KEYCLOAK_PASSWORD=admin \
-    KEYCLOAK_IMPORT=/tmp/import-goib-realm.json
+ENV KEYCLOAK_ADMIN=admin \
+    KEYCLOAK_ADMIN_PASSWORD=admin 
+    # KEYCLOAK_IMPORT=/tmp/import-goib-realm.json
 
-WORKDIR /opt/jboss/
+# WORKDIR /opt/keycloak/
 
-COPY ./keycloak/conf/import-goib-realm.json /tmp
+# COPY ./keycloak/conf/import-goib-realm.json /tmp
 
 # Https settings
 # COPY ./keycloak/bin/https-add-offline.cli /tmp
 
-USER jboss
+# USER keycloak
 
-COPY ./keycloak/bin/add-system-properties.cli keycloak/bin
-RUN keycloak/bin/jboss-cli.sh --file=keycloak/bin/add-system-properties.cli && \
-    rm keycloak/bin/add-system-properties.cli
+# COPY ./keycloak/bin/add-system-properties.cli keycloak/bin
+# RUN keycloak/bin/jboss-cli.sh --file=keycloak/bin/add-system-properties.cli && \
+#     rm keycloak/bin/add-system-properties.cli
 
-# Log settings
-COPY ./keycloak/bin/https-add-offline.cli keycloak/bin
-RUN keycloak/bin/jboss-cli.sh --file=keycloak/bin/https-add-offline.cli && \
-   rm keycloak/bin/https-add-offline.cli
+# # Log settings
+# COPY ./keycloak/bin/https-add-offline.cli keycloak/bin
+# RUN keycloak/bin/jboss-cli.sh --file=keycloak/bin/https-add-offline.cli && \
+#    rm keycloak/bin/https-add-offline.cli
 
 # #####################################################################################################
 
-RUN rm -rf keycloak/standalone/configuration/standalone_xml_history/current
+# RUN rm -rf keycloak/standalone/configuration/standalone_xml_history/current
 
-EXPOSE 8180 8443
+# EXPOSE 8180 8443
 
-CMD ["-b 0.0.0.0 -bmanagement 0.0.0.0 -Djboss.socket.binding.port-offset=100"]
+# CMD ["start -b 0.0.0.0 -bmanagement 0.0.0.0 -Djboss.socket.binding.port-offset=100"]
 
+CMD ["start-dev"]

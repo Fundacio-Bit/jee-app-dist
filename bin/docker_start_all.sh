@@ -47,7 +47,7 @@ for START in ${START_ARRAY[*]}; do
     cd ${APPS_PATH}/${START}/jee-app-dist
     echo Current folder $(pwd)
     echo
-    bin/docker_start.sh&
+    bin/docker_start.sh
     cd ${APPS_PATH}
     echo Current folder $(pwd)
     echo
