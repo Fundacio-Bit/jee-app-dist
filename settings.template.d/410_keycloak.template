@@ -37,10 +37,11 @@ KEYCLOAK_ADMIN_PASS=admin
 
 
 KEYCLOAK_DB=postgres
-KEYCLOAK_DB_URL=jdbc:postgresql://keycloak-pg:5432/keycloak
+KEYCLOAK_DB_URL_HOST=192.168.31.180
+KEYCLOAK_DB_URL_PORT=5440
+KEYCLOAK_DB_URL_DATABASE=keycloak
+KEYCLOAK_DB_URL_SCHEMA=keycloak
 KEYCLOAK_DB_USER=keycloak
 KEYCLOAK_DB_PASSWORD=keycloak
-
-
 
 # end keycloak section

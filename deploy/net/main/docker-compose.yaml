@@ -32,10 +32,12 @@ services:
     image: dpage/pgadmin4:latest
     container_name: pgadmin-${APP_PROJECT_NAME}
     hostname: pgadmin-${APP_PROJECT_DOCKER_SERVER_NAME}
+    user: root
     environment:
       - PGADMIN_DEFAULT_EMAIL=admin@pgadmin.com
       - PGADMIN_DEFAULT_PASSWORD=password
       - PGADMIN_LISTEN_PORT=5540
     ports:
       - ${PGADMIN_PORT}:5540
-    
+    volumes:
+      - ${APP_FILES_BASE_FOLDER}/var/lib/pgadmin:/var/lib/pgadmin 
