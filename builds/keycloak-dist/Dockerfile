@@ -48,4 +48,6 @@ ENV KEYCLOAK_ADMIN=admin \
 
 # CMD ["start -b 0.0.0.0 -bmanagement 0.0.0.0 -Djboss.socket.binding.port-offset=100"]
 
-CMD ["start-dev"]
+CMD ["start -b 0.0.0.0 -bmanagement 0.0.0.0"]
+
+# CMD ["start"]
