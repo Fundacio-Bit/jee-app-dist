@@ -34,8 +34,7 @@ COPY --from=builder /opt/keycloak/ /opt/keycloak/
 
 LABEL MAINTAINER="Govern de les Illes Balears <suport@caib.es>"
 ENV KEYCLOAK_ADMIN=admin \
-    KEYCLOAK_ADMIN_PASSWORD=admin \
-    KEYCLOAK_HTTP_HOST=0.0.0.0
+    KEYCLOAK_ADMIN_PASSWORD=admin
     # KEYCLOAK_IMPORT=/tmp/import-goib-realm.json
 
 WORKDIR /opt/keycloak/
@@ -62,10 +61,10 @@ ENTRYPOINT ["/opt/keycloak/bin/kc.sh"]
 
 # RUN rm -rf keycloak/standalone/configuration/standalone_xml_history/current
 
-# EXPOSE 8080 8443
+EXPOSE 8080 8443
 
 # CMD ["start -b 0.0.0.0 -bmanagement 0.0.0.0 -Djboss.socket.binding.port-offset=100"]
 
 # CMD ["start -b 0.0.0.0 -bmanagement 0.0.0.0"]
 
-CMD ["start"]
+CMD ["start", "--verbose"]
