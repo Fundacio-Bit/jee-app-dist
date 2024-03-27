@@ -39,6 +39,14 @@ lib_string_utils.replace_key_value(){
     sed -i "s/${old_key_value}/${new_key_value}/" ${file}
 }
 
+lib_string_utils.encode_base64() {
+    echo -n "$1" | base64
+}
+
+lib_string_utils.decode_base64() {
+    echo "$1" | base64 --decode
+}
+
 echo ""
 echo lib_string_utils.sh loaded
 echo ""

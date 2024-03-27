@@ -9,5 +9,11 @@ NGINX_SERVER_BASE_URL=http://${NGINX_SERVER}:${NGINX_SERVER_HTTP_PORT}
 
 NGINX_CONF_PATH=${PROJECT_PATH}/builds/nginx-dist/nginx/conf
 NGINX_CONF_FILE=default.conf
+NGINX_OPENSSL_CONF_FILE=openssl.conf
+
+NGINX_SSL_NAMECA=proves-fbit
+NGINX_SSL_NAMECLIENT=proves-fbit-client
+NGINX_SSL_NAMESERVER=proves-fbit
+NGINX_SSL_PASS=changeit
 
 # end of nginx section

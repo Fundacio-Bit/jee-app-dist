@@ -13,6 +13,8 @@ services:
       - ${DOCKER_PROJECT_PATH}/builds/nginx-dist/nginx/conf/default.conf:/etc/nginx/conf.d/default.conf:ro
       - ${DOCKER_PROJECT_PATH}/builds/nginx-dist/nginx/bin/docker-entrypoint.d/nginx-entrypoint.sh:/docker-entrypoint.d/nginx-entrypoint.sh:ro
       - ${APP_FILES_BASE_FOLDER}/var/log/nginx:/var/log/nginx
+      - ${APP_FILES_BASE_FOLDER}/assets/ssl/${NGINX_SSL_NAMESERVER}.crt:/etc/nginx/ssl/nginx.crt:ro
+      - ${APP_FILES_BASE_FOLDER}/assets/ssl/${NGINX_SSL_NAMESERVER}.key:/etc/nginx/ssl/nginx.key:ro
   portainer:
     image: portainer/portainer-ce:latest
     container_name: portainer-${APP_PROJECT_NAME}
@@ -36,8 +38,8 @@ services:
     environment:
       - PGADMIN_DEFAULT_EMAIL=admin@pgadmin.com
       - PGADMIN_DEFAULT_PASSWORD=password
-      - PGADMIN_LISTEN_PORT=5540
+      - PGADMIN_LISTEN_PORT=80
     ports:
-      - ${PGADMIN_PORT}:5540
+      - ${PGADMIN_PORT}:80
     volumes:
       - ${APP_FILES_BASE_FOLDER}/var/lib/pgadmin:/var/lib/pgadmin 
